@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Archive list
+title: Houkanshan's Blog
 tagline: 
 ---
 {% include JB/setup %}
