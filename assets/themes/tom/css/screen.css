@@ -6,14 +6,40 @@
 
 /* Global Reset */
 
-* {
-  margin: 0;
-  padding: 0;
+/* reset */
+html {
+	color:#000;
+	background:#FFF;
 }
 
-html, body {
-  height: 100%;
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td {
+	margin:0;
+	padding:0;
 }
+
+ol,ul {
+	list-style:none;
+}
+
+caption,th {
+	text-align:left;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:400;
+}
+
+q:before, q:after {
+	content:'';
+}
+
+abbr,acronym {
+	border:0;
+	font-variant:normal;
+}
+
+/*end reset*/
 
 body {
   background-color: white;
@@ -22,9 +48,6 @@ body {
   text-align: center;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
-}
 
 h1 {
   margin-bottom: 1em;
@@ -66,6 +89,7 @@ ul.posts {
 
   ul.posts li {
     line-height: 1.75em;
+		margin-bottom: 4em;
   }
 
   ul.posts span {
@@ -95,10 +119,21 @@ ul.posts {
 	overflow:hidden;
 }
 
+#home{
+	float:left;
+}
+
+.site .title ul{
+	float: left;
+}
+
+.site .title li{
+	float: left;
+}
+
 .site .title a {
     color: #219A44;
     text-decoration: none;
-		float:left;
   }
 
   .site .title a:hover {
@@ -112,6 +147,13 @@ ul.posts {
 
   .site .title a.extra:hover {
   }
+
+	#tag{
+		font-size: 12px;
+		color: #666;
+		font-weight:normal;
+		float:left;
+	}
 
   .site .meta {
     color: #aaa;
@@ -164,7 +206,8 @@ ul.posts {
 
   #post ul,
   #post ol {
-    margin-left: 1.35em;
+    /*margin-left: 1.35em;*/
+		width: 32.625em;
   }
 
   #post code {
