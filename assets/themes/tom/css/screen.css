@@ -27,7 +27,7 @@ caption,th {
 
 h1,h2,h3,h4,h5,h6 {
 	font-size:100%;
-	font-weight:400;
+	font-weight:100;
 }
 
 q:before, q:after {
@@ -114,7 +114,7 @@ ul.posts {
 
 .title {
   color: #219A44;
-  font-weight: bold;
+  font-weight: normal;
   margin-bottom: 2em;
 	overflow:hidden;
 }
@@ -152,7 +152,8 @@ ul.posts {
 		font-size: 12px;
 		color: #666;
 		font-weight:normal;
-		float:left;
+		display:block;
+		clear:both;
 	}
 
   .site .meta {
@@ -221,9 +222,9 @@ ul.posts {
       border: none;
     }
 
-		#post .title{
+		#post .title, #related h2{
 			color: #219A44;
-			margin-bottom: 0px;
+			margin-bottom: 10px;
 			font-weight:normal;
 		}
 
@@ -238,6 +239,7 @@ ul.posts {
   #post pre.terminal code {
     background-color: #333;
   }
+
 
 #related {
   margin-top: 2em;

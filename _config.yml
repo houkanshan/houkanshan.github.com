@@ -9,10 +9,10 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : houkanshan's blog
-tagline: houkanshan
+title : Houkanshan's blog
+tagline: Houkanshan
 author :
-  name : hou kanshan
+  name : Hou Kanshan
 #  email : houkanshan@gmail.com
   github : houkanshan
   twitter : houkanshan
