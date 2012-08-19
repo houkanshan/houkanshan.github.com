@@ -5,7 +5,7 @@ tagline:
 ---
 {% include JB/setup %}
 
-{% for post in site.posts limit:5 %}
+{% for post in site.posts limit:3 %}
 <section class="content">
     <h1 class="title page-header">
         <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
