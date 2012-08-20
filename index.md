@@ -6,15 +6,15 @@ tagline:
 {% include JB/setup %}
 
 {% for post in site.posts limit:3 %}
-<section class="content">
-    <h1 class="title page-header">
-        <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
-    </h1>
-    <div class="row">
-        <div class="span8">
-            <p>{{ post.date | date_to_string }}</p>
-            {{ post.content }}
-        </div>
+<section class="post">
+    <div class="hd">
+        <h2>
+            <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+        </h2>
+        <span class="meta">{{ post.date | date_to_string }}</span>
+    </div>
+    <div class="bd">
+        {{ post.content }}
     </div>
 </section>
 {% endfor %}

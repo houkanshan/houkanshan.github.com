@@ -68,9 +68,9 @@ style则是剩下的元素显示效果，对应render中的paint阶段。
 
 
     
-##关于css的其他想法
+###关于css的其他想法
 
-### 通用原子类？
+#### 通用原子类？
 
 http://book.douban.com/people/houkanshan/annotation/4881987/
 
@@ -87,7 +87,7 @@ http://book.douban.com/people/houkanshan/annotation/4881987/
 
 
 
-## 嗯
+### 嗯
 
 一个做过前端的妹子某次问我最近再做什么，然后问我写css不无聊么。
 
