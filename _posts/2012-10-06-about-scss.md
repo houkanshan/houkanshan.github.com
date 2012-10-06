@@ -48,13 +48,13 @@ tags: ["scss"]
 测试结果是：
 ####test1
 
-[页面在此](file:///home/houkanshan/studio/html/demo/css-render-test/test1.html)
+[页面在此](http://houkanshan.github.com/test-demo/css-render-test/test1.html)
 
 ![test1](https://docs.google.com/drawings/pub?id=1VubjFo4T0RL3eQr460iGnRlPYx9EEHtKAkgmdxokB_g&w=688&h=298)
 
 ####test2
 
-[页面在此](file:///home/houkanshan/studio/html/demo/css-render-test/test2.html)
+[页面在此](http://houkanshan.github.com/test-demo/css-render-test/test2.html)
 
 ![test2](https://docs.google.com/drawings/pub?id=1tEK6Iufvobo9YMZ-S-PGMa4bt6GFiOXwKwQ6UeIB0Nk&w=688&h=302)
 
