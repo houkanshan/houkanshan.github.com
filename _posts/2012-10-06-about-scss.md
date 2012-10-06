@@ -2,7 +2,7 @@
 layout: post
 title: "关于scss"
 description: "about scss"
-category: "about scss"
+category: 
 tags: ["scss"]
 ---
 {% include JB/setup %}
