@@ -1,0 +1,27 @@
+---
+layout: page
+title: Houkanshan's Blog
+tagline: 
+---
+{% include JB/setup %}
+
+<div id="article">
+    {% for post in site.posts limit:1 %}
+    <section class="post">
+        <div class="hd">
+            <h2>
+                <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+            </h2>
+            <span class="meta">{{ post.date | date_to_string }}</span>
+        </div>
+        <div class="bd">
+            {{ post.content }}
+        </div>
+    </section>
+    {% endfor %}
+</div>
+
+<div class="archive">
+    {% assign posts_collate = site.posts %}
+    {% include JB/posts_collate %}
+</div>

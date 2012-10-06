@@ -7,7 +7,7 @@ a:hover,a:active{outline:0;}
 sub,sup{position:relative;font-size:75%;line-height:0;vertical-align:baseline;}
 sup{top:-0.5em;}
 sub{bottom:-0.25em;}
-img{height:auto;max-width:100%;border:0;-ms-interpolation-mode:bicubic;vertical-align:middle;}
+img{height:auto;border:0;-ms-interpolation-mode:bicubic;vertical-align:middle;}
 button,input,select,textarea{margin:0;font-size:100%;vertical-align:middle;}
 button,input{*overflow:visible;line-height:normal;}
 button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0;}
@@ -107,6 +107,8 @@ pre code{padding:0;color:inherit;background-color:transparent;border:0;}
 .footer{margin-top:15px;}
 h1,h2,h3,h4,h5,h6{color:#006600;font-weight:normal;}
 h5,h6{color:#333333;font-size:1em;}
+.post{padding-bottom:15px;border-bottom:2px solid #eeeeee;}
+img{max-width:100%;}
 .header h1{font-size:1em;display:inline-block;}
 .header .nav{display:inline-block;list-style:none;margin:0;}
 .header h1,.header .nav,.header .nav li{margin-right:15px;}

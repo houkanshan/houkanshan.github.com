@@ -91,5 +91,7 @@ tags: ["scss"]
 
 ![mass css selector](https://docs.google.com/drawings/pub?id=1hYLG2o46FDSoSqS9MeWeH4ecLi0p0qxWSEBI3gcIj74&w=346&h=213)
 
-嗯，好我先试试，看到底调试的问题大不大。。。
+嗯，也不能随便下定论，先试试，看到底调试的问题大不大。。。
 
+
+以上，请指责。
