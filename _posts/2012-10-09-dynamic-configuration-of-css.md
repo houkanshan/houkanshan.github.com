@@ -75,9 +75,11 @@ CSS应该是作为一种配置文件存在的，对HTML而言就是显示样式�
 
 [http://jsperf.com/string-split-houkanshan](http://jsperf.com/string-split-houkanshan)
 
-结果是性能上：split(string) > match(regexp) > split(regexp) >> regexp.exec(string)
+结果是性能上：split(string) >> match(regexp) > split(regexp) >> regexp.exec(string)
 
-测试的时候考虑的主要是平常的用法，所以并没有做什么优化，本来期望的是差异不大的。
+![split test](https://docs.google.com/drawings/pub?id=1nSp_-WbH6E4oRfumYWKhSHNEc1qOMcIDDDEnn7yvgw8&w=930&h=466)
+
+测试的时候考虑的主要是平常的用法，应为exec的循环方法不一样，所以加上了循环，并没有做什么优化，本来期望的是差异不大的。
 但结果是，能用split分割的时候尽量用split(string)，不行的话就用match，再不行的话才用exec。
 
 而这个实现用的是最慢的exec+递归，优势是他能支持media选择器，也就是多层规则。但是我不需要，
@@ -99,7 +101,7 @@ CSS应该是作为一种配置文件存在的，对HTML而言就是显示样式�
 然后就看到他一脸很无语的感觉。于是我也满脸黑线了，开始怀疑我是不是投错岗位了。。。
 毕竟我觉得我应该是个CSS\JS各一半，设计\网络各一半，后端1/5的人的(数学不好...算不清)
 
-总之又是一次很没感觉的面试。。。
+总之又是一次很没感觉的面试，很多该说的地方表现的太含蓄了。。。
 
 回来收到小kk豆油的问我豆瓣的情况~ 然后还不停安慰我。忍不住翻出一张旧照片看了一阵，唔，真好。
 
