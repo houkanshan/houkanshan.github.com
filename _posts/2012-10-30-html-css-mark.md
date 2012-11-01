@@ -76,7 +76,7 @@ These Element-style has nothing special except the **font**
 
 `[foo="bar"]` 无法选择 `<div foo="bar other">`,
 
-=只能是精确选择 `[foo="bar other"]`
+\=只能是精确选择 `[foo="bar other"]`
 
 支持： IE6不支持以上的‘子串’选择器
 
@@ -568,6 +568,16 @@ auto: 不建立新的层叠上下文(z-index:0)，与父级相同。
 
 非auto: 指定了z-index就会创建*自己的*叠放上下文。所有子元素设置的z-index都将会在这个z-index级别内。就是9, -100， 8, 1; 这样的东西的结果是9里面的-100就是在8里面的1上面~
 
+另外，如果两个相同stacking context内的元素设置了相同的z-index, 由于他们都创建了各自的
+ stacking context 子元素的z-index也不可相互比较。这个时候的排列是由低优先级的html内元素出现
+的先后顺序确定的。
+即
+
+    #a .child-a: 1, 10
+    #b .child-b: 1, 2
+
+的表现为#b和.child-b都在#a和.child-a之上
+
 对于body下的z-index, 因为body不会创建叠放上下文，且z-index:0, 那么如果一个z-index: -1; 就应该会在body之下。同时由于2.1要求：元素不会叠放在其叠放上下文的背景之下。
 
 注意：
@@ -585,6 +595,9 @@ user agents must instead use the computed value of the background properties fro
 情况是由于body设置的background被html拿去了，而body没有了。而html作为root element存在一个stacking context，因此这时z-index: -1000是不会被遮盖的(实际上在body后面)。
 
 而如果同时设置了body和html的background，那么z-index: -1000就会被body的background挡住了！
+
+另外，elem.offsetParent 也是针对stacking context的，elem的offsetParrent是它当前的
+stacking context, 不过例外是普通元素的offsetParent是BODY而不是HTML
 
 ----
 
