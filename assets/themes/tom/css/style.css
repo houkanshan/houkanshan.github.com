@@ -102,6 +102,7 @@ code{padding:2px 4px;color:#d14;background-color:#f7f7f9;border:1px solid #e1e1e
 pre{display:block;padding:9.5px;margin:0 0 10px;font-size:12.950000000000001px;line-height:20px;background-color:#f5f5f5;border:1px solid #ccc;border:1px solid rgba(0, 0, 0, 0.15);-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;white-space:pre;white-space:pre-wrap;word-break:break-all;word-wrap:break-word;}pre.prettyprint{margin-bottom:20px;}
 pre code{padding:0;color:inherit;background-color:transparent;border:0;}
 .pre-scrollable{max-height:340px;overflow-y:scroll;}
+body{background:#fffff9;}
 .site{width:540px;overflow:hidden;*zoom:1;margin-left:auto;margin-right:auto;}
 .header{margin-bottom:58px;}
 .footer{margin-top:15px;}
