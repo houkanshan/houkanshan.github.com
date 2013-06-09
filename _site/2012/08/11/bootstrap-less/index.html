@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>bootstrap+less</title>
+   <meta name="author" content="Hou Kanshan" />
+   <link href="http://feeds.feedburner.com/HoukanshansBlog" rel="alternate" title="houkanshan" type="application/atom+xml" />
+   <link rel="stylesheet" href="/assets/styles/main.css" type="text/css" media="screen, projection" />
+   <!--[if IE]>
+   <script type="text/javascript">
+     (function(){var elements="abbr article aside audio canvas datalist details dialog eventsource figure footer header hgroup mark menu meter nav output progress section time video";elements.replace(/\w+/g,function(e){document.createElement(e)})})();
+   </script>
+   <![endif]-->
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1><a id="home" href="/">Houkanshan's blog</a></h1>
+      
+      <ul class="nav">
+          <li><a class="extra" href="/archive.html">Archive</a></li>
+          <li><a class="extra" href="/demo.html">Demo</a></li>
+          <li><a class="extra" href="/about.html">About</a></li>
+          <!--<a class="extra" href="">Pages</a>-->
+          <!--<a class="extra" href="/categories.html">Categories</a>-->
+          <!--<a class="extra" href="/tags.html">Tags</a>-->
+      </ul>
+    </header>
+
+    <article>
+      
+<div id="post" class="post">
+  <div class="hd">
+      <h2>bootstrap+less</h2>
+      <span class="meta">
+        11 August 2012 
+        
+      </span>
+  </div>
+  <div class="bd">
+    <h3 id='id2835'>两个感觉：</h3>
+
+<ol>
+<li>less不是个很好的东西 2. bootsrap结合less自己用着就挺好~</li>
+</ol>
+
+<h3 id='less'>less的缺点</h3>
+
+<p>自己偶尔发现的，所以肯定也不能说是致命缺点，但是在有诸多css扩展语言的环境下足以影响我对它的好感。。。</p>
+
+<h4 id='id2836'>输出代码冗余：</h4>
+
+<p>对于这样结构的less代码：</p>
+
+<pre><code>.class {
+    /* some style */
+}
+.A {
+    .class;
+    /* other for A */
+}
+.B {
+    .class;
+    /* other for B */
+}</code></pre>
+
+<p>直觉上就想到这样输出正好可以压缩：</p>
+
+<pre><code>.class, .A, .B {
+    /* some style */
+}
+
+.A {
+    /* other for A */
+}
+.B {
+    /* other for B */
+}</code></pre>
+
+<p>然而less预处理器却非要把.class的样式重复三遍输出，纯写css可能还会注意点代码的复用，结果用less的时候想到可以用mixin结果反而比纯写css还多了些没必要的代码。</p>
+
+<h4 id='import'>import只支持同级目录</h4>
+
+<p>毕竟less是支持服务器和客户端编译的，或许很难在客户端应用上目录远程文件的目远程文件的目录结构，所以只能应用同级目录，然而除了调试估计也没谁会让浏览器去编译less， 这就给服务器上管理less文件带来一些麻烦。</p>
+
+<h4 id='less'>生成的类名不能在less中复用</h4>
+
+<p>碰到的情况是：</p>
+
+<pre><code>@var: &#39;css&#39;;
+(~&quot; .compiled-@{var}&quot;) {
+    color: red;
+}
+.use-compiled-css {
+    .compiled-css;
+}</code></pre>
+
+<p>只前4行输出的是.compiled-css{&#8230;}，(测试的时候如果用客户端的方式编译就直接失败了。) 加上后面的东西后就编译失败。 碰到这个情况的时候本来是想把bootstrap的grid直接作为组件mixin在布局里面的，结果发现grid的span1~12是用代码生成的，这些样式集不能在less中复用。。。</p>
+
+<h4 id='id2837'>官方提供的预处理器太弱</h4>
+
+<p>其实上面的问题都出在预处理器上，官方给的预处理器只支持单个文件的单次编译，以bootstrap为例，要做到再linux上watch到reset.less文件的更改后编译boostrap.less输出bootstrap.css到上级目录， 目前似乎只能自己用node写脚本。。。</p>
+
+<h4 id='mixin'>mixin的做法容易造成选择器过长</h4>
+
+<p>我不知道 “body #nav ul li a” 这样的选择器会造成多大的性能影响，但这种总是可以避免的。</p>
+
+<p>而如果是用滥mixin就很有可能不经意就造成生成了这样的选择器。不过一般代码风格好的人都会注意控制嵌套层次，所以倒还不是大问题~</p>
+
+<h3 id='bootstrap__less'>bootstrap + less</h3>
+
+<p>意思是直接基于bootstrap的less版本开发，我还是觉得bootstrap的样式只适合开发原型，但是觉得它的reset.less(normalize.css), type.less, variables.less, mixins.less等都是很值得参考的less方案，而且它的grid系统也很好用，所以拿来自己用其实挺好的。</p>
+
+<h4 id='bootstrapless'>为什么用bootstrap的less？</h4>
+
+<p>因为它提供了一个less的厍，我觉的css往预处理器发展是必然的，什么oocss之类的解决方案都应该基于预处理器，css具有一定的编程性后就应该有一些厍出现，尽可能屏蔽浏览器差异，减少代码冗余，简化开发，样式内容分离。唉，听起来挺美好，也悲伤的。</p>
+
+<p>有些要注意的地方~</p>
+
+<h4 id='id2838'>哪些可以拿来用？</h4>
+
+<p>reset.less, variables.less, type.less, mixins.less可以直接用，也可以做适当裁剪，这里最有用的应该还是mixins.less, 把她们import了之后就可以在自定的样式里mixin了。另外bootstrap里Base CSS的部分也可以用，基于tabName的就没必要了。不要用Components里面的组件，因为她们大多是基于html上下文的，这样html的结构会受到css的限制，造成没必要的耦合。grids也用不了，这个主要是受less预处理器的限制，而且它也基于html上下文。</p>
+
+<h4 id='id2839'>文件组织和修改</h4>
+
+<p>single page app好说，所有文件全部import到一起输出一个css就好，网站的话就看这个网站的层级了。我的做法是合并了通常css文件中的reset和common，直接输出成一个全站的common文件。然后每个页面一个独立的css输出。</p>
+
+<p>在less的文件这一层，首先是reset模块，reset.less, type.less。这个编译出来基本就是一个常用的reset.css了</p>
+
+<p>然后是components模块，包括variables.less，mixins.less, 因为这个模块需要再很多文件里被import，所以要求单独编译这个模块不能产生css代码，也就是说里面的所有样式集都应该以Variables/Parametric Mixins的形式存在，所以需要对mixins做部分修改和删减。</p>
+
+<p>第三是需要用的bootstrap样式厍，比如buttons，forms，tables，需要的就可以直接import进入</p>
+
+<p>以上面两个模块为基础，首先是一个common.less：</p>
+
+<pre><code>/* components(include variables.less, mixins.less) */
+@import &quot;components.less&quot;;
+
+/* reset */
+@import &quot;reset.less&quot;;
+@import &quot;type.less&quot;;
+
+/* bootstrap style sets */
+@import &quot;tables.less&quot;;
+...
+
+/* common style */
+...</code></pre>
+
+<p>然后每种页面私有的样式集：</p>
+
+<pre><code>/* components(include variables.less, mixins.less) */
+@import &quot;components.less&quot;;
+
+/* page style */</code></pre>
+
+<p>以上，请指责。</p>
+  </div>
+</div>
+
+<div class="related">
+  <h2>Related</h2>
+  <ul class="posts">
+    
+      <li>
+        <a href="/2012/10/30/html-css-mark">CSS & HTML 笔记</a>
+        <span class="date">30 Oct 2012</span>
+      </li>
+    
+      <li>
+        <a href="/2012/10/09/dynamic-configuration-of-css">动态配置的CSS</a>
+        <span class="date">09 Oct 2012</span>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'houkanshansblog'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+
+    </article>
+
+    <footer>
+      <!--<div class="contact">-->
+        <!--<p>-->
+          <!--Hou Kanshan<br />-->
+          <!--Houkanshan<br />-->
+          <!--<a href='mailto:'></a>-->
+        <!--</p>-->
+      <!--</div>-->
+      <!--<div class="contact">-->
+          <!--<br />-->
+          <!--<a href="http://twitter.com/houkanshan/">twitter.com/houkanshan</a><br />-->
+        <!--</p>-->
+      <!--</div>-->
+      <p><small>Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>, <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://pages.github.com/">GitHub</a> | <a href="http://github.com/houkanshan/">github.com/houkanshan</a></small></p>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/HoukanshansBlog">
+          <!--<img src="/assets/images/rss.png" alt="Subscribe to RSS Feed" />-->
+        </a>
+      </div>
+    </footer>
+  </div>
+  
+  <script type="text/javascript" src="/assets/scripts/libs/zepto.min.js"></script>
+  <script type="text/javascript" src="/assets/scripts/main.js"></script>
+</body>
+</html>
+

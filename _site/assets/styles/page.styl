@@ -1,0 +1,91 @@
+header
+  a
+    color: #999
+  text-align: right
+  h1
+    line-height: $baseLineHeight
+    font-size: $baseFontSize
+
+article
+  text-align: justify
+
+hr
+  border: none
+  border-top: 1px solid $gray
+
+.post 
+  padding-bottom: 20px
+  border-bottom: 2px solid #eee
+  margin-bottom: 60px
+  .hd
+    margin-bottom: 92px
+  .hd
+    h2
+      font-size: 22px
+      line-height: @font-size
+    .meta
+      display: block
+      margin-top: $gutter
+  &.fold
+    max-height: 40em
+    overflow: hidden
+
+
+.unfold-outer
+  text-align: center
+  margin-bottom: 60px
+  top: -(@margin-bottom+2)px
+  box-shadow: 0 0px 30px 10px $white
+  background: $white
+  border-top: 2px solid #ddd
+  position: relative
+  .unfold
+    display: inline-block
+    height: 26px
+    border: 1px solid #ddd
+    line-height: @height
+    margin: -(@height/2)px
+    vertical-align: 13px
+    padding: 0 12px
+    &, &:hover
+      color: #666
+      background-color: $white
+
+    
+
+pre
+  background-color: $lightGray
+  border-radius: 2px
+  padding: 5px
+  margin-left: -1000px
+  margin-right: -1000px
+  padding-left: - @margin-left
+  margin-bottom: 10px
+  code
+    background: none
+    padding: 0
+
+code
+  background-color: $lightGray
+  color: #666
+  border-radius: 2px
+  padding: 0 6px 0
+  white-space: pre-wrap
+  word-wrap: break-word
+
+.archive, .related
+  margin-bottom: 24px
+  li
+    line-height: 1.5
+  .date
+    color: #666
+    font-size: 12px
+
+.name
+  margin-bottom: 10px
+  h1
+    line-height: $baseLineHeight
+    font-size: $baseFontSize
+  li
+    display: inline
+    padding-right: 5px

@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>动态配置的CSS</title>
+   <meta name="author" content="Hou Kanshan" />
+   <link href="http://feeds.feedburner.com/HoukanshansBlog" rel="alternate" title="houkanshan" type="application/atom+xml" />
+   <link rel="stylesheet" href="/assets/styles/main.css" type="text/css" media="screen, projection" />
+   <!--[if IE]>
+   <script type="text/javascript">
+     (function(){var elements="abbr article aside audio canvas datalist details dialog eventsource figure footer header hgroup mark menu meter nav output progress section time video";elements.replace(/\w+/g,function(e){document.createElement(e)})})();
+   </script>
+   <![endif]-->
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1><a id="home" href="/">Houkanshan's blog</a></h1>
+      
+      <ul class="nav">
+          <li><a class="extra" href="/archive.html">Archive</a></li>
+          <li><a class="extra" href="/demo.html">Demo</a></li>
+          <li><a class="extra" href="/about.html">About</a></li>
+          <!--<a class="extra" href="">Pages</a>-->
+          <!--<a class="extra" href="/categories.html">Categories</a>-->
+          <!--<a class="extra" href="/tags.html">Tags</a>-->
+      </ul>
+    </header>
+
+    <article>
+      
+<div id="post" class="post">
+  <div class="hd">
+      <h2>动态配置的CSS</h2>
+      <span class="meta">
+        09 October 2012 
+        
+      </span>
+  </div>
+  <div class="bd">
+    <hr />
+<p><em>There is no ignorance, there is knowledge.</em></p>
+<hr />
+<p>CSS应该是作为一种配置文件存在的，对HTML而言就是显示样式的配置。 其实上次听讲座也听到说配置文件配置文件根据使用场景可以尝试多种格式，CSS的语法就是一种。 当时没太听明白，只是想想觉得类似XML\HTML这种树形结构的数据应该都可以用CSS的语法(主要是选择器的特性)来进行配置的。</p>
+
+<p>继续说CSS本身，我所看到的设置样式的方式大概有两种：</p>
+
+<ul>
+<li>
+<p>通过预先配置的css文件来设置样式。</p>
+</li>
+
+<li>
+<p>通过js修改dom属性。</p>
+</li>
+</ul>
+
+<p>然而第二种并不是全局有效的，我觉得不能算是配置。</p>
+
+<p>其实还有一种应该也是在入门的时候就有的概念，就是直接写<strong>embedded-style-sheet(嵌套样式表，页内样式表)</strong>的css来达到一种脚本化CSS的效果，但与直接改dom属性相比，这个是全局有效的。</p>
+
+<p>在传统的网页上，直接修改元素的样式很方便，也没什么问题。但是到WebApp上，由于需要屏幕适配，并且有大量元素的增删操作， 单纯依靠Fluid Layout或者media queries不一定能解决问题。 于是就看到了很多在元素创建之后的element style设置。</p>
+
+<p>如果在每次创建的时候设置还不是大问题，那么当窗口大小变化的时候，还是会碰到问题。因为这有一个全局感知resize，计算新样式并向下通知的过程。设计的好，这应该是个自顶向下的流程，否则可能就乱了。</p>
+
+<p>然而如果创建一个embedded-style-sheet去维护这些配置，问题就简单了。</p>
+
+<p>于是做了个叫DCSS的东西，比较简单，轻拍。 <a href='https://github.com/houkanshan/dcss'>https://github.com/houkanshan/dcss</a></p>
+
+<p>主要接口是Dcss.rule()，实现了：</p>
+
+<pre><code>rule(&#39;.selector&#39;)
+
+rule(&#39;.selector&#39;, &#39;color&#39;)
+
+rule(&#39;.selector&#39;, &#39;color&#39;, &#39;black&#39;)
+
+rule(&#39;.selector&#39;, {&#39;color&#39;: &#39;black&#39;, &#39;background&#39;:&#39;white&#39;})</code></pre>
+
+<p>前两个是getter, 后面是setter.</p>
+
+<p>还有一个没做：</p>
+
+<pre><code>rule({&#39;.selector1&#39;: {&#39;color&#39;: &#39;black&#39;, &#39;background&#39;:&#39;white&#39;}, &#39;.selector2&#39;:{&#39;color&#39;:&#39;blue&#39;}})</code></pre>
+
+<p>另外还有json2css, css2json两个接口</p>
+
+<p>发现一个响应式实现中的可能碰到的问题就是，所有的响应式都是先resize再render的，在resize和render之间元素还是会保持原来的样式， 如果这个时候是窗口缩小，而页面布局的时候没有留下这个缓冲空间，就会出现一次抖动(主要是对float和inline这种自适应方式的)。 代码里的index.html里面就出现了这种情况。</p>
+
+<p>然后打算过几天，把DianTv2的代码改一下~ 不过那个比较简单，有问题也看不出来。</p>
+<hr />
+<p>关于json &amp; css的互转，还有一个实现： <a href='https://github.com/aramkocharyan/CSSJSON'>https://github.com/aramkocharyan/CSSJSON</a></p>
+
+<p>很好奇的测试了下几种字符串分割的效率问题。</p>
+
+<p><a href='http://jsperf.com/string-split-houkanshan'>http://jsperf.com/string-split-houkanshan</a></p>
+
+<p>结果是性能上：split(string)&#160;&#187; match(regexp) &gt; split(regexp)&#160;&#187; regexp.exec(string)</p>
+
+<p><img alt='split test' src='https://docs.google.com/drawings/pub?id=1nSp_-WbH6E4oRfumYWKhSHNEc1qOMcIDDDEnn7yvgw8&amp;w=930&amp;h=466' /></p>
+
+<p>测试的时候考虑的主要是平常的用法，应为exec的循环方法不一样，所以加上了循环，并没有做什么优化，本来期望的是差异不大的。 但结果是，能用split分割的时候尽量用split(string)，不行的话就用match，再不行的话才用exec。</p>
+
+<p>而这个实现用的是最慢的exec+递归，优势是他能支持media选择器，也就是多层规则。但是我不需要， 我只要能实现一个类似$.css()的方法就行了，因此直接用了split套两层循环实现。</p>
+
+<p>正则虽然很猛，熟练了估计会很无敌。但应用中还是要看场合，字符串分割我觉得就没必要了，而且对我这种菜鸟要读正则太耗时了。。。</p>
+
+<p>（不过已经几次笔试的时候碰到正则的大题了，做的都不怎么样，囧）</p>
+<hr />
+<p>今天真是个神奇的日子。</p>
+
+<p>早上赶去参加某公司的面试，一开始自我介绍就自曝说转前端半年，于是就有点被bs的感觉，后来面试官哥哥(叔叔?)问我是不是主要写JS，我补充说还写CSS的。</p>
+
+<p>的。。。</p>
+
+<p>然后就看到他一脸很无语的感觉。于是我也满脸黑线了，开始怀疑我是不是投错岗位了。。。 毕竟我觉得我应该是个CSS\JS各一半，设计\网络各一半，后端1/5的人的(数学不好&#8230;算不清)</p>
+
+<p>总之又是一次很没感觉的面试，很多该说的地方表现的太含蓄了。。。</p>
+
+<p>回来收到小kk豆油的问我豆瓣的情况~ 然后还不停安慰我。忍不住翻出一张旧照片看了一阵，唔，真好。</p>
+
+<p><img alt='旧照片' src='https://docs.google.com/drawings/pub?id=1UiYFbsChBatVkMondOCaWeXIHzwVA61uKCdP-12d3tY&amp;w=545&amp;h=100' /></p>
+
+<p><em>旧照片</em></p>
+
+<p>后来发现饭卡掉了，这对一个死宅来说真是不容易。嗯，可能是在某公司面试前坐地上看书的时候掉的。 希望是一个武大的孩子捡到我的饭卡，这样应该就可以省20块钱了~ 华师也行~ 地大也行~</p>
+
+<p>后来我爸和我妈相继来电话，都跟我说</p>
+
+<blockquote>
+<p><em>即使去不了某植物公司没关系，还是要尽力争取去某动物公司</em>。</p>
+</blockquote>
+
+<p>而奇怪的地方就在于，以他们为首的我的所有家人，之前都是要我去保研的~</p>
+
+<p>其实也不奇怪，是吧。</p>
+
+<p>晚上渴的不行，又不巧手边是瓶没喝完的咖啡，更不巧的是我明天要交一堆不想做的设计，接下来就该去windows打开PS然后等太阳了。</p>
+
+<p>谢谢各位。</p>
+
+<p>以上，请指责。</p>
+  </div>
+</div>
+
+<div class="related">
+  <h2>Related</h2>
+  <ul class="posts">
+    
+      <li>
+        <a href="/2012/10/30/html-css-mark">CSS & HTML 笔记</a>
+        <span class="date">30 Oct 2012</span>
+      </li>
+    
+      <li>
+        <a href="/2012/10/06/about-scss">关于scss</a>
+        <span class="date">06 Oct 2012</span>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'houkanshansblog'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+
+    </article>
+
+    <footer>
+      <!--<div class="contact">-->
+        <!--<p>-->
+          <!--Hou Kanshan<br />-->
+          <!--Houkanshan<br />-->
+          <!--<a href='mailto:'></a>-->
+        <!--</p>-->
+      <!--</div>-->
+      <!--<div class="contact">-->
+          <!--<br />-->
+          <!--<a href="http://twitter.com/houkanshan/">twitter.com/houkanshan</a><br />-->
+        <!--</p>-->
+      <!--</div>-->
+      <p><small>Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>, <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://pages.github.com/">GitHub</a> | <a href="http://github.com/houkanshan/">github.com/houkanshan</a></small></p>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/HoukanshansBlog">
+          <!--<img src="/assets/images/rss.png" alt="Subscribe to RSS Feed" />-->
+        </a>
+      </div>
+    </footer>
+  </div>
+  
+  <script type="text/javascript" src="/assets/scripts/libs/zepto.min.js"></script>
+  <script type="text/javascript" src="/assets/scripts/main.js"></script>
+</body>
+</html>
+
