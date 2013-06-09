@@ -2,6 +2,8 @@
 
 body
   font: $baseFontSize/$baseLineHeight $baseFontFamily
+  background-color: $bodyBg
+  color: $baseFontColor
 
 a, a:hover
   color: $linkColor
@@ -86,3 +88,10 @@ ul, ol
   a:hover
    color: $linkColor
    background-color: #dbdbd4
+
+h1, h2, h3, h4, h5, h6
+  font-weight: normal
+  color: $linkColor
+  line-height: 2
+a
+  transition: all .2s ease-in

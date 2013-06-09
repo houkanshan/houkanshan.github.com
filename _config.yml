@@ -13,7 +13,7 @@ redcarpet:
 # stylus plugin
 stylus:
   compress: true
-  path: ./assets/stylus
+  path: ./assets/styles
 
 
 # Themes are encouraged to use these universal variables 

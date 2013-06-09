@@ -5,9 +5,9 @@ tagline:
 ---
 {% include JB/setup %}
 
-<div id="article">
+<div class="content">
     {% for post in site.posts limit:1 %}
-    <section class="post">
+    <section class="post fold">
         <div class="hd">
             <h2>
                 <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
@@ -18,6 +18,9 @@ tagline:
             {{ post.content }}
         </div>
     </section>
+    <div class="unfold-outer">
+      <a href="javascript:;" class="unfold">展开</a>
+    </div>
     {% endfor %}
 </div>
 
