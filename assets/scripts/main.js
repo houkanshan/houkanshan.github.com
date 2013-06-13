@@ -23,7 +23,7 @@ $('.fold').each(function(i, e){
 //var scroll = new Scroll({
   //breakElems: $('h2')
 //})
-this.parallax = new Parallax({
+var parallax = this.parallax = new Parallax({
   moveTarget: $('.wrapper'),
   points: [
     {
@@ -52,7 +52,10 @@ function unfold(e) {
   var target = $(e.target).parent()
   
   target.prev('.fold').removeClass('fold')
+  
   target.remove()
+
+  parallax.updateLayer()
 }
 
 }())
