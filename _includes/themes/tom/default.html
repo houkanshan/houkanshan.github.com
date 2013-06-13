@@ -45,7 +45,7 @@
           <!--<a href="http://twitter.com/{{ site.author.twitter }}/">twitter.com/{{ site.author.twitter }}</a><br />-->
         <!--</p>-->
       <!--</div>-->
-      <p><small>Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>, <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://pages.github.com/">GitHub</a> | <a href="http://github.com/{{ site.author.github }}/">github.com/{{ site.author.github }}</a></small></p>
+      <p><small>Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://pages.github.com/">GitHub</a> | <a href="http://github.com/{{ site.author.github }}/">github.com/{{ site.author.github }}</a></small></p>
       <div class="rss">
         <a href="http://feeds.feedburner.com/{{ site.author.feedburner }}">
           <!--<img src="{{ ASSET_PATH }}/images/rss.png" alt="Subscribe to RSS Feed" />-->
@@ -54,7 +54,9 @@
     </footer>
   </div>
   {% include JB/analytics %}
-  <script type="text/javascript" src="{{ ASSET_PATH }}/scripts/libs/zepto.min.js"></script>
+  <script type="text/javascript" src="{{ ASSET_PATH }}/scripts/libs/jquery.js"></script>
+  <script type="text/javascript" src="{{ ASSET_PATH }}/scripts/scroll.js"></script>
+  <script type="text/javascript" src="{{ ASSET_PATH }}/scripts/parallax.js"></script>
   <script type="text/javascript" src="{{ ASSET_PATH }}/scripts/main.js"></script>
 </body>
 </html>
