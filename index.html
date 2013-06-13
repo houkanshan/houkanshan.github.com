@@ -5,6 +5,11 @@ tagline:
 ---
 {% include JB/setup %}
 
+<script type="text/javascript">
+  var page = page || {}
+  page.type = 'index'
+</script>
+
 <div class="content">
     {% for post in site.posts limit:1 %}
     <section class="post fold">

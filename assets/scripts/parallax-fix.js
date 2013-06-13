@@ -32,6 +32,32 @@ _.sortedIndex = _.sortedIndex || function(array, value) {
   return low
 }
 
+_.throttle = _.throttle || function(func, wait) {
+  var context, args, timeout, result
+  var previous = 0
+  var later = function() {
+    previous = new Date
+    timeout = null
+    result = func.apply(context, args)
+  }
+  return function() {
+    var now = new Date
+    var remaining = wait - (now - previous)
+    context = this
+    args = arguments
+    if (remaining <= 0) {
+      clearTimeout(timeout)
+      timeout = null
+      previous = now
+      result = func.apply(context, args)
+    } else if (!timeout) {
+      timeout = setTimeout(later, remaining)
+    }
+    return result
+  }
+}
+
+
 var defaultOptions = {
   scrollTarget: $(window),
   moveTarget: $('body'),
@@ -50,7 +76,8 @@ function Parallax(options) {
 
   this.initLayer()
 
-  this.scrollTarget.on('scroll', $.proxy(this.onScroll, this))
+  this.scrollTarget.on('scroll.parallax', 
+    _.throttle($.proxy(this.onScroll, this), 50))
   this.onScroll()
 }
 
@@ -75,7 +102,8 @@ Parallax.prototype = {
     this.layer = $('<div>').addClass('move-container').height(sumHeight)
     this.moveTarget.replaceWith(this.layer)
     this.layer.append(this.moveTarget)
-    this.moveTarget.css('position', 'fixed')
+    this.moveTarget
+      .css('position', 'fixed')
 
     this.layer.on('update', this.updateLayer)
   },
@@ -172,11 +200,11 @@ Parallax.prototype = {
   },
 
   destroy: function() {
+    this.scrollTarget.off('scroll.parallax')
+    this.layer.replaceWith(this.moveTarget)
     this.moveTarget.css('top', this.originTop)
-    // TODO: move to origin
   }
 }
-
 
 return exports.Parallax = Parallax
 

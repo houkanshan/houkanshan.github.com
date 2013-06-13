@@ -6,6 +6,11 @@ group: navigation
 ---
 {% include JB/setup %}
 
+<script type="text/javascript">
+  var page = page || {}
+  page.type = 'tags'
+</script>
+
 <ul class="tag_box inline">
   {% assign tags_list = site.tags %}  
   {% include JB/tags_list %}

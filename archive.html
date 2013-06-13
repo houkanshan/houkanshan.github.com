@@ -6,5 +6,10 @@ group: navigation
 ---
 {% include JB/setup %}
 
+<script type="text/javascript">
+  var page = page || {}
+  page.type = 'archive'
+</script>
+
 {% assign posts_collate = site.posts %}
 {% include JB/posts_collate %}

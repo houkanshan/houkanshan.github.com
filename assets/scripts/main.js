@@ -1,4 +1,4 @@
-(function(){
+(function($, exports){
 
 var body = $('body')
 
@@ -18,33 +18,22 @@ $('.fold').each(function(i, e){
     unfoldButton.text(orignText + ' ( 约'+ lineCnt + '行 )')
 })
 
+// text sorption
+if (page.type === 'post') {
+  var textSorption = new TextSorption({
+    elems: $('h3'),
+    slowDown: false
+  })
 
-// init scrollSlow
-//var scroll = new Scroll({
-  //breakElems: $('h2')
-//})
-var parallax = this.parallax = new Parallax({
-  moveTarget: $('.wrapper'),
-  points: [
-    {
-      offset: 100,
-      velocityRadio: 0.1, // slow
-    }, 
-    {
-      offset: 200,
-      velocityRadio: 0, // stop
-      delay: 400
-    }, 
-    {
-      offset:400,
-      velocityRadio: 1 // 1/2 speed
-    },
-    {
-      offset:600,
-      velocityRadio: 1   // normal speed
-    }
-  ]
-})
+  setTimeout(function(){
+    textSorption.update()
+  }, 5000)
+  setTimeout(function(){
+    textSorption.update()
+  }, 20000)
+  exports.textSorption = textSorption
+}
+
 
 
 // helper functions
@@ -55,7 +44,9 @@ function unfold(e) {
   
   target.remove()
 
-  parallax.updateLayer()
+  if (textSorption) {
+    textSorption.update()
+  }
 }
 
-}())
+}($, window))

@@ -249,6 +249,7 @@ a {
   padding-top: 20px;
   overflow: hidden;
   *zoom: 1;
+  width: 100%;
 }
 header {
   float: left;
