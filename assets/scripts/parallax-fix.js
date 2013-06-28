@@ -69,6 +69,7 @@ function Parallax(options) {
 
   this.scrollTarget = options.scrollTarget
   this.moveTarget = options.moveTarget
+  if (!options.points.length) {return}
   this.points = 
     this.sortArray(options.points)
 
@@ -94,6 +95,7 @@ Parallax.prototype = {
 
     return distance / radio + point.delay
   },
+
   initLayer: function() {
     var lastPoint = this.points[this.points.length - 2]
       , sumTop = lastPoint.newOffset - lastPoint.offset

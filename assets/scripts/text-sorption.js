@@ -18,7 +18,7 @@ var defaultOptions = {
   elems: $(''),
   slowDownLenght: 100,
   slowDownRadio: 0.2,
-  extraPoints: {},
+  extraPoints: [],
   stopDelay: 500
 }
 
@@ -28,7 +28,8 @@ function TextSorption(options) {
   this.options = _.defaults(options, defaultOptions)
   if(!this.options.elems.length) {return}
 
-  points = $.extend(this.getPoints(), this.options.extraPoints)
+  points = this.getPoints()
+    .concat(this.options.extraPoints)
   this.setParallax(points)
 }
 
@@ -74,6 +75,7 @@ TextSorption.prototype = {
   },
 
   update: function() {
+    if(!this.parallax) {return}
     this.parallax.updateLayer()
   },
 

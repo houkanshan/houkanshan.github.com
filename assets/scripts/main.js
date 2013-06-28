@@ -23,7 +23,7 @@ if (page.type === 'post') {
   var textSorption = new TextSorption({
     elems: $('h3'),
     slowDown: false,
-    extraPoints: {}
+    extraPoints: []
   })
 
   setTimeout(function(){
