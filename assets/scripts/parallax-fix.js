@@ -162,7 +162,8 @@ Parallax.prototype = {
     }
     // set origin margin-top
     this.originTop = 
-      this.moveTarget.css('top').split('px')[0] | 0
+      this.moveTarget.offset().top
+      //this.moveTarget.css('top').split('px')[0] | 0
   },
 
   sortArray: function(points) {
