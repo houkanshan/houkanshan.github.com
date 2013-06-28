@@ -22,7 +22,8 @@ $('.fold').each(function(i, e){
 if (page.type === 'post') {
   var textSorption = new TextSorption({
     elems: $('h3'),
-    slowDown: false
+    slowDown: false,
+    extraPoints: {}
   })
 
   setTimeout(function(){
@@ -33,8 +34,6 @@ if (page.type === 'post') {
   }, 20000)
   exports.textSorption = textSorption
 }
-
-
 
 // helper functions
 function unfold(e) {
