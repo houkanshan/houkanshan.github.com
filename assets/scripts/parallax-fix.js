@@ -61,7 +61,7 @@ _.throttle = _.throttle || function(func, wait) {
 var defaultOptions = {
   scrollTarget: $(window),
   moveTarget: $('body'),
-  points: [] // [{offsetTop, velocityRadio}]
+  points: [] // [{offset, velocityRadio}]
 }
 
 function Parallax(options) {
@@ -114,6 +114,7 @@ Parallax.prototype = {
 
     this.layer.height(sumHeight)
   },
+  
   initData: function() {
     var array = this.points // sorted
       , emptyPoint = {
@@ -166,7 +167,7 @@ Parallax.prototype = {
 
   sortArray: function(points) {
     return points.sort(function(left, right){
-      return left.offsetTop - right.offsetTop
+      return left.offset - right.offset
     })
   },
 
@@ -180,7 +181,6 @@ Parallax.prototype = {
       , curPoint = this.points[curIndex]
       , newTop
     
-    console.log('now point of:', curPoint && curPoint.offset)
     if(curIndex === -1) {
       newTop = this.originTop - scrollTop
     } else {
@@ -191,7 +191,6 @@ Parallax.prototype = {
             curPoint.velocityRadio
           ) - scrollTop
     }
-    console.log('set top', newTop)
     this.moveTarget.css('top', newTop)
   },
 
