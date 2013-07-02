@@ -2,9 +2,9 @@
 header{float:left;width:192px;padding:0 10px 0}
 article,footer{width:520px;margin-left:234px}
 footer{margin-top:24px}
-@media only screen and (max-width: 320px) and (orientation: portrait), (max-width: 800px) and (orientation: portrait){header{float:none;width:100%;padding:0;margin-bottom:24px;}
+@media only screen and (max-width: 800px) and (orientation: portrait){header{float:none;width:100%;padding:0;margin-bottom:24px;}
 header h1,header li{display:inline;padding-right:10px}
-article,footer{width:100%;margin-left:0}
+article,footer{width:initial;margin:0;padding:0 10px}
 }
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,button,textarea,p,blockquote,th,td{margin:0;padding:0}
@@ -55,9 +55,9 @@ a{-webkit-transition:all .2s ease-in;-moz-transition:all .2s ease-in;-o-transiti
 header{float:left;width:192px;padding:0 10px 0}
 article,footer{width:520px;margin-left:234px}
 footer{margin-top:24px}
-@media only screen and (max-width: 320px) and (orientation: portrait), (max-width: 800px) and (orientation: portrait){header{float:none;width:100%;padding:0;margin-bottom:24px;}
+@media only screen and (max-width: 800px) and (orientation: portrait){header{float:none;width:100%;padding:0;margin-bottom:24px;}
 header h1,header li{display:inline;padding-right:10px}
-article,footer{width:100%;margin-left:0}
+article,footer{width:initial;margin:0;padding:0 10px}
 }header{text-align:right;}
 header a{color:#999}
 header h1{line-height:1.5;font-size:14px}

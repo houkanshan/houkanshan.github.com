@@ -1,4 +1,4 @@
-(function($, exports){
+;(function($, exports){
 
 var body = $('body')
 
@@ -18,23 +18,6 @@ $('.fold').each(function(i, e){
     unfoldButton.text(orignText + ' ( 约'+ lineCnt + '行 )')
 })
 
-// text sorption
-if (page.type === 'post') {
-  var textSorption = new TextSorption({
-    elems: $('h3'),
-    slowDown: false,
-    extraPoints: []
-  })
-
-  setTimeout(function(){
-    textSorption.update()
-  }, 5000)
-  setTimeout(function(){
-    textSorption.update()
-  }, 20000)
-  exports.textSorption = textSorption
-}
-
 // helper functions
 function unfold(e) {
   var target = $(e.target).parent()
@@ -46,6 +29,12 @@ function unfold(e) {
   if (textSorption) {
     textSorption.update()
   }
+}
+
+// when load ready, do all the inline-script
+var inlineScript = $('script[type="text/fake"]')
+if (inlineScript.length) {
+  eval(inlineScript.text())
 }
 
 }($, window))
