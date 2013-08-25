@@ -1,10 +1,11 @@
+@import "variable"
+
 header
   text-align: right
   a
     color: #999
-  h1
-    line-height: $baseLineHeight
-    font-size: $baseFontSize
+  .nav-img
+    margin-bottom: 1em
 
 article
   text-align: justify
@@ -13,19 +14,18 @@ hr
   border: none
   border-top: 1px solid $gray
 
-.post 
+.post
   padding-bottom: 20px
   border-bottom: 2px solid #eee
   margin-bottom: 60px
   .hd
-    margin-bottom: 92px
+    margin-bottom: 128px
   .hd
     h2
       font-size: 42px
       line-height: @font-size
     .meta
       display: block
-      margin-top: $gutter
   &.fold
     max-height: 40em
     overflow: hidden
@@ -52,7 +52,7 @@ hr
       color: #666
       background-color: $white
 
-    
+
 
 pre
   background-color: $lightGray

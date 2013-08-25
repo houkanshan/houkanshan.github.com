@@ -19,7 +19,7 @@ stylus:
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Houkanshan's blog
+title : HOUKANSHAN'S BLOG
 tagline: Houkanshan
 author :
   name : Hou Kanshan
@@ -27,6 +27,7 @@ author :
   github : houkanshan
   twitter : houkanshan
   feedburner : HoukanshansBlog
+head_img: bus-line.jpg
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 

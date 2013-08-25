@@ -4,30 +4,38 @@ body
   font: $baseFontSize/$baseLineHeight $baseFontFamily
   background-color: $bodyBg
   color: $baseFontColor
+  line-height: 1.5
+  h1
+    font-size: 14px
 
 a, a:hover
   color: $linkColor
   text-decoration: none
 
 a:hover
-  color: white
-  background-color: $linkColor
-
-h1, h2, h3
   color: black
-  font-weight: bold
+
+h1, h2, h3, h4, h5, h6
+  font-weight: normal
+  letter-spacing: .1em
+  word-spacing: .3em
+  &:first-child
+    padding-top: 0
+    vertical-align: top
+
+a
+  transition: all .2s ease-in
 
 h1
-  font-size: 20px
+  font-size: 2em
+h1, h3
+  padding: 1.5em 0
 
 h2
-  font-size: 16px
-
+  font-size: 1.5em
+  padding: 1.75em 0
 h3
-  font-size: 14px
-
-p
-  margin-bottom: 10px
+  font-size: 1.33333em
 
 b, em
 .text-bold
@@ -36,10 +44,23 @@ b, em
 i
   font-style: italic
 
-q:before
-q:after
+
+pre
+p
+  margin: 1em 0
+
+pre
+  padding: .5em 0
+  margin-left: -2000px
+  padding-left: - @margin-left
+  margin-right: -2000px
+  padding-right: - @margin-right
+
 blockquote:before
+q:before
+  content: ''
 blockquote:after
+q:after
   content: ''
 
 ul, ol
@@ -88,10 +109,3 @@ ul, ol
   a:hover
    color: $linkColor
    background-color: #dbdbd4
-
-h1, h2, h3, h4, h5, h6
-  font-weight: normal
-  color: $linkColor
-  line-height: 2
-a
-  transition: all .2s ease-in
