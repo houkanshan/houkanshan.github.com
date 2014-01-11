@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         },
         files: {
           //'path/to/result.css': 'path/to/source.styl', // 1:1 compile
-          'assets/styles/main.css': ['_src/styles/*.styl'] // compile and concat into single file
+          'assets/styles/main.css': ['_src/styles/main.styl'] // compile and concat into single file
         }
       }
     }

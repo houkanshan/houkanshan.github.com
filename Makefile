@@ -6,7 +6,6 @@ build: css html
 node_install:
 	npm install
 
-
 css:
 	$(GRUNT) default
 

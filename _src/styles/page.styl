@@ -6,6 +6,11 @@ header
     color: #999
   .nav-img
     margin-bottom: 1em
+    -webkit-filter: grayscale(0.5)
+    filter: grayscale(0.5)
+    &:hover
+      -webkit-filter: none
+      filter: none
 
 article
   text-align: justify
@@ -73,6 +78,8 @@ code
   padding: 0 6px 0
   white-space: pre-wrap
   word-wrap: break-word
+  font-size: 14px
+  line-height: 1.25
 
 .archive, .related
   margin-bottom: 24px
