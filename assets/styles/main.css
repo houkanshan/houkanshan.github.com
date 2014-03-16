@@ -79,6 +79,6 @@ code{background-color:#f4f4ee;color:#666;border-radius:2px;padding:0 6px 0;white
 .archive,.related{margin-bottom:24px;}
 .archive li,.related li{line-height:1.5}
 .archive .date,.related .date{color:#666;font-size:12px}
-.name{margin-bottom:10px;}
-.name h1{line-height:1.5;font-size:16px}
+.name{margin:0;padding:0;height:134px;}
+.name h1{line-height:1.5;font-size:16px;padding:0}
 .name li{display:inline;padding-right:5px}
