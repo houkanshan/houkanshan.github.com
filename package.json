@@ -1,9 +1,0 @@
-{
-  "name": "houkanshan-blog",
-  "version": "0.1.0",
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-cli": "~0.1.9",
-    "grunt-contrib-stylus": "~0.5.1"
-  }
-}
