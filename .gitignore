@@ -1,12 +1,11 @@
-_site/*
-_theme_packages/*
-node_modules
+*.DS_Store
+*~
 
-Thumbs.db
-.DS_Store
+*.orig
+*.swp
 
-!.gitkeep
+.statictmp/
+node_modules/
+bower_components/
 
-.rbenv-version
-.rvmrc
-.*
+dist/

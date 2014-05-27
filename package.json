@@ -1,0 +1,23 @@
+{
+  "name": "HB",
+  "version": "0.0.1",
+  "description": "note. cat.",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "~3.5.0",
+    "gulp-jade": "~0.4.0",
+    "gulp-serve": "~0.0.1",
+    "gulp-stylus": "~0.0.11",
+    "gulp-util": "~2.2.12",
+    "gulp-jaded": "0.0.3",
+    "webpack": "~1.2.0-beta6",
+    "fb-flo": "~0.1.0",
+    "http-server": "~0.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "houkanshan",
+  "license": "MIT"
+}
