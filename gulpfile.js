@@ -44,6 +44,7 @@ gulp.task('watch', function() {
 
 var flo = require('fb-flo')
 var fs = require('fs')
+var path = require('path')
 gulp.task('flo', function(done) {
   server = flo('./', {
     port: 8888
@@ -59,9 +60,14 @@ gulp.task('flo', function(done) {
   .once('ready', done)
 
   function resolver(filepath, callback) {
+    var needReload
+    if (path.extname(filepath) === '.html') {
+      needReload = true
+    }
     callback({
       resourceURL: filepath
     , contents: fs.readFileSync(filepath).toString()
+    , reload: needReload
     })
   }
 })
