@@ -72,5 +72,7 @@ gulp.task('flo', function(done) {
   }
 })
 
-gulp.task('default', ['css', 'html', 'js'])
-gulp.task('server', ['default', 'watch', 'flo', 'static'])
+
+gulp.task('build', ['css', 'html', 'js'])
+gulp.task('server', ['build', 'watch', 'flo', 'static'])
+gulp.task('default', ['server'])
