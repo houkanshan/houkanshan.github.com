@@ -1,6 +1,9 @@
 var gulp = require('gulp')
 var gutil = require('gulp-util')
 var path = require('path')
+var fs = require('fs')
+var through = require('through2')
+var map = require('map-stream')
 
 var stylus = require('gulp-stylus')
 gulp.task('css', function () {
@@ -11,9 +14,37 @@ gulp.task('css', function () {
 })
 
 var jade = require('gulp-jade')
+var jadeWrap = function(opts) {
+  opts = opts || {}
+  return map(function(file, cb) {
+    var dir = path.dirname(file.path)
+      , dataFileName = dir + '/data.json'
+      , local = {}
+
+    try {
+      var jsonfile = fs.readFileSync(dataFileName)
+      local = JSON.parse(jsonfile.contents.toJSON())
+    } catch(e) {
+    }
+
+    opts.local = local
+    var stream = jade(opts)
+    stream.on('readable', function() {
+      var data = stream.read()
+      if (!data) { return }
+      cb(null, data)
+    })
+    stream.write(file)
+  })
+}
+
 gulp.task('html', function() {
   gulp.src('src/template/**/*.jade')
-    .pipe(jade().on('error', gutil.log))
+    .pipe(jadeWrap().on('error', gutil.log))
+    .pipe(map(function(a, cv) {
+      console.log(a)
+      cv(null, a)
+    }))
     .pipe(gulp.dest('./'))
 })
 
@@ -46,7 +77,6 @@ gulp.task('watch', function(done) {
   .once('ready', done)
 
   function resolver(filepath, callback) {
-    console.info(filepath)
     callback({
       resourceURL: filepath
     , contents: fs.readFileSync(filepath).toString()

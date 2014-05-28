@@ -1,7 +1,7 @@
 {
   "name": "HB",
   "version": "0.0.1",
-  "description": "note. cat.",
+  "description": "Houkanshan's Blog",
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
@@ -13,7 +13,8 @@
     "gulp-jaded": "0.0.3",
     "webpack": "~1.2.0-beta6",
     "fb-flo": "~0.1.0",
-    "http-server": "~0.6.1"
+    "http-server": "~0.6.1",
+    "map-stream": "~0.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
