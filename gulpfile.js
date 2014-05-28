@@ -1,9 +1,6 @@
 var gulp = require('gulp')
 var gutil = require('gulp-util')
-var path = require('path')
-var fs = require('fs')
-var through = require('through2')
-var map = require('map-stream')
+var fetchLocals = require('./lib/fetch-locals')
 
 var stylus = require('gulp-stylus')
 gulp.task('css', function () {
@@ -14,37 +11,17 @@ gulp.task('css', function () {
 })
 
 var jade = require('gulp-jade')
-var jadeWrap = function(opts) {
-  opts = opts || {}
-  return map(function(file, cb) {
-    var dir = path.dirname(file.path)
-      , dataFileName = dir + '/data.json'
-      , local = {}
-
-    try {
-      var jsonfile = fs.readFileSync(dataFileName)
-      local = JSON.parse(jsonfile.contents.toJSON())
-    } catch(e) {
-    }
-
-    opts.local = local
-    var stream = jade(opts)
-    stream.on('readable', function() {
-      var data = stream.read()
-      if (!data) { return }
-      cb(null, data)
-    })
-    stream.write(file)
-  })
-}
 
 gulp.task('html', function() {
   gulp.src('src/template/**/*.jade')
-    .pipe(jadeWrap().on('error', gutil.log))
-    .pipe(map(function(a, cv) {
-      console.log(a)
-      cv(null, a)
-    }))
+    .pipe(
+      jade({
+      locals: fetchLocals({
+        cwd: 'src/'
+      , blob: ['template/**/_data.json', 'posts/**/_data.json']
+      })
+      }).on('error', gutil.log)
+    )
     .pipe(gulp.dest('./'))
 })
 
