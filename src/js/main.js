@@ -21,9 +21,9 @@ $('.fold').each(function(i, e){
 // helper functions
 function unfold(e) {
   var target = $(e.target).parent()
-  
+
   target.prev('.fold').removeClass('fold')
-  
+
   target.remove()
 
   if (textSorption) {

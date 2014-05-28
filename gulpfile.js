@@ -4,14 +4,13 @@ var fetchLocals = require('./lib/fetch-locals')
 
 var stylus = require('gulp-stylus')
 gulp.task('css', function () {
-  gulp.src(['src/css/index.styl'])
+  gulp.src(['src/styl/index.styl'])
     .pipe(stylus({ set: ['compress'] })
       .on('error', gutil.log))
     .pipe(gulp.dest('./css/'))
 })
 
 var jade = require('gulp-jade')
-
 gulp.task('html', function() {
   gulp.src('src/template/**/*.jade')
     .pipe(
@@ -37,18 +36,24 @@ gulp.task('static', function() {
   }).listen('8080', '0.0.0.0')
 })
 
+gulp.task('watch', function() {
+  gulp.watch('src/js/**/*.js', ['js'])
+  gulp.watch('src/styl/**/*.styl', ['css'])
+  gulp.watch('src/**/*.jade', ['html'])
+})
+
 var flo = require('fb-flo')
 var fs = require('fs')
-gulp.task('watch', function(done) {
+gulp.task('flo', function(done) {
   server = flo('./', {
     port: 8888
   , host: 'localhost'
-  , verbose: 1
+  , verbose: false
   , glob: [
       'js/**/*.js'
     , 'css/**/*.css'
-    , '*.html'
-    , '!src**/*'
+    , '**/*.html'
+    , '!src/**/*'
     ]
   }, resolver)
   .once('ready', done)
@@ -62,4 +67,4 @@ gulp.task('watch', function(done) {
 })
 
 gulp.task('default', ['css', 'html', 'js'])
-gulp.task('server', ['default', 'watch', 'static'])
+gulp.task('server', ['default', 'watch', 'flo', 'static'])
