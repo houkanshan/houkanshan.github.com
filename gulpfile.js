@@ -3,24 +3,35 @@ var gutil = require('gulp-util')
 var fetchLocals = require('./lib/fetch-locals')
 
 var stylus = require('gulp-stylus')
-gulp.task('css', function () {
+gulp.task('stylus', function () {
   gulp.src(['src/styl/index.styl'])
     .pipe(stylus({ set: ['compress'] })
       .on('error', gutil.log))
     .pipe(gulp.dest('./css/'))
 })
 
+
+var markdown = require('gulp-markdown')
 var jade = require('gulp-jade')
-gulp.task('html', function() {
+
+function jadeOpts() {
+  return {
+    locals: fetchLocals({
+      cwd: 'src/'
+    , blob: ['template/**/data.json', 'posts/**/data.json']
+    })
+  }
+}
+
+gulp.task('markdown', function() {
+  gulp.src('src/posts/**/*.md')
+    .pipe(markdown().on('error', gutil.log))
+    .pipe(gulp.dest('src/template/_posts/'))
+})
+
+gulp.task('jade', function() {
   gulp.src('src/template/**/*.jade')
-    .pipe(
-      jade({
-      locals: fetchLocals({
-        cwd: 'src/'
-      , blob: ['template/**/_data.json', 'posts/**/_data.json']
-      })
-      }).on('error', gutil.log)
-    )
+    .pipe(jade(jadeOpts()).on('error', gutil.log))
     .pipe(gulp.dest('./'))
 })
 
@@ -72,7 +83,8 @@ gulp.task('flo', function(done) {
   }
 })
 
-
+gulp.task('css', ['stylus'])
+gulp.task('html', ['markdown', 'jade'])
 gulp.task('build', ['css', 'html', 'js'])
 gulp.task('server', ['build', 'watch', 'flo', 'static'])
 gulp.task('default', ['server'])
