@@ -1,6 +1,9 @@
 var gulp = require('gulp')
 var gutil = require('gulp-util')
+var _ = require('lodash')
+
 var fetchLocals = require('./lib/fetch-locals')
+var postsData = require('./lib/posts-data')
 
 var stylus = require('gulp-stylus')
 gulp.task('stylus', function () {
@@ -11,8 +14,31 @@ gulp.task('stylus', function () {
 })
 
 
+
+var jsonfile = require('jsonfile')
+gulp.task('posts-json', function() {
+  // TODO: config
+  var filename = 'src/posts/data.json'
+  // TODO: exception
+  var origData
+    , newData
+
+  try {
+    origData = jsonfile.readFileSync(filename)
+  } catch(e) {
+    origData = {}
+  }
+  newData = postsData()
+  newData = _.extend(newData, origData)
+  jsonfile.writeFileSync(filename, newData)
+})
+
 var markdown = require('gulp-markdown')
-var jade = require('gulp-jade')
+gulp.task('markdown', function() {
+  gulp.src('src/posts/**/*.md')
+    .pipe(markdown().on('error', gutil.log))
+    .pipe(gulp.dest('src/template/_posts/'))
+})
 
 function jadeOpts() {
   return {
@@ -22,13 +48,7 @@ function jadeOpts() {
     })
   }
 }
-
-gulp.task('markdown', function() {
-  gulp.src('src/posts/**/*.md')
-    .pipe(markdown().on('error', gutil.log))
-    .pipe(gulp.dest('src/template/_posts/'))
-})
-
+var jade = require('gulp-jade')
 gulp.task('jade', function() {
   gulp.src('src/template/**/*.jade')
     .pipe(jade(jadeOpts()).on('error', gutil.log))
@@ -84,7 +104,8 @@ gulp.task('flo', function(done) {
 })
 
 gulp.task('css', ['stylus'])
-gulp.task('html', ['markdown', 'jade'])
+gulp.task('json', ['posts-json'])
+gulp.task('html', ['json', 'markdown', 'jade'])
 gulp.task('build', ['css', 'html', 'js'])
 gulp.task('server', ['build', 'watch', 'flo', 'static'])
 gulp.task('default', ['server'])

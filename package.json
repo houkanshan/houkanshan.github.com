@@ -13,7 +13,9 @@
     "webpack": "~1.2.0-beta6",
     "fb-flo": "~0.1.0",
     "http-server": "~0.6.1",
-    "gulp-markdown": "~0.1.2"
+    "gulp-markdown": "~0.1.2",
+    "lodash": "~2.4.1",
+    "jsonfile": "~1.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
