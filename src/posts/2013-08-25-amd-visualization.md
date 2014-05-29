@@ -1,12 +1,3 @@
----
-layout: post
-title: "AMD virsualization"
-description: "test"
-category: 
-tags: ['demo']
----
-{% include JB/setup %}
-
 [http://houkanshan.github.io/amd-visualization/](http://houkanshan.github.io/amd-visualization/)
 
 Tip: Change the LayoutType to parallel, and use the search

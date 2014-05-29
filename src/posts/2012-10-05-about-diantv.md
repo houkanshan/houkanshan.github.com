@@ -1,12 +1,3 @@
----
-layout: post
-title: "关于DianTv"
-description: "about DianTv2.0"
-category: 
-tags: ['diantv2', 'diantv', 'webapp', 'pubsub', 'spine']
----
-{% include JB/setup %}
-
 （对了，不知道这里的图能不能在局域网显示，因为都是放在google doc上的，东西还是要放一起的好）
 
 

@@ -1,13 +1,3 @@
----
-layout: post
-title: "bootstrap读后感"
-description: "bootstrap读后感"
-category: 
-tags: [bootstrap, less, css]
----
-{% include JB/setup %}
-
-
 ### 文件内容
 
 #### bootstrap.less 

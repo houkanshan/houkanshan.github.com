@@ -1,12 +1,3 @@
----
-layout: post
-title: "css状态选择器(杜撰物)"
-description: "css status description"
-category: 
-tags: ['css', 'class']
----
-{% include JB/setup %}
-
 个人认为css的选择器标识分两类。
 
     * 实体

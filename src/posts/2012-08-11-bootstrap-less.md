@@ -1,12 +1,3 @@
----
-layout: post
-title: "bootstrap+less"
-description: "bootstrap+less"
-category: 
-tags: [bootstrap, less, css]
----
-{% include JB/setup %}
-
 ### 两个感觉：
 1. less不是个很好的东西 2. bootsrap结合less自己用着就挺好~  
       

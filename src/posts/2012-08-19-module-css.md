@@ -1,13 +1,3 @@
----
-layout: post
-title: "猜(关于css)"
-description: "Guess about css"
-
-category: 
-tags: [less, css, module]
----
-{% include JB/setup %}
-
 我今天要草率的把我的一些关于css的草率的想法和实践草率的写出来，所以就叫猜。
 
 

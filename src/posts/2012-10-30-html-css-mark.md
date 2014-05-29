@@ -1,18 +1,3 @@
----
-layout: post
-title: "CSS & HTML 笔记"
-description: "CSS & HTML 笔记"
-category: 
-tags: ['css', 'html']
----
-{% include JB/setup %}
-
-----------------------------
-
-There is no emotion, there is peace.
-
-----------------------------
-
 ##HTML
 
 ### quotation (HTML4)

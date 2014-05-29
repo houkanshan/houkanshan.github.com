@@ -1,12 +1,3 @@
----
-layout: post
-title: "Test Parallex"
-description: "test"
-category: 
-tags: []
----
-{% include JB/setup %}
-
 ### 这个实现的不好。。。然后我要换一个
 
 首页看不到, 需要点进文章看，

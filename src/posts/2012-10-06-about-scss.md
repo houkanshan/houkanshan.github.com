@@ -1,12 +1,3 @@
----
-layout: post
-title: "关于scss"
-description: "about scss"
-category: 
-tags: ["scss"]
----
-{% include JB/setup %}
-
 为什么要写博客呢。。。因为我发现其实写的时候才是在认真总结啊~ 这是个利用自己的虚荣心学习的机会。。。
 
 --------------------------------------------

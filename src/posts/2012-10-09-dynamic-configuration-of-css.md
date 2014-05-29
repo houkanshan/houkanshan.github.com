@@ -1,17 +1,3 @@
----
-layout: post
-title: "动态配置的CSS"
-description: ""
-category: 
-tags: [css]
----
-{% include JB/setup %}
-
---------------------------------------------
-
-*There is no ignorance, there is knowledge.*
-
---------------------------------------------
 
 CSS应该是作为一种配置文件存在的，对HTML而言就是显示样式的配置。
 其实上次听讲座也听到说配置文件配置文件根据使用场景可以尝试多种格式，CSS的语法就是一种。
