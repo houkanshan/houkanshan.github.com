@@ -5,6 +5,12 @@ var _ = require('lodash')
 var fetchLocals = require('./lib/fetch-locals')
 var postsData = require('./lib/posts-data')
 
+var globalLocals = fetchLocals({
+      cwd: 'src/'
+    , blob: ['template/**/data.json', 'posts/**/data.json']
+    })
+
+
 var stylus = require('gulp-stylus')
 gulp.task('stylus', function () {
   gulp.src(['src/styl/index.styl'])
@@ -13,45 +19,72 @@ gulp.task('stylus', function () {
     .pipe(gulp.dest('./css/'))
 })
 
-
+// TODO: config
+var paths = [
+  {
+    blob: 'src/posts/**/*.md'
+  , dataPath: 'src/posts/data.json'
+  , dest: 'posts/'
+  , defaultData: {
+      layout: 'src/posts/_layout.jade'
+    }
+  }
+]
 
 var jsonfile = require('jsonfile')
 gulp.task('posts-json', function() {
-  // TODO: config
-  var filename = 'src/posts/data.json'
-  // TODO: exception
-  var origData
-    , newData
 
-  try {
-    origData = jsonfile.readFileSync(filename)
-  } catch(e) {
-    origData = {}
-  }
-  newData = postsData()
-  newData = _.extend(newData, origData)
-  jsonfile.writeFileSync(filename, newData)
+  paths.forEach(function(path) {
+    var origData
+      , newData
+
+    try {
+      origData = jsonfile.readFileSync(path.dataPath)
+    } catch(e) {
+      origData = {}
+    }
+    newData = postsData({
+      postsPattern: path.blob
+    , defaultData: path.defaultData
+    })
+    newData = _.extend(newData, origData)
+    jsonfile.writeFileSync(path.dataPath, newData)
+  })
 })
 
 var markdown = require('gulp-markdown')
-gulp.task('markdown', function() {
-  gulp.src('src/posts/**/*.md')
-    .pipe(markdown().on('error', gutil.log))
-    .pipe(gulp.dest('src/template/_posts/'))
+var map = require('map-stream')
+var rename = require('gulp-rename')
+gulp.task('posts', function() {
+  paths.forEach(function(path) {
+    var data = jsonfile.readFileSync(path.dataPath)
+    data.forEach(function(post) {
+      // extract render layout
+      console.log(post.file)
+      gulp.src(post.file)
+        .pipe(markdown().on('error', gutil.log))
+        .pipe(map(function(postHtml, cb) {
+          if (!postHtml.contents) {
+            console.log(postHtml, 'returned!!')
+            return
+          }
+          postHtml = postHtml.contents.toString()
+          console.info(postHtml)
+          gulp.src(post.layout)
+            .pipe(jade({
+                locals: _.extend(globalLocals, { 'yield': postHtml })
+              }).on('error', gutil.log))
+            .pipe(rename('index.html'))
+            .pipe(gulp.dest(post.dest))
+        }))
+    })
+  })
 })
 
-function jadeOpts() {
-  return {
-    locals: fetchLocals({
-      cwd: 'src/'
-    , blob: ['template/**/data.json', 'posts/**/data.json']
-    })
-  }
-}
 var jade = require('gulp-jade')
 gulp.task('jade', function() {
-  gulp.src('src/template/**/*.jade')
-    .pipe(jade(jadeOpts()).on('error', gutil.log))
+  gulp.src(['src/template/**/*.jade', '!src/template/**/_*'])
+    .pipe(jade({ locals: globalLocals }).on('error', gutil.log))
     .pipe(gulp.dest('./'))
 })
 
@@ -105,7 +138,7 @@ gulp.task('flo', function(done) {
 
 gulp.task('css', ['stylus'])
 gulp.task('json', ['posts-json'])
-gulp.task('html', ['json', 'markdown', 'jade'])
+gulp.task('html', ['json', 'posts', 'jade'])
 gulp.task('build', ['css', 'html', 'js'])
 gulp.task('server', ['build', 'watch', 'flo', 'static'])
 gulp.task('default', ['server'])

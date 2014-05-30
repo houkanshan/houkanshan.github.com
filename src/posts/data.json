@@ -2,71 +2,99 @@
   {
     "title": "helloworld",
     "date": "2012-04-06",
+    "file": "src/posts/2012-04-06-helloworld.md",
+    "dest": "posts/2012-04-06-helloworld.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "dt_status",
     "date": "2012-04-14",
+    "file": "src/posts/2012-04-14-dt_status.md",
+    "dest": "posts/2012-04-14-dt_status.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "git-repo",
     "date": "2012-04-16",
+    "file": "src/posts/2012-04-16-git-repo.md",
+    "dest": "posts/2012-04-16-git-repo.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "after-read-bootstrap",
     "date": "2012-06-14",
+    "file": "src/posts/2012-06-14-after-read-bootstrap.md",
+    "dest": "posts/2012-06-14-after-read-bootstrap.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "bootstrap-less",
     "date": "2012-08-11",
+    "file": "src/posts/2012-08-11-bootstrap-less.md",
+    "dest": "posts/2012-08-11-bootstrap-less.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "module-css",
     "date": "2012-08-19",
+    "file": "src/posts/2012-08-19-module-css.md",
+    "dest": "posts/2012-08-19-module-css.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "css-status",
     "date": "2012-09-30",
+    "file": "src/posts/2012-09-30-css-status.md",
+    "dest": "posts/2012-09-30-css-status.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "about-diantv",
     "date": "2012-10-05",
+    "file": "src/posts/2012-10-05-about-diantv.md",
+    "dest": "posts/2012-10-05-about-diantv.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "about-scss",
     "date": "2012-10-06",
+    "file": "src/posts/2012-10-06-about-scss.md",
+    "dest": "posts/2012-10-06-about-scss.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "dynamic-configuration-of-css",
     "date": "2012-10-09",
+    "file": "src/posts/2012-10-09-dynamic-configuration-of-css.md",
+    "dest": "posts/2012-10-09-dynamic-configuration-of-css.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "html-css-mark",
     "date": "2012-10-30",
+    "file": "src/posts/2012-10-30-html-css-mark.md",
+    "dest": "posts/2012-10-30-html-css-mark.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "test-parallex",
     "date": "2013-06-28",
+    "file": "src/posts/2013-06-28-test-parallex.md",
+    "dest": "posts/2013-06-28-test-parallex.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "amd-visualization",
     "date": "2013-08-25",
+    "file": "src/posts/2013-08-25-amd-visualization.md",
+    "dest": "posts/2013-08-25-amd-visualization.html",
     "layout": "src/posts/_layout.jade"
   },
   {
     "title": "drumcat",
     "date": "2014-03-11",
+    "file": "src/posts/2014-03-11-drumcat.md",
+    "dest": "posts/2014-03-11-drumcat.html",
     "layout": "src/posts/_layout.jade"
   }
 ]
