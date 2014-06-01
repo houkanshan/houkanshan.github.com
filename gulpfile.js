@@ -9,6 +9,7 @@ var globalLocals = fetchLocals({
       cwd: 'src/'
     , blob: ['template/**/data.json', 'posts/**/data.json']
     })
+  , jadeBasedir = 'src/template/'
 
 var stylus = require('gulp-stylus')
 gulp.task('stylus', function () {
@@ -66,10 +67,10 @@ gulp.task('posts', function() {
             return
           }
           postHtml = postHtml.contents.toString()
-          console.log(postHtml)
           gulp.src(post.layout)
             .pipe(jade({
                 locals: _.extend({}, globalLocals, { 'yield': postHtml })
+              , basedir: jadeBasedir
               }).on('error', gutil.log))
             .pipe(rename('index.html'))
             .pipe(gulp.dest(post.dest))
@@ -87,7 +88,7 @@ gulp.task('jade', function() {
     ])
     .pipe(jade({
       locals: globalLocals
-    , basedir: 'src/template/'
+    , basedir: jadeBasedir
     }).on('error', gutil.log))
     .pipe(gulp.dest('./'))
 })

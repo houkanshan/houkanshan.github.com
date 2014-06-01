@@ -12,12 +12,11 @@ block body
   header#home-header.main-header
     nav#blog-header-nav
       +nav-list('', template.nav)
-      +title()
 
     h1.blog-title Houkanshan's Blog
 
   article#home-content
-    +posts-list(posts.slice(0, 3))
+    +posts-list(posts.reverse().slice(0, 3))
 
     footer#posts-footer
       a(href="posts") more

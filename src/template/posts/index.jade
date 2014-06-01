@@ -12,11 +12,11 @@ block body
   header#posts-header.minor-header
     nav#posts-header-nav
       +nav-list('posts', template.nav)
-      +title()
+    +title()
   article#posts-content
-    +posts-list(posts)
+    +posts-list(posts.reverse())
 
-  footer#home-footer.main-footer
+  footer#posts-footer.main-footer
     nav#blog-footer-nav
       ul
         li
