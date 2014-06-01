@@ -65,11 +65,9 @@ gulp.task('posts', function() {
         .pipe(markdown().on('error', gutil.log))
         .pipe(map(function(postHtml, cb) {
           if (!postHtml.contents) {
-            console.log(postHtml, 'returned!!')
             return
           }
           postHtml = postHtml.contents.toString()
-          console.info(postHtml)
           gulp.src(post.layout)
             .pipe(jade({
                 locals: _.extend(globalLocals, { 'yield': postHtml })
@@ -83,8 +81,15 @@ gulp.task('posts', function() {
 
 var jade = require('gulp-jade')
 gulp.task('jade', function() {
-  gulp.src(['src/template/**/*.jade', '!src/template/**/_*'])
-    .pipe(jade({ locals: globalLocals }).on('error', gutil.log))
+  gulp.src([
+      'src/template/**/*.jade'
+    , '!src/template/**/_*'
+    , '!src/template/_**/*'
+    ])
+    .pipe(jade({
+      locals: globalLocals
+    , basedir: 'src/template/'
+    }).on('error', gutil.log))
     .pipe(gulp.dest('./'))
 })
 

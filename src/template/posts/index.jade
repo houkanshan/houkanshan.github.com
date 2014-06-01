@@ -1,34 +1,32 @@
 extends /_layout.jade
 
 block head
-  script(src="js/index.js")
+  script(src="js/posts.js")
 
 block body
-  header#home-header.main-header
+  header#posts-header.minor-header
     nav#blog-header-nav
       ul
         li
-          a(href="/posts/" title="Posts") Posts
+          a(href="" title="Posts") Posts
         li
           a(href="" title="About") About
-    h1.blog-title Houkanshan's Blog
-  article#home-content
+    h1.blog-title
+      a(href="/" title="Home") Houkanshan's Blog
+  article#posts-content
     ul.posts-list
-      - posts.slice(0, 3).forEach(function(post) {
+      - posts.forEach(function(post) {
         li.post-item
           .post-hd
             h3.title= post.title
             .date= post.date
           .post-bd= post.abstract
       - })
-
-    footer#posts-footer
-      a(href="posts") more
-
-  footer#home-footer
+  footer#home-footer.main-footer
     nav#blog-footer-nav
       ul
         li
-          a(href="/posts/" title="Posts") Posts
+          a(href="" title="Posts") Posts
         li
           a(href="" title="About") About
+
