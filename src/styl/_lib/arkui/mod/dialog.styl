@@ -1,0 +1,84 @@
+@import "arkui/mixins"
+
+.dui-dialog
+  position: fixed
+  _position: absolute
+  z-index: 1000
+
+.dui-dialog .dui-dialog-content
+  position: relative
+  z-index: 2
+  background: #fff
+  border-radius: 4px
+  *zoom: 1
+
+.dui-dialog .hd
+  padding: 10px
+  background: #ebf5eb
+  font-size: 14px
+  border-top-left-radius: 4px
+  border-top-right-radius: 4px
+
+.dui-dialog .hd h3
+  padding: 0 40px 0 4px
+  background: none
+  color: #333
+
+.dui-dialog .hd h3 i
+  color: #060
+  font-style: normal
+  margin-left: 0.5ex
+
+.dui-dialog .bd
+  position: relative
+  padding: 15px
+  *zoom: 1
+  font-size: 12px
+
+.dui-dialog .bd:after
+  content: '\0020'
+  clear: both
+  display: block
+
+.dui-dialog .ft .bn-flat
+.dui-dialog .ft input
+  margin: 0 .5em
+
+.dui-dialog .ft
+  text-align: center
+  padding: 10px
+  padding-top: 0
+
+.dui-dialog .dui-dialog-close
+  position: absolute
+  top: 10px
+  right: 12px
+  line-height: 1.2
+  padding: 0 3px
+  font: 11px "Comic Sans MS"
+
+a.dui-dialog-close:link
+  color: #b4b4b4
+
+a.dui-dialog-close:hover
+  color: #fab0b6
+  background: none
+
+.dui-dialog .dui-dialog-shd
+  position: absolute
+  left: -8px
+  top: -8px
+  width: 100%
+  height: 100%
+  background: #666
+  opacity: .4
+  border-radius: 5px
+
+.dui-dialog-iframe
+  border: 0
+  background: transparent
+  position: absolute
+  z-index: 1
+  left: -8px
+  top: -8px
+  opacity: 0

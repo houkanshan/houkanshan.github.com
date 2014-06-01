@@ -1,0 +1,43 @@
+@import "mixins"
+@import "variable"
+
+// Grid System
+grid-width(col)
+  col * ($column + $gutter) - $gutter
+
+/* usage:
+ * ul.list-col5
+ *   list-colums(5, 10, 120px, 110px)
+ *     li
+ *       padding: 0 5px
+ */
+
+colWidth = rawColWidth + padding + borderWidth
+
+layout-columns(col, parentWidth, colWidth, rawColWidth = colWidth, itemSelector="li")
+  colPadding = (parentWidth - colWidth * col) / (col - 1)
+  width: parentWidth + colPadding
+  {itemSelector}
+    width: rawColWidth
+    margin-right: colPadding
+
+list-columns(col, parentCol, colWidth, rawColWidth = colWidth, itemSelector="li")
+  listWidth = grid-width(parentCol)
+  layout-columns(col, listWidth, colWidth, rawColWidth, itemSelector)
+
+for col in 1..16
+  .col{col}
+    width: grid-width(col)
+
+.hd
+.main
+  clearfix()
+
+.col
+  float: left
+
+.main .col:last-child
+  float: right
+
+section
+  margin-bottom: 20px

@@ -1,0 +1,55 @@
+@import "arkui/mixins"
+
+body
+  _height: 100%
+
+.dui-overlay-mask
+.dui-overlay-iframe
+.dui-overlay-container
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  _position: absolute;
+  _bottom: auto;
+  _top: unquote("expression(eval(document.documentElement.scrollTop))")
+
+.dui-overlay-container
+  z-index: 999
+  overflow: auto
+  -webkit-overflow-scrolling: touch
+
+.dui-overlay-mask
+  z-index: 998
+  background: #000
+  opacity: .8
+
+.dui-overlay-panel
+  position: relative
+  overflow: hidden
+  background: #fff
+  margin: 50px auto
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2)
+
+.dui-overlay-panel .hd
+  padding: 10px 15px
+
+.dui-overlay-panel .hd h2
+  margin: 0
+
+.dui-overlay-panel .bd
+  padding: 0 15px 20px
+
+.dui-overlay-panel .lnk-close
+  position: absolute
+  top: 10px
+  right: 15px
+
+.dui-overlay-panel a.lnk-close:link
+.dui-overlay-panel a.lnk-close:active
+.dui-overlay-panel a.lnk-close:hover
+.dui-overlay-panel a.lnk-close:active
+  font-size: 16px
+  line-height: 1
+

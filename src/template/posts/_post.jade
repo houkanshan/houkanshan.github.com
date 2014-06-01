@@ -1,0 +1,25 @@
+// posts.jade
+extends /_layout.jade
+include /_widgets/index.jade
+
+block head
+  link(href="css/post.css" rel="stylesheet")
+
+block bottom_js
+  script(src="js/post.js")
+
+block body
+  header#post-header.minor-header
+    nav#post-header-nav
+      +nav-list('posts', template.nav)
+      +title()
+  article#post-content
+    != yield
+
+  footer#post-footer.main-footer
+    nav#blog-footer-nav
+      ul
+        li
+          a(href="" title="Posts") Posts
+        li
+          a(href="" title="About") About

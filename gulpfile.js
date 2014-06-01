@@ -13,7 +13,7 @@ var globalLocals = fetchLocals({
 
 var stylus = require('gulp-stylus')
 gulp.task('stylus', function () {
-  gulp.src(['src/styl/index.styl'])
+  gulp.src(['src/styl/**/*.styl', '!src/styl/_*/**/*'])
     .pipe(stylus({ set: ['compress'] })
       .on('error', gutil.log))
     .pipe(gulp.dest('./css/'))
@@ -83,8 +83,7 @@ var jade = require('gulp-jade')
 gulp.task('jade', function() {
   gulp.src([
       'src/template/**/*.jade'
-    , '!src/template/**/_*'
-    , '!src/template/_**/*'
+    , '!src/template/_*/**/*'
     ])
     .pipe(jade({
       locals: globalLocals
@@ -108,7 +107,8 @@ gulp.task('static', function() {
 gulp.task('watch', function() {
   gulp.watch('src/js/**/*.js', ['js'])
   gulp.watch('src/styl/**/*.styl', ['css'])
-  gulp.watch('src/**/*.jade', ['html'])
+  gulp.watch('src/template/*.jade', ['html'])
+  gulp.watch('src/posts/*', ['html'])
 })
 
 var flo = require('fb-flo')
@@ -145,6 +145,8 @@ var clean = require('gulp-clean')
 gulp.task('clean', function() {
   gulp.src([
     '*.html'
+  , 'js'
+  , 'css'
   , 'posts/*.html'
   , 'about/*.html'
   , 'src/posts/data.json'

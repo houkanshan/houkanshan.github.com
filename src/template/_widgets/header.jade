@@ -1,0 +1,12 @@
+mixin nav-list(curr, navData)
+  ul
+    each navItem in navData
+      li
+        if curr === navItem.name
+          span.nav-item.curr-nav= navItem.title
+        else 
+          a.nav-item(href=navItem.url title=navItem.title)= navItem.title
+
+mixin title()
+  h1.blog-title
+    a(href="/" title="Home") Houkanshan's Blog
