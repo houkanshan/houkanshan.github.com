@@ -1,17 +1,67 @@
-<p><a href="https://github.com/houkanshan/drumcat/">https://github.com/houkanshan/drumcat/</a></p>
-<style>
-  .github-iframe {
-    width: 600px;
-    width: 70vw;
-    border: none;
-  }
-</style>
+<p>CSS应该是作为一种配置文件存在的，对HTML而言就是显示样式的配置。
+其实上次听讲座也听到说配置文件配置文件根据使用场景可以尝试多种格式，CSS的语法就是一种。
+当时没太听明白，只是想想觉得类似XML\HTML这种树形结构的数据应该都可以用CSS的语法(主要是选择器的特性)来进行配置的。</p>
+<p>继续说CSS本身，我所看到的设置样式的方式大概有两种：</p>
+<ul>
+<li><p>通过预先配置的css文件来设置样式。</p>
+</li>
+<li><p>通过js修改dom属性。</p>
+</li>
+</ul>
+<p>然而第二种并不是全局有效的，我觉得不能算是配置。</p>
+<p>其实还有一种应该也是在入门的时候就有的概念，就是直接写<strong>embedded-style-sheet(嵌套样式表，页内样式表)</strong>的css来达到一种脚本化CSS的效果，但与直接改dom属性相比，这个是全局有效的。</p>
+<p>在传统的网页上，直接修改元素的样式很方便，也没什么问题。但是到WebApp上，由于需要屏幕适配，并且有大量元素的增删操作，
+单纯依靠Fluid Layout或者media queries不一定能解决问题。
+于是就看到了很多在元素创建之后的element style设置。</p>
+<p>如果在每次创建的时候设置还不是大问题，那么当窗口大小变化的时候，还是会碰到问题。因为这有一个全局感知resize，计算新样式并向下通知的过程。设计的好，这应该是个自顶向下的流程，否则可能就乱了。</p>
+<p>然而如果创建一个embedded-style-sheet去维护这些配置，问题就简单了。</p>
+<p>于是做了个叫DCSS的东西，比较简单，轻拍。
+<a href="https://github.com/houkanshan/dcss">https://github.com/houkanshan/dcss</a></p>
+<p>主要接口是Dcss.rule()，实现了：</p>
+<pre><code>rule(&#39;.selector&#39;)
 
-<p>Open your microphone ~</p>
+rule(&#39;.selector&#39;, &#39;color&#39;)
+
+rule(&#39;.selector&#39;, &#39;color&#39;, &#39;black&#39;)
+
+rule(&#39;.selector&#39;, {&#39;color&#39;: &#39;black&#39;, &#39;background&#39;:&#39;white&#39;})
+</code></pre><p>前两个是getter, 后面是setter.</p>
+<p>还有一个没做：</p>
+<pre><code>rule({&#39;.selector1&#39;: {&#39;color&#39;: &#39;black&#39;, &#39;background&#39;:&#39;white&#39;}, &#39;.selector2&#39;:{&#39;color&#39;:&#39;blue&#39;}})
+</code></pre><p>另外还有json2css, css2json两个接口</p>
+<p>发现一个响应式实现中的可能碰到的问题就是，所有的响应式都是先resize再render的，在resize和render之间元素还是会保持原来的样式，
+如果这个时候是窗口缩小，而页面布局的时候没有留下这个缓冲空间，就会出现一次抖动(主要是对float和inline这种自适应方式的)。
+代码里的index.html里面就出现了这种情况。</p>
+<p>然后打算过几天，把DianTv2的代码改一下~ 不过那个比较简单，有问题也看不出来。</p>
 <hr>
-<iframe class="github-iframe" height="600px"
-  style="width:320px;width:40vw;border:none;"
-  src="http://houkanshan.github.io/drumcat/">
-fuck the jekyll template, hehe...
-</iframe>
-
+<p>关于json &amp; css的互转，还有一个实现： <a href="https://github.com/aramkocharyan/CSSJSON">https://github.com/aramkocharyan/CSSJSON</a></p>
+<p>很好奇的测试了下几种字符串分割的效率问题。</p>
+<p><a href="http://jsperf.com/string-split-houkanshan">http://jsperf.com/string-split-houkanshan</a></p>
+<p>结果是性能上：split(string) &gt;&gt; match(regexp) &gt; split(regexp) &gt;&gt; regexp.exec(string)</p>
+<p><img src="https://docs.google.com/drawings/pub?id=1nSp_-WbH6E4oRfumYWKhSHNEc1qOMcIDDDEnn7yvgw8&amp;w=930&amp;h=466" alt="split test"></p>
+<p>测试的时候考虑的主要是平常的用法，应为exec的循环方法不一样，所以加上了循环，并没有做什么优化，本来期望的是差异不大的。
+但结果是，能用split分割的时候尽量用split(string)，不行的话就用match，再不行的话才用exec。</p>
+<p>而这个实现用的是最慢的exec+递归，优势是他能支持media选择器，也就是多层规则。但是我不需要，
+我只要能实现一个类似$.css()的方法就行了，因此直接用了split套两层循环实现。</p>
+<p>正则虽然很猛，熟练了估计会很无敌。但应用中还是要看场合，字符串分割我觉得就没必要了，而且对我这种菜鸟要读正则太耗时了。。。</p>
+<p>（不过已经几次笔试的时候碰到正则的大题了，做的都不怎么样，囧）</p>
+<hr>
+<p>今天真是个神奇的日子。</p>
+<p>早上赶去参加某公司的面试，一开始自我介绍就自曝说转前端半年，于是就有点被bs的感觉，后来面试官哥哥(叔叔?)问我是不是主要写JS，我补充说还写CSS的。</p>
+<p>的。。。</p>
+<p>然后就看到他一脸很无语的感觉。于是我也满脸黑线了，开始怀疑我是不是投错岗位了。。。
+毕竟我觉得我应该是个CSS\JS各一半，设计\网络各一半，后端1/5的人的(数学不好...算不清)</p>
+<p>总之又是一次很没感觉的面试，很多该说的地方表现的太含蓄了。。。</p>
+<p>回来收到小kk豆油的问我豆瓣的情况~ 然后还不停安慰我。忍不住翻出一张旧照片看了一阵，唔，真好。</p>
+<p><img src="https://docs.google.com/drawings/pub?id=1UiYFbsChBatVkMondOCaWeXIHzwVA61uKCdP-12d3tY&amp;w=545&amp;h=100" alt="旧照片"></p>
+<p><em>旧照片</em></p>
+<p>后来发现饭卡掉了，这对一个死宅来说真是不容易。嗯，可能是在某公司面试前坐地上看书的时候掉的。
+希望是一个武大的孩子捡到我的饭卡，这样应该就可以省20块钱了~ 华师也行~ 地大也行~</p>
+<p>后来我爸和我妈相继来电话，都跟我说    </p>
+<blockquote>
+<p><em>即使去不了某植物公司没关系，还是要尽力争取去某动物公司</em>。<br>而奇怪的地方就在于，以他们为首的我的所有家人，之前都是要我去保研的~ </p>
+</blockquote>
+<p>其实也不奇怪，是吧。</p>
+<p>晚上渴的不行，又不巧手边是瓶没喝完的咖啡，更不巧的是我明天要交一堆不想做的设计，接下来就该去windows打开PS然后等太阳了。</p>
+<p>谢谢各位。</p>
+<p>以上，请指责。</p>

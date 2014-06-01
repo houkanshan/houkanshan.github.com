@@ -10,8 +10,6 @@ var globalLocals = fetchLocals({
     , blob: ['template/**/data.json', 'posts/**/data.json']
     })
 
-console.log(globalLocals)
-
 var stylus = require('gulp-stylus')
 gulp.task('stylus', function () {
   gulp.src(['src/styl/index.styl'])
@@ -27,14 +25,13 @@ var paths = [
   , dataPath: 'src/posts/data.json'
   , dest: 'posts/'
   , defaultData: {
-      layout: 'src/template/_post.jade'
+      layout: 'src/template/posts/_post.jade'
     }
   }
 ]
 
 var jsonfile = require('jsonfile')
 gulp.task('posts-json', function() {
-
   paths.forEach(function(path) {
     var origData
       , newData
@@ -48,7 +45,7 @@ gulp.task('posts-json', function() {
       postsPattern: path.blob
     , defaultData: path.defaultData
     })
-    newData = _.extend(newData, origData)
+    _.extend(newData, origData)
     jsonfile.writeFileSync(path.dataPath, newData)
   })
 })
@@ -69,9 +66,10 @@ gulp.task('posts', function() {
             return
           }
           postHtml = postHtml.contents.toString()
+          console.log(postHtml)
           gulp.src(post.layout)
             .pipe(jade({
-                locals: _.extend(globalLocals, { 'yield': postHtml })
+                locals: _.extend({}, globalLocals, { 'yield': postHtml })
               }).on('error', gutil.log))
             .pipe(rename('index.html'))
             .pipe(gulp.dest(post.dest))
@@ -145,11 +143,12 @@ gulp.task('flo', function(done) {
 var clean = require('gulp-clean')
 gulp.task('clean', function() {
   gulp.src([
-    '**/*.html'
-  , 'posts/data.json'
-  , '!src/posts/**/*'
-  , '!src/template/**/*'
+    '*.html'
+  , 'posts/*.html'
+  , 'about/*.html'
+  , 'src/posts/data.json'
   ])
+    .pipe(clean())
 })
 
 gulp.task('css', ['stylus'])

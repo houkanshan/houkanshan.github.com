@@ -1,17 +1,16 @@
-<p><a href="https://github.com/houkanshan/drumcat/">https://github.com/houkanshan/drumcat/</a></p>
-<style>
-  .github-iframe {
-    width: 600px;
-    width: 70vw;
-    border: none;
-  }
-</style>
+<p>个人认为css的选择器标识分两类。</p>
+<pre><code>* 实体
+    * 模块 .head-pic, .sub-btn, etc. 
+    * 类  .btn, h1, etc.
 
-<p>Open your microphone ~</p>
-<hr>
-<iframe class="github-iframe" height="600px"
-  style="width:320px;width:40vw;border:none;"
-  src="http://houkanshan.github.io/drumcat/">
-fuck the jekyll template, hehe...
-</iframe>
-
+* 状态 .enable, .disable, .has-img, .no-img, etc.
+</code></pre><p>像这个图一样，紫色的是状态，黑色的是实体。</p>
+<p><img src="https://docs.google.com/drawings/pub?id=14Csv25-kgd-BKhudjE0UzYh64nO9iXVx4sFksNm2Muo&amp;w=393&amp;h=317" alt="css-status"></p>
+<p>实体标识就是放在所标识的标签上的~</p>
+<p>而状态标识 就应该作为一种<strong>配置选项</strong>放在模块级别下的全局位置。<br>放在全局下的好处应该就是这样模块下的所有实体的状态是透明的；而且是可以统一读取；
+更重要的是减少优先级混乱的可能，因为可以在同一个位置根据不同的状态配置不同的规则。</p>
+<p>当然，这样的问题是.pic在变成一个模块的时候就不方便再独立维护一个状态。这就需要仔细斟酌状态的应用范围了。</p>
+<p>虽然说上面图里面的情况只需要给.content用BFC就能解决问题。但是问题再复杂点呢？比如我要根据给.no-img情况下的.content用更大的字体?</p>
+<p>当然原则应该还是在模块级别上维护状态，如果pic形成独立的模块，还是得在.pic上加状态标识。</p>
+<p>不知道啊，以后再看看。。。</p>
+<p>以上，请指责。</p>
