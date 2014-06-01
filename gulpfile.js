@@ -10,6 +10,7 @@ var globalLocals = fetchLocals({
     , blob: ['template/**/data.json', 'posts/**/data.json']
     })
 
+console.log(globalLocals)
 
 var stylus = require('gulp-stylus')
 gulp.task('stylus', function () {
@@ -26,7 +27,7 @@ var paths = [
   , dataPath: 'src/posts/data.json'
   , dest: 'posts/'
   , defaultData: {
-      layout: 'src/posts/_layout.jade'
+      layout: 'src/template/_post.jade'
     }
   }
 ]
@@ -139,6 +140,16 @@ gulp.task('flo', function(done) {
     , reload: needReload
     })
   }
+})
+
+var clean = require('gulp-clean')
+gulp.task('clean', function() {
+  gulp.src([
+    '**/*.html'
+  , 'posts/data.json'
+  , '!src/posts/**/*'
+  , '!src/template/**/*'
+  ])
 })
 
 gulp.task('css', ['stylus'])

@@ -1,3 +1,14 @@
 {
-  "a": "b"
+  "nav": [
+    {
+      "name": "posts"
+    , "title": "Posts"
+    , "url": "/posts/"
+    }
+  , {
+      "name": "about"
+    , "title": "About"
+    , "url": "/about/"
+    }
+  ]
 }

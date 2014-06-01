@@ -1,27 +1,21 @@
+// posts.jade
 extends /_layout.jade
+include /_widgets/index.jade
 
 block head
+  link(href="css/posts.css" rel="stylesheet")
+
+block bottom_js
   script(src="js/posts.js")
 
 block body
   header#posts-header.minor-header
-    nav#blog-header-nav
-      ul
-        li
-          a(href="" title="Posts") Posts
-        li
-          a(href="" title="About") About
-    h1.blog-title
-      a(href="/" title="Home") Houkanshan's Blog
+    nav#posts-header-nav
+      +nav-list('posts', template.nav)
+      +title()
   article#posts-content
-    ul.posts-list
-      - posts.forEach(function(post) {
-        li.post-item
-          .post-hd
-            h3.title= post.title
-            .date= post.date
-          .post-bd= post.abstract
-      - })
+    +posts-list(posts)
+
   footer#home-footer.main-footer
     nav#blog-footer-nav
       ul
@@ -29,4 +23,3 @@ block body
           a(href="" title="Posts") Posts
         li
           a(href="" title="About") About
-
