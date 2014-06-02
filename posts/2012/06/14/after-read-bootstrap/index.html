@@ -28,10 +28,10 @@ font-family, CSS3样式, 渐变背景样式，组件基本样式：nav-divide, b
 <h4 id="code-less">code.less</h4>
 <p>顾名思义了，这里不明白为什么block-code的样式用pre而不是code. 难道code标签只是用于inline-code的</p>
 <p>里面有个跨浏览器的pre样式，现在好像差不多都是这样写的：</p>
-<pre><code>white-space: pre;       /* for ie6, 空格\t\n有效，不会边界自动换行, 与pre标签效果类似 */
-white-space: pre-wrap;  /* IE8, FF3.0, Opera8.0, Safari3.0, 加上了边界换行, 对non-CJK还是分词换行, CJK按字直接换行*/
-word-break: break-all;  /* IE5+ 其他不清楚，对non-CJK在边界上直接字母间打断换行 */
-word-wrap: break-word;  /* FF3.5, chrome1.0, IE5.5 Opera10.5, Safari1.0, non-CJK会优先分词换行，如果换行后还是超长，就会直接打断*/
+<pre><code><span class="hljs-attribute">white-space</span><span class="hljs-value">: pre;</span>       <span class="hljs-comment">/* for ie6, 空格\t\n有效，不会边界自动换行, 与pre标签效果类似 */</span>
+<span class="hljs-attribute">white-space</span><span class="hljs-value">: pre-wrap;</span>  <span class="hljs-comment">/* IE8, FF3.0, Opera8.0, Safari3.0, 加上了边界换行, 对non-CJK还是分词换行, CJK按字直接换行*/</span>
+<span class="hljs-attribute">word-break</span><span class="hljs-value">: break-all;</span>  <span class="hljs-comment">/* IE5+ 其他不清楚，对non-CJK在边界上直接字母间打断换行 */</span>
+<span class="hljs-attribute">word-wrap</span><span class="hljs-value">: break-word;</span>  <span class="hljs-comment">/* FF3.5, chrome1.0, IE5.5 Opera10.5, Safari1.0, non-CJK会优先分词换行，如果换行后还是超长，就会直接打断*/</span>
 </code></pre><h4 id="form-less">form.less</h4>
 <p>表单样式，不是很想看。。。不要随便改懂就好。。。</p>
 <h4 id="table-less">table.less</h4>
@@ -52,7 +52,7 @@ buttons.less, button-groups.less, alerts.less, nav.less等等都顾名思义了�
 如果要bootstrap的样式与自定的样式混用的话，恐怕管理起来会很不方便，还不如全部自己写。毕竟css+html不是可执行代码，想把程序的复杂逻辑用在它上面是没有用的。</p>
 <p>bootstrap就拿来做原型吧，毕竟css+html是处在设计和代码之间的东西，不能单纯用两者中的某种思考方式去考虑css+html。</p>
 <p>以上，请指责。</p>
-<footer><span class="date">2012-06-14</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
+<footer><span class="date">2012-06-14</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-30636693-1']);
 _gaq.push(['_trackPageview']);
 

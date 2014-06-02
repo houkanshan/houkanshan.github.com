@@ -11,27 +11,27 @@
 <p>自己偶尔发现的，所以肯定也不能说是致命缺点，但是在有诸多css扩展语言的环境下足以影响我对它的好感。。。</p>
 <h4 id="-">输出代码冗余：</h4>
 <p>对于这样结构的less代码：</p>
-<pre><code>.class {
-    /* some style */
+<pre><code><span class="hljs-preprocessor">.class</span> {
+    <span class="hljs-comment">/* some style */</span>
 }
-.A {
-    .class;
-    /* other for A */
+<span class="hljs-preprocessor">.A</span> {
+    <span class="hljs-preprocessor">.class</span><span class="hljs-comment">;</span>
+    <span class="hljs-comment">/* other for A */</span>
 }
-.B {
-    .class;
-    /* other for B */
+<span class="hljs-preprocessor">.B</span> {
+    <span class="hljs-preprocessor">.class</span><span class="hljs-comment">;</span>
+    <span class="hljs-comment">/* other for B */</span>
 }
 </code></pre><p>直觉上就想到这样输出正好可以压缩：</p>
-<pre><code>.class, .A, .B {
-    /* some style */
+<pre><code><span class="hljs-preprocessor">.class</span>, <span class="hljs-preprocessor">.A</span>, <span class="hljs-preprocessor">.B</span> {
+    <span class="hljs-comment">/* some style */</span>
 }
 
-.A {
-    /* other for A */
+<span class="hljs-preprocessor">.A</span> {
+    <span class="hljs-comment">/* other for A */</span>
 }
-.B {
-    /* other for B */
+<span class="hljs-preprocessor">.B</span> {
+    <span class="hljs-comment">/* other for B */</span>
 }
 </code></pre><p>然而less预处理器却非要把.class的样式重复三遍输出，纯写css可能还会注意点代码的复用，结果用less的时候想到可以用mixin结果反而比纯写css还多了些没必要的代码。</p>
 <h4 id="import-">import只支持同级目录</h4>
@@ -39,12 +39,12 @@
 这就给服务器上管理less文件带来一些麻烦。</p>
 <h4 id="-less-">生成的类名不能在less中复用</h4>
 <p>碰到的情况是：</p>
-<pre><code>@var: &#39;css&#39;;
-(~&quot; .compiled-@{var}&quot;) {
+<pre><code>@<span class="hljs-built_in">var</span>: <span class="hljs-string">'css'</span>;
+(~<span class="hljs-string">" .compiled-@{var}"</span>) {
     color: red;
 }
-.use-compiled-css {
-    .compiled-css;
+<span class="hljs-built_in">.</span>use<span class="hljs-attribute">-compiled</span><span class="hljs-attribute">-css</span> {
+    <span class="hljs-built_in">.</span>compiled<span class="hljs-attribute">-css</span>;
 }
 </code></pre><p>只前4行输出的是.compiled-css{...}，(测试的时候如果用客户端的方式编译就直接失败了。)
 加上后面的东西后就编译失败。
@@ -69,25 +69,25 @@
 <p>第三是需要用的bootstrap样式厍，比如buttons，forms，tables，需要的就可以直接import进入</p>
 <p>以上面两个模块为基础，首先是一个common.less：</p>
 <pre><code>/* components(include variables.less, mixins.less) */
-@import &quot;components.less&quot;;
+@import <span class="hljs-string">"components.less"</span>;
 
 /* reset */
-@import &quot;reset.less&quot;;
-@import &quot;type.less&quot;;
+@import <span class="hljs-string">"reset.less"</span>;
+@import <span class="hljs-string">"type.less"</span>;
 
 /* bootstrap style sets */
-@import &quot;tables.less&quot;;
-...
+@import <span class="hljs-string">"tables.less"</span>;
+<span class="hljs-keyword">...</span>
 
 /* common style */
-...
+<span class="hljs-keyword">...</span>
 </code></pre><p>然后每种页面私有的样式集：</p>
-<pre><code>/* components(include variables.less, mixins.less) */
-@import &quot;components.less&quot;;
+<pre><code><span class="hljs-comment">/* components(include variables.less, mixins.less) */</span>
+<span class="hljs-at_rule">@<span class="hljs-keyword">import</span> <span class="hljs-string">"components.less"</span></span>;
 
-/* page style */
+<span class="hljs-comment">/* page style */</span>
 </code></pre><p>以上，请指责。</p>
-<footer><span class="date">2012-08-11</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
+<footer><span class="date">2012-08-11</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-30636693-1']);
 _gaq.push(['_trackPageview']);
 

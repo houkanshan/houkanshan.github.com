@@ -131,15 +131,15 @@
 <p>text-transform</p>
 <h3 id="-161-">第161页</h3>
 <p>white-space:</p>
-<pre><code>normal              去掉多余的空格，\n换成\s，在边界换行
+<pre><code>normal              去掉多余的空格，<span class="hljs-command">\n</span>换成<span class="hljs-command">\s</span>，在边界换行
 
-pre                    \s 不被忽略（空格和回车），边界不换行
+pre                    <span class="hljs-command">\s</span> 不被忽略（空格和回车），边界不换行
 
-nowrap              去掉多余空格，\n换成\s，边界不换行
+nowrap              去掉多余空格，<span class="hljs-command">\n</span>换成<span class="hljs-command">\s</span>，边界不换行
 
-pre-wrap (2.1)  保留\n, 空格合并, 边界换行
+pre-wrap (2.1)  保留<span class="hljs-command">\n</span>, 空格合并, 边界换行
 
-pre-line   (2.1)   \s全保留，边界换行
+pre-line   (2.1)   <span class="hljs-command">\s</span>全保留，边界换行
 </code></pre><p>------------------------------------- origin ---------------------------------------</p>
 <p>normal</p>
 <p>This value directs user agents to collapse sequences of white space, and break lines as necessary to fill line boxes.</p>
@@ -237,15 +237,15 @@ pre-line   (2.1)   \s全保留，边界换行
 <hr>
 <p>垂直定位方式与水平类似。</p>
 <p>而且由于脱离了文档流(相当于拥有了独立的垂直空间，与水平情况下的block元素类似)可以用margin: auto 0;来居中。</p>
-<pre><code>.vertical-center {
+<pre><code><span class="hljs-class">.vertical-center</span> {
 
-  position: absolute;
+  <span class="hljs-attribute">position</span><span class="hljs-value">: absolute;</span>
 
-  top: 0;  // not auto
+  <span class="hljs-attribute">top</span><span class="hljs-value">: <span class="hljs-number">0</span>;</span>  <span class="hljs-comment">// not auto</span>
 
-  bottom: 0; // not auto
+  <span class="hljs-attribute">bottom</span><span class="hljs-value">: <span class="hljs-number">0</span>;</span> <span class="hljs-comment">// not auto</span>
 
-  margin: auto 0;
+  <span class="hljs-attribute">margin</span><span class="hljs-value">: auto <span class="hljs-number">0</span>;</span>
 
 }
 </code></pre><p>--</p>
@@ -270,8 +270,8 @@ pre-line   (2.1)   \s全保留，边界换行
  stacking context 子元素的z-index也不可相互比较。这个时候的排列是由低优先级的html内元素出现
 的先后顺序确定的。
 即</p>
-<pre><code>#a .child-a: 1, 10
-#b .child-b: 1, 2
+<pre><code><span class="hljs-preprocessor">#a .child-a: 1, 10</span>
+<span class="hljs-preprocessor">#b .child-b: 1, 2</span>
 </code></pre><p>的表现为#b和.child-b都在#a和.child-a之上</p>
 <p>对于body下的z-index, 因为body不会创建叠放上下文，且z-index:0, 那么如果一个z-index: -1; 就应该会在body之下。同时由于2.1要求：元素不会叠放在其叠放上下文的背景之下。</p>
 <p>注意：</p>
@@ -286,7 +286,7 @@ pre-line   (2.1)   \s全保留，边界换行
 stacking context, 不过例外是普通元素的offsetParent是BODY而不是HTML</p>
 <hr>
 <p>好乱。。。就自己看吧。。</p>
-<footer><span class="date">2012-10-30</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
+<footer><span class="date">2012-10-30</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-30636693-1']);
 _gaq.push(['_trackPageview']);
 

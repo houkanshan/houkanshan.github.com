@@ -9,7 +9,7 @@ body
   font-weight: $thinWeight
 
 blockquote
-i
+i, em
   font-family: $KaiFont
 
 p
@@ -19,7 +19,7 @@ code
   font-family: $CodeFont
   margin: 0 .23em
 
-em, strong, b
+strong, b
   font-weight: $boldWeight
 
 for i in 1..7
@@ -45,8 +45,11 @@ a
 // Article type
 .article-content
   line-height: 2.0
-  p, pre
+  p, pre, ul, ol, blockquote
     margin-bottom: 1em
+  for i in 1..7
+    h{i}
+      margin-bottom: .6em
   a
     font-family: $ItalicFont $HeiFont
     underline()
@@ -65,5 +68,13 @@ a
 
   for i in 1..7
     h{i}
-      font-family: $SerifSansFont
       font-weight: $bolderWeight
+  h1
+    font-size: 24px
+  ul
+    list-style: circle
+  ol
+    list-style: decimal
+  ul, ol
+    list-style-position: inside
+    margin-left: 1em

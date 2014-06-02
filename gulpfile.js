@@ -54,6 +54,7 @@ gulp.task('posts-json', function() {
 var markdown = require('gulp-markdown')
 var map = require('map-stream')
 var rename = require('gulp-rename')
+var hljs = require('highlight.js')
 gulp.task('posts', ['posts-json'], function() {
   paths.forEach(function(path) {
     var posts = jsonfile.readFileSync(path.dataPath)
@@ -61,7 +62,9 @@ gulp.task('posts', ['posts-json'], function() {
       // extract render layout
       console.log(post.file)
       gulp.src(post.file)
-        .pipe(markdown().on('error', gutil.log))
+        .pipe(markdown({
+          highlight: highlight
+        }).on('error', gutil.log))
         .pipe(map(function(postHtml, cb) {
           if (!postHtml.contents) {
             return
@@ -83,6 +86,13 @@ gulp.task('posts', ['posts-json'], function() {
         }))
     })
   })
+
+  function highlight(code, lang, cb) {
+    if(lang) {
+      cb(null, hljs.highlight(lang, code).value)
+    }
+    cb(null, hljs.highlightAuto(code).value)
+  }
 })
 
 var jade = require('gulp-jade')
@@ -105,14 +115,33 @@ gulp.task('jade', ['posts'], function() {
     if (secondExtname.length) {
       pathObj.basename = path.basename(pathObj.basename, secondExtname)
       pathObj.extname = secondExtname
-      console.log(pathObj)
     }
   }
 })
 
-gulp.task('js', function() {
-  gulp.src('src/js/**/*.js')
-    .pipe(gulp.dest('./js/'))
+var webpack = require('webpack')
+var gs = require('glob-stream') // for it support multi patterns
+var path = require('path')
+gulp.task('js', function(callback) {
+  gs.create(['src/js/**/*.js', '!src/js/_*/**/*', '!src/js/**/_*'])
+    .pipe(map(function(file, cb) {
+      var filename = file.path
+      var output = path.relative('src', filename)
+      webpack({
+          entry: filename,
+          output: {
+            path: path.dirname(output),
+            filename: path.basename(output),
+          },
+        }, function(err, stats) {
+            if(err) throw new gutil.PluginError("webpack", err);
+            gutil.log("[webpack]", stats.toString({}));
+        })
+    }))
+
+  // Support old js
+  gulp.src('src/js/_nopack/**/*.js')
+    .pipe(gulp.dest('js/'))
 })
 
 var HTTPServer = require('http-server')
@@ -126,7 +155,7 @@ gulp.task('watch', function() {
   gulp.watch('src/js/**/*.js', ['js'])
   gulp.watch('src/styl/**/*.styl', ['css'])
   gulp.watch('src/template/**/*.jade', ['html'])
-  gulp.watch('src/posts/*', ['html'])
+  gulp.watch('src/posts/**/*', ['html'])
 })
 
 var flo = require('fb-flo')

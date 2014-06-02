@@ -97,7 +97,6 @@ Parallax.prototype = {
 
     if (curScrollTop > elemBottom) {
       curArea = 'above'
-      curStage = 
     }
     else if (curScrollTop > elemTop) {
     }
@@ -123,7 +122,7 @@ Parallax.prototype = {
 
       status = {
         scrollTop: e.scrollTop
-        elemOffset: elemOffset
+      , elemOffset: elemOffset
       }
       console.log(e.scrollTop, 'should be scrolltop')
 

@@ -12,15 +12,15 @@
 其实代码规范好的话，可以解决很多问题。我甚至觉得架构这个东西，就应该是用代码规范来解决的。。。</p>
 <p>基于less的css规范，我自己的实践原则是这样的，很简单：</p>
 <h4 id="-">纵向上是</h4>
-<pre><code>模块1(名字空间) {  /* 比如 .speak-dialog */
-    类1;         /* 比如 h1,h2,h3 {} */
-    类2;         /* 比如 .hd {} */
-}
+<pre><code>模块1(名字空间) <span class="hljs-rules">{  <span class="hljs-comment">/* 比如 .speak-dialog */</span>
+    <span class="hljs-rule">类1;</span>         <span class="hljs-comment">/* 比如 h1,h2,h3 {} */</span>
+    <span class="hljs-rule">类2;</span>         <span class="hljs-comment">/* 比如 .hd {} */</span>
+<span class="hljs-rule">}</span></span>
 </code></pre><p>模块从全局空间开始，按照html树的层级，下面可能就到aside,main这级，然后再细化到内部的模块。到不能再细分模块的时候就以传统的css写法写。
 这种模块+类在html结构上应该象是这样：</p>
 <p><img src="https://docs.google.com/drawings/pub?id=1rg7vzagk78_arYcCxHUtzPCPwOOAiFJBiz7Wc_cM1XQ&amp;w=457&amp;h=263" alt="css module"></p>
 <h4 id="-">横向上是</h4>
-<pre><code>[{layout, style}, {layout, style}, ...]
+<pre><code>[{layout, style}, {layout, style}, <span class="hljs-keyword">...</span>]
 </code></pre><p>layout包含会影响模块定位的属性，包括size,margin,border,float,position,padding,line-height,display等
 (padding需要注意，因为当设置了width/height时，也padding会影响占位，所以虽然padding的语义是控制内容空间，但还是要放在布局的级别上)。
 这些应该是对应render中的layout阶段的。</p>
@@ -53,7 +53,7 @@
 <p>一个做过前端的妹子某次问我最近再做什么，然后问我写css不无聊么。</p>
 <p>这真不好回答，其实我还想写点css，虽然最后编译出来的东西都是那么一坨。。。</p>
 <p>以上，请指责。</p>
-<footer><span class="date">2012-08-19</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
+<footer><span class="date">2012-08-19</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-30636693-1']);
 _gaq.push(['_trackPageview']);
 

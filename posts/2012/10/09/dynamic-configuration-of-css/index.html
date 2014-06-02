@@ -23,16 +23,16 @@
 <p>于是做了个叫DCSS的东西，比较简单，轻拍。
 <a href="https://github.com/houkanshan/dcss">https://github.com/houkanshan/dcss</a></p>
 <p>主要接口是Dcss.rule()，实现了：</p>
-<pre><code>rule(&#39;.selector&#39;)
+<pre><code><span class="hljs-function">rule(<span class="hljs-string">'.selector'</span>)</span>
 
-rule(&#39;.selector&#39;, &#39;color&#39;)
+<span class="hljs-function">rule(<span class="hljs-string">'.selector'</span>, <span class="hljs-string">'color'</span>)</span>
 
-rule(&#39;.selector&#39;, &#39;color&#39;, &#39;black&#39;)
+<span class="hljs-function">rule(<span class="hljs-string">'.selector'</span>, <span class="hljs-string">'color'</span>, <span class="hljs-string">'black'</span>)</span>
 
-rule(&#39;.selector&#39;, {&#39;color&#39;: &#39;black&#39;, &#39;background&#39;:&#39;white&#39;})
+<span class="hljs-function">rule(<span class="hljs-string">'.selector'</span>, {<span class="hljs-string">'color'</span>: <span class="hljs-string">'black'</span>, <span class="hljs-string">'background'</span>:<span class="hljs-string">'white'</span>})</span>
 </code></pre><p>前两个是getter, 后面是setter.</p>
 <p>还有一个没做：</p>
-<pre><code>rule({&#39;.selector1&#39;: {&#39;color&#39;: &#39;black&#39;, &#39;background&#39;:&#39;white&#39;}, &#39;.selector2&#39;:{&#39;color&#39;:&#39;blue&#39;}})
+<pre><code><span class="hljs-function">rule({<span class="hljs-string">'.selector1'</span>: {<span class="hljs-string">'color'</span>: <span class="hljs-string">'black'</span>, <span class="hljs-string">'background'</span>:<span class="hljs-string">'white'</span>}, <span class="hljs-string">'.selector2'</span>:{<span class="hljs-string">'color'</span>:<span class="hljs-string">'blue'</span>}})</span>
 </code></pre><p>另外还有json2css, css2json两个接口</p>
 <p>发现一个响应式实现中的可能碰到的问题就是，所有的响应式都是先resize再render的，在resize和render之间元素还是会保持原来的样式，
 如果这个时候是窗口缩小，而页面布局的时候没有留下这个缓冲空间，就会出现一次抖动(主要是对float和inline这种自适应方式的)。
@@ -70,7 +70,7 @@ rule(&#39;.selector&#39;, {&#39;color&#39;: &#39;black&#39;, &#39;background&#39
 <p>晚上渴的不行，又不巧手边是瓶没喝完的咖啡，更不巧的是我明天要交一堆不想做的设计，接下来就该去windows打开PS然后等太阳了。</p>
 <p>谢谢各位。</p>
 <p>以上，请指责。</p>
-<footer><span class="date">2012-10-09</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
+<footer><span class="date">2012-10-09</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-30636693-1']);
 _gaq.push(['_trackPageview']);
 

@@ -10,14 +10,14 @@
 <p>不过有个不足就是scss没有名字空间的用法。其实也无所谓，用 %xxx 这样的伪选择器代替就可以了~</p>
 <p>我超喜欢他的@extend（<a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#extend">doc</a>）6，
 因为他会将所有用了@extend的选择器放一起写，这样可以减掉很多冗余的代码。类似：</p>
-<pre><code>.a {font:red}
-.b {@extend .a}
-.c {@extend .b}
+<pre><code><span class="hljs-preprocessor">.a</span> {font:red}
+<span class="hljs-preprocessor">.b</span> {@extend <span class="hljs-preprocessor">.a</span>}
+<span class="hljs-preprocessor">.c</span> {@extend <span class="hljs-preprocessor">.b</span>}
 </code></pre><p>输出：</p>
-<pre><code>.a, .b, .c {font:red}
+<pre><code><span class="hljs-class">.a</span>, <span class="hljs-class">.b</span>, <span class="hljs-class">.c</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">font</span>:<span class="hljs-value">red</span></span></span>}
 </code></pre><p>这样去做，处理那些重用次数很多的hide, bfc, pull-left/right等样式组件以及重用量大的模块，就能省掉很多代码了~ （是不是有点强迫症 = =?）</p>
 <p>然后发现一个很可能是严重的问题，假设页面中有40个元素要hide，如果这样用的话，就会出现。。。</p>
-<pre><code>.a, .b, ...好累啊不写了..., .at, .au { display:none; }
+<pre><code>.a, .b, <span class="hljs-keyword">...</span>好累啊不写了<span class="hljs-keyword">...</span>, .at, .au { display:none; }
 </code></pre><p>感觉好恐怖啊，首先想到的是会不会影响效率，你想一个元素a的样式，一下在这里声明，一下在那里声明(我要看css样式计算和渲染的算法！哪里有？)</p>
 <p>于是做了个测试。一个是500个元素的样式分散的声明（test1）(
 <a href="https://github.com/houkanshan/test-demo/blob/gh-pages/css-render-test/test1.css">css</a>, 
@@ -39,24 +39,24 @@
 去掉某个属性(比如hide)前面的勾勾的时候可能就把其他的全都取消了(之前被hide的全都显示出来了)。。。</p>
 <p>嗯，scss的另一个特点(可能的问题?)就是他的伪选择器（@extend-Only Selectors），Begin with %</p>
 <p>比如说：</p>
-<pre><code>%mod { height: 20px; width: 20px; }
-.a { @extend %mod; }
-.b { @extend %mod; }
+<pre><code>%mod { <span class="hljs-attribute">height</span><span class="hljs-value">: <span class="hljs-number">20</span>px;</span> <span class="hljs-attribute">width</span><span class="hljs-value">: <span class="hljs-number">20</span>px;</span> }
+<span class="hljs-class">.a</span> { <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span> %mod;</span> }
+<span class="hljs-class">.b</span> { <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span> %mod;</span> }
 
-.c {
+<span class="hljs-class">.c</span> {
     %mod {
-        background: $dddddd;
+        <span class="hljs-attribute">background</span><span class="hljs-value">: $dddddd;</span>
     }
 }
 </code></pre><p>如果吧%mod换成.mod，一切都很好说，但因为%mod是不会输出的，所以 .c %mod 这样的选择器就被换成了</p>
-<pre><code>.c .a, .c .b { ... }
+<pre><code>.c .a, .c .b { <span class="hljs-keyword">...</span> }
 </code></pre><p>而以后每次对%mod内容的增加，只要是涉及不同的选择器规则，就会成倍的输出选择器了耶~</p>
 <p>虽然之前都说性能影响不是很大，但是就跟coffeescript一样，我觉得过度依赖预处理技巧输出代码的问题就在于调试。</p>
 <p>欣赏一下！</p>
 <p><img src="https://docs.google.com/drawings/pub?id=1hYLG2o46FDSoSqS9MeWeH4ecLi0p0qxWSEBI3gcIj74&amp;w=346&amp;h=213" alt="mass css selector"></p>
 <p>嗯，也不能随便下定论，先试试，看到底调试的问题大不大。。。</p>
 <p>以上，请指责。</p>
-<footer><span class="date">2012-10-06</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
+<footer><span class="date">2012-10-06</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-30636693-1']);
 _gaq.push(['_trackPageview']);
 

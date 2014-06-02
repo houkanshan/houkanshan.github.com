@@ -27,8 +27,8 @@ Meteor很酷，理念也很酷，可是我不想用它。如果要开始去理�
 每个模块<strong>不直接依赖</strong>其他模块，只需要一条消息总线，
 并且<strong>屏蔽同步异步的差异</strong>, 每个模块自己需要处理的异步事件只是服务器连接、用户事件、模块功能调用。</p>
 <p>实际上是把对其他模块的调用也当作一次服务器调用了，极端点的说不定还可以让核心模块提供一个类似URI格式的api (= =!) ，比如:</p>
-<pre><code>Event.bind(&#39;res://people/houkanshan?type=get&#39;, this.kiss.bind(this));
-Event.trigger(&#39;req://people/houkanshan?type=get&#39;);
+<pre><code><span class="hljs-type">Event</span>.bind('res://people/houkanshan?<span class="hljs-typedef"><span class="hljs-keyword">type</span>=get', this.kiss.bind<span class="hljs-container">(<span class="hljs-title">this</span>)</span>);</span>
+<span class="hljs-type">Event</span>.trigger('req://people/houkanshan?<span class="hljs-typedef"><span class="hljs-keyword">type</span>=get');</span>
 </code></pre><h3 id="spine-js">Spine.js</h3>
 <p>这个核心代码(js)大概900行，但是我好像最多只用了400行。他的model类基本没有用上。而且我觉得实际上他的模块继承达不到要求啊。</p>
 <p>还有我发现spine现在的代码，应该是已经跑不了<em>javascript web application</em>这本书里面的代码的了吧... ... </p>
@@ -38,9 +38,9 @@ Event.trigger(&#39;req://people/houkanshan?type=get&#39;);
 <p>但是CSS3动画有一个问题，就是他是异步的，我一开始以为要setTimeout来同步，越想越觉得不对，于是发现有animationend事件。。。
 不过还是用animation.js还是用setTimeout写的，里面都是糊弄的。。。</p>
 <p>要实现复杂的动画效果，就有个动画的编排问题，比如ABC的消失顺序是</p>
-<pre><code>A(start)--------&gt;A(done)
------&gt;B(start)-------------&gt;B(done)
-----------&gt;C(start)------------------&gt;C(done,callback)
+<pre><code><span class="hljs-function">A(start)</span>--------&gt;<span class="hljs-function">A(done)</span>
+-----&gt;<span class="hljs-function">B(start)</span>-------------&gt;<span class="hljs-function">B(done)</span>
+----------&gt;<span class="hljs-function">C(start)</span>------------------&gt;<span class="hljs-function">C(done,callback)</span>
 </code></pre><p>这样就能实现一个比较平滑的尤上至下的渐隐效果。如果是帧动画来实现的话，直接定帧的效果就可以了，但如果用css动画就麻烦了，
 应该要用到promise和pubsub来处理这个。而且我觉得，处理的好，这种异步的动画会比帧动画更有编码上的优势。。</p>
 <p>我自己的都是瞎糊弄的，没啥。别的没有看，但我觉得Y大(<a href="http://www.douban.com/group/Dexter_Yy/">http://www.douban.com/group/Dexter_Yy/</a>)
@@ -49,7 +49,7 @@ Event.trigger(&#39;req://people/houkanshan?type=get&#39;);
 <p>另外css3动画要注意的是start状态和end状态的设置之间必须得有一次渲染过程，否则start被覆盖就直接就到end状态了，所以要用setTimeout(setEnd, 1)来等渲染。</p>
 <p>不过我还是没清楚渲染的时机是怎么决定的。。。</p>
 <p>以上，请指责。</p>
-<footer><span class="date">2012-10-05</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
+<footer><span class="date">2012-10-05</span></footer></article><footer id="post-content-footer"><a href="/prev" class="prev">Prev</a><a href="/next" class="next">Next</a></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper hover-toggler-fade"><a href="#top"><span class="when-hover top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-30636693-1']);
 _gaq.push(['_trackPageview']);
 

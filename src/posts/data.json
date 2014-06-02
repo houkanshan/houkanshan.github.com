@@ -96,5 +96,12 @@
     "file": "src/posts/2014-03-11-drumcat.md",
     "dest": "posts/2014/03/11/drumcat",
     "layout": "src/template/posts/_post.jade"
+  },
+  {
+    "title": "test-new-style",
+    "date": "2014-06-02",
+    "file": "src/posts/2014-06-02-test-new-style.md",
+    "dest": "posts/2014/06/02/test-new-style",
+    "layout": "src/template/posts/_post.jade"
   }
 ]
