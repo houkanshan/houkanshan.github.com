@@ -29,6 +29,9 @@ for i in 1..7
       text-decoration: none
 
 // Type
+.underline
+  underline()
+
 body
   color: rgba(0, 0, 0, 0.8)
   text-rendering: optimizeLegibility
@@ -40,26 +43,20 @@ a
 
 .article-content
   line-height: 2.0
-  p
+  p, pre
     margin-bottom: 1em
   a
     font-family: $ItalicFont $HeiFont
-    // From Medium
-    text-shadow:
-        -1px -1px 0 #fff
-      , 1px -1px 0 #fff
-      , -1px 1px 0 #fff
-      , 1px 1px 0 #fff
-      , 1px 0px 0 #fff
-      , -1px 0px 0 #fff
-      , 0px 1px 0 #fff
-      , 0px -1px 0 #fff
-    background-image: linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.8) 75%)
-    background-repeat: repeat-x
-    background-size: 2px 2px
-    background-position: 0 18px
+    underline()
   a
-    opacity: 0.75
+    opacity: .75
     &:hover
     &:active
       opacity: 1
+  em
+  i
+    margin: 0 .23em
+  hr
+    margin: 100px
+    border: none
+    border-bottom: 1px solid #ccc

@@ -95,9 +95,7 @@ gulp.task('jade', ['posts'], function() {
     .pipe(jade({
       locals: globalLocals
     , basedir: jadeBasedir
-    }).on('error', gutil.log).on('error', function(){
-      console.log(globalLocals)
-    }))
+    }).on('error', gutil.log))
     .pipe(gulp.dest('./'))
 })
 

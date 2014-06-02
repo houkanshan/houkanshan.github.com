@@ -4,6 +4,7 @@ mixin posts-list(posts)
       li.post-item
         a(href="/#{post.dest}/" title=post.title)
           .post-hd
-            h3.title= post.title
+            h3.title
+              span= post.title
             .date= post.date
           .post-bd= post.abstract

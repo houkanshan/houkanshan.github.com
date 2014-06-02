@@ -1,6 +1,11 @@
+@import '_mixins'
+
 .posts-list
   .title
     font-size: 30px
     line-height: 30px
   .post-item
     margin-bottom: 32px
+  .post-item:hover
+    .title span
+      underline(30px)

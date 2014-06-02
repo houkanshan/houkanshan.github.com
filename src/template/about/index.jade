@@ -2,7 +2,6 @@
 extends /_layout.jade
 include /_widgets/index.jade
 
-- var curr = 'post'
 
 block head
   link(href="/css/about.css" rel="stylesheet")
@@ -11,10 +10,27 @@ block button_js
   script(src="js/about.js")
 
 block body
+  - var curr = 'about'
   header#about-header.minor-header
     +header-content(curr)
 
-  article#about-content
+  article#about-content.article-content
+    section
+      h3
+        a(href="http://www.douban.com/people/houkanshan" title="Douban" target="_blank") 豆瓣 Douban
+      script(type="text/javascript" src="http://www.douban.com/service/badge/houkanshan/?show=collection&amp;n=42&amp;columns=8&amp;hidelogo=yes&amp;hideself=yes")
+
+    section
+      h3
+        a(href="http://www.douban.com/people/houkanshan" title="Github" target="_blank") Github
+
+    section
+      h3
+        a(href="http://instagram.com/houkanshan" title="Instagram" target="_blank") Instagram
+
+    section
+      h3
+        a(href="https://twitter.com/houkanshan" title="Twitter@houkanshan" target="_blank") Twitter
 
   footer#about-footer.main-footer
     +footer-content(curr)
