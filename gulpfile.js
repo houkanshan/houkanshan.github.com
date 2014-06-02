@@ -86,6 +86,7 @@ gulp.task('posts', ['posts-json'], function() {
 })
 
 var jade = require('gulp-jade')
+var path = require('path')
 gulp.task('jade', ['posts'], function() {
   gulp.src([
       'src/template/**/*.jade'
@@ -96,7 +97,17 @@ gulp.task('jade', ['posts'], function() {
       locals: globalLocals
     , basedir: jadeBasedir
     }).on('error', gutil.log))
+    .pipe(rename(detectExt))
     .pipe(gulp.dest('./'))
+
+  function detectExt(pathObj) {
+    var secondExtname = path.extname(pathObj.basename)
+    if (secondExtname.length) {
+      pathObj.basename = path.basename(pathObj.basename, secondExtname)
+      pathObj.extname = secondExtname
+      console.log(pathObj)
+    }
+  }
 })
 
 gulp.task('js', function() {

@@ -1,12 +1,12 @@
 @import '_lib/arkui/mixins'
 
-$SansFont = '' // TODO
-$SerifSansFont = $EnFont $HeiFont
+@import '_variable'
+@import '_mixins'
 
 // font-family
 body
   font: 18px/1.5 $SerifSansFont
-  font-weight: 200
+  font-weight: $thinWeight
 
 blockquote
 i
@@ -17,14 +17,15 @@ p
 
 code
   font-family: $CodeFont
+  margin: 0 .23em
 
-em
-  font-weight: bold
+em, strong, b
+  font-weight: $boldWeight
 
 for i in 1..7
   h{i}
     font-family: $SerifSansFont
-    font-weight: 200
+    font-weight: $thinWeight
     a
       text-decoration: none
 
@@ -41,6 +42,7 @@ a
   text-decoration: none
   color: #000
 
+// Article type
 .article-content
   line-height: 2.0
   p, pre
@@ -60,3 +62,8 @@ a
     margin: 100px
     border: none
     border-bottom: 1px solid #ccc
+
+  for i in 1..7
+    h{i}
+      font-family: $SerifSansFont
+      font-weight: $bolderWeight

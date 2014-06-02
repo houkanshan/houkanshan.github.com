@@ -1,5 +1,10 @@
 {
-  "nav": [
+  "site": {
+    "url": "http://houkanshan.github.com"
+  , "name": "houkanshan"
+  , "email": "houkanshan AT gmail.com"
+  }
+, "nav": [
     {
       "name": "posts"
     , "title": "Posts"

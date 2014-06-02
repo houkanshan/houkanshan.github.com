@@ -6,12 +6,9 @@
 body
   padding: 0 10px
 
-body >
-  header
-  article
-  footer
-    max-width: wrapperWidth
-    margin: 0 auto
+.wrapper
+  max-width: wrapperWidth
+  margin: 0 auto
 
 
 // Header
@@ -19,17 +16,17 @@ body >
   height: 600px
   height: 100vh
   position: relative
-  .header-wrapper
+  .center-header
     margin-top: -20px
 
 .minor-header
   height: 138px
   position: relative
-  .header-wrapper
+  .center-header
     margin-top: -20px
 
 
-.header-wrapper
+.center-header
   center()
   margin-left: -8px // Fake center
   text-align: center
@@ -40,6 +37,7 @@ body >
   position: relative
   .footer-wrapper
     center()
+    width: 100%
     text-align: center
 
 // Content

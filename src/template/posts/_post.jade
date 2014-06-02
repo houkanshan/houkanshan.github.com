@@ -12,12 +12,23 @@ block bottom_js
 block body
   - var curr = 'post'
   header#post-header.minor-header
-    +header-content(curr)
+    .header-wrapper.hover-toggler-fade
+      +nav(curr)
+      a(href="/")
+        .when-hover
+          +bare-title()
+
   article#post-content
     header#post-content-header
       h2= current.post.title
     article.article-content
       != yield
+      footer
+        span.date= current.post.date
+    footer#post-content-footer
+      //- TODO
+      a.prev(href="/prev") Prev
+      a.next(href="/next") Next
 
   footer#post-footer.main-footer
     +footer-content(curr)
