@@ -30,8 +30,8 @@ mixin nav(curr)
     +nav-list(curr, template.nav)
 
 mixin footer-content(curr)
-  .footer-wrapper.hover-toggler-fade
+  .footer-wrapper
     a(href="#top")
-      span.when-hover.top-button Top
+      span.top-button Top
     nav#blog-footer-nav
       +nav-list(curr, template.nav)
