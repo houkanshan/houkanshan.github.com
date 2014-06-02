@@ -1,12 +1,15 @@
+// _layout.jade
 doctype html
 html(lang="en")
   head
-    title Houkanshan's Blog
+    title Houkanshan’s Blog
     // TODO: meta
-    script(src="js/core.js")
-    link(rel="stylesheet" href="css/index.css")
+    link(rel="stylesheet" href="/css/index.css")
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" user-scalable="no")
     block head
-  body
+  body.theme-modern
     block body
+
+    script(src="js/core.js")
     block bottom_js
     include _widgets/ga.jade

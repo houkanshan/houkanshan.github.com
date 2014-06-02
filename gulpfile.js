@@ -13,7 +13,7 @@ var globalLocals = fetchLocals({
 
 var stylus = require('gulp-stylus')
 gulp.task('stylus', function () {
-  gulp.src(['src/styl/**/*.styl', '!src/styl/_*/**/*'])
+  gulp.src(['src/styl/**/*.styl', '!src/styl/_*/**/*', '!src/styl/**/_*'])
     .pipe(stylus({ set: ['compress'] })
       .on('error', gutil.log))
     .pipe(gulp.dest('./css/'))
@@ -54,10 +54,10 @@ gulp.task('posts-json', function() {
 var markdown = require('gulp-markdown')
 var map = require('map-stream')
 var rename = require('gulp-rename')
-gulp.task('posts', function() {
+gulp.task('posts', ['posts-json'], function() {
   paths.forEach(function(path) {
-    var data = jsonfile.readFileSync(path.dataPath)
-    data.forEach(function(post) {
+    var posts = jsonfile.readFileSync(path.dataPath)
+    posts.forEach(function(post) {
       // extract render layout
       console.log(post.file)
       gulp.src(post.file)
@@ -69,7 +69,13 @@ gulp.task('posts', function() {
           postHtml = postHtml.contents.toString()
           gulp.src(post.layout)
             .pipe(jade({
-                locals: _.extend({}, globalLocals, { 'yield': postHtml })
+                locals: _.extend({
+                  'yield': postHtml
+                , current: {
+                    post: post
+                  , index: posts.indexOf(post)
+                  }
+                }, globalLocals)
               , basedir: jadeBasedir
               }).on('error', gutil.log))
             .pipe(rename('index.html'))
@@ -80,15 +86,18 @@ gulp.task('posts', function() {
 })
 
 var jade = require('gulp-jade')
-gulp.task('jade', function() {
+gulp.task('jade', ['posts'], function() {
   gulp.src([
       'src/template/**/*.jade'
     , '!src/template/_*/**/*'
+    , '!src/template/**/_*'
     ])
     .pipe(jade({
       locals: globalLocals
     , basedir: jadeBasedir
-    }).on('error', gutil.log))
+    }).on('error', gutil.log).on('error', function(){
+      console.log(globalLocals)
+    }))
     .pipe(gulp.dest('./'))
 })
 
@@ -107,7 +116,7 @@ gulp.task('static', function() {
 gulp.task('watch', function() {
   gulp.watch('src/js/**/*.js', ['js'])
   gulp.watch('src/styl/**/*.styl', ['css'])
-  gulp.watch('src/template/*.jade', ['html'])
+  gulp.watch('src/template/**/*.jade', ['html'])
   gulp.watch('src/posts/*', ['html'])
 })
 
@@ -142,6 +151,13 @@ gulp.task('flo', function(done) {
 })
 
 var clean = require('gulp-clean')
+gulp.task('clean-data', function() {
+  gulp.src([
+  , 'src/posts/data.json'
+  ])
+    .pipe(clean())
+
+})
 gulp.task('clean', function() {
   gulp.src([
     '*.html'
@@ -149,14 +165,13 @@ gulp.task('clean', function() {
   , 'css'
   , 'posts/*.html'
   , 'about/*.html'
-  , 'src/posts/data.json'
   ])
     .pipe(clean())
 })
 
 gulp.task('css', ['stylus'])
 gulp.task('json', ['posts-json'])
-gulp.task('html', ['json', 'posts', 'jade'])
+gulp.task('html', ['jade'])
 gulp.task('build', ['css', 'html', 'js'])
 gulp.task('server', ['build', 'watch', 'flo', 'static'])
 gulp.task('default', ['server'])

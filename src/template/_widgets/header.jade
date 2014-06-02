@@ -7,6 +7,18 @@ mixin nav-list(curr, navData)
         else 
           a.nav-item(href=navItem.url title=navItem.title)= navItem.title
 
-mixin title()
-  h1.blog-title
-    a(href="/" title="Home") Houkanshan's Blog
+mixin header-content(curr)
+  .header-wrapper
+    if curr === 'home'
+      h1.blog-title Houkanshan’s Blog
+    else
+      h1.blog-title
+        a(href="/" title="Home") Houkanshan’s Blog
+
+    nav#blog-header-nav
+      +nav-list(curr, template.nav)
+
+mixin footer-content(curr)
+  .footer-wrapper
+    nav#blog-footer-nav
+      +nav-list(curr, template.nav)

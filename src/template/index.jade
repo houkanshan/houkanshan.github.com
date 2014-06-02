@@ -2,29 +2,23 @@
 extends /_layout.jade
 include /_widgets/index.jade
 
+
 block head
-  link(href="css/posts.css" rel="stylesheet")
+  link(href="/css/home.css" rel="stylesheet")
 
 block button_js
   script(src="js/index.js")
 
 block body
+  - var curr = 'home'
   header#home-header.main-header
-    nav#blog-header-nav
-      +nav-list('', template.nav)
-
-    h1.blog-title Houkanshan's Blog
+    +header-content(curr)
 
   article#home-content
-    +posts-list(posts.reverse().slice(0, 3))
+    +posts-list(posts.slice().reverse().slice(0, 5))
 
     footer#posts-footer
       a(href="posts") more
 
-  footer#home-footer
-    nav#blog-footer-nav
-      ul
-        li
-          a(href="/posts/" title="Posts") Posts
-        li
-          a(href="" title="About") About
+  footer#home-footer.main-footer
+    +footer-content(curr)

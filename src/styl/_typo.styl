@@ -1,0 +1,65 @@
+@import '_lib/arkui/mixins'
+
+$SansFont = '' // TODO
+$SerifSansFont = $EnFont $HeiFont
+
+// font-family
+body
+  font: 18px/1.5 $SerifSansFont
+  font-weight: 200
+
+blockquote
+i
+  font-family: $KaiFont
+
+p
+  font-family: $SansFont
+
+code
+  font-family: $CodeFont
+
+em
+  font-weight: bold
+
+for i in 1..7
+  h{i}
+    font-family: $SerifSansFont
+    font-weight: 200
+    a
+      text-decoration: none
+
+// Type
+body
+  color: rgba(0, 0, 0, 0.8)
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+a
+  text-decoration: none
+  color: #000
+
+.article-content
+  line-height: 2.0
+  p
+    margin-bottom: 1em
+  a
+    font-family: $ItalicFont $HeiFont
+    // From Medium
+    text-shadow:
+        -1px -1px 0 #fff
+      , 1px -1px 0 #fff
+      , -1px 1px 0 #fff
+      , 1px 1px 0 #fff
+      , 1px 0px 0 #fff
+      , -1px 0px 0 #fff
+      , 0px 1px 0 #fff
+      , 0px -1px 0 #fff
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.8) 75%)
+    background-repeat: repeat-x
+    background-size: 2px 2px
+    background-position: 0 18px
+  a
+    opacity: 0.75
+    &:hover
+    &:active
+      opacity: 1

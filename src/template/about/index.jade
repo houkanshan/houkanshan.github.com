@@ -1,0 +1,20 @@
+// about.jade
+extends /_layout.jade
+include /_widgets/index.jade
+
+- var curr = 'post'
+
+block head
+  link(href="/css/about.css" rel="stylesheet")
+
+block button_js
+  script(src="js/about.js")
+
+block body
+  header#about-header.minor-header
+    +header-content(curr)
+
+  article#about-content
+
+  footer#about-footer.main-footer
+    +footer-content(curr)
