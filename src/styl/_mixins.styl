@@ -5,7 +5,7 @@ center()
   left: 50%
   transform: translate(-50%, -50%)
 
-underline(line-height=18px)
+underline(lineHeight=18px, lineWeight=1px)
   // From Medium
   text-shadow:
       -1px -1px 0 #fff
@@ -18,5 +18,5 @@ underline(line-height=18px)
     , 0px -1px 0 #fff
   background-image: linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.8) 75%)
   background-repeat: repeat-x
-  background-size: 2px 2px
-  background-position: 0 line-height
+  background-size: (lineWeight*2) (lineWeight*2)
+  background-position: 0 lineHeight
