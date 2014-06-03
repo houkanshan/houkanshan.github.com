@@ -12,7 +12,7 @@ var scrollBody = $('html, body')
   , hoverEl = mainHeader.find('.header-wrapper')
 
 hoverEl.on('mouseenter', jumpDown)
-win.on('scroll', _.throttle(fadeAndHide, 200))
+win.on('scroll', _.throttle(fadeAndHide, 100))
 
 function jumpDown() {
   if (win.scrollTop() > 10) { return }

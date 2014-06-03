@@ -26,9 +26,21 @@ block body
       footer
         span.date= current.post.date
     footer#post-content-footer
-      //- TODO
-      a.prev(href="/prev") Prev
-      a.next(href="/next") Next
+      - var prev = posts[current.index - 1]
+      - var next = posts[current.index + 1]
+
+      .row-half
+        if next
+          a.next(href="/#{next.dest}/")
+            label Next
+            h4= next.title
+
+      .row-half
+        if prev
+          a.prev(href="/#{prev.dest}/")
+            label Prev
+            h4= prev.title
+
 
   footer#post-footer.main-footer
     +footer-content(curr)
