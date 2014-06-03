@@ -7,15 +7,12 @@
 
 // font-family
 body
-  font: 18px/1.5 $SerifSansFont
+  font: 18px/1.5 'arkpunctuation', $SerifSansFont
   font-weight: $thinWeight
 
 blockquote
 i, em
   font-family: $KaiFont
-
-p
-  font-family: 'arkpunctuation', $SerifSansFont
 
 code
   font-family: $CodeFont
@@ -53,7 +50,8 @@ a
     margin-bottom: 1em
   for i in 1..7
     h{i}
-      margin-bottom: .6em
+      margin-bottom: .23em
+      margin-top: 1.23em
   a
     font-family: $ItalicFont $HeiFont
     underline()
@@ -82,11 +80,12 @@ a
   ul, ol
     list-style-position: inside
     margin-left: 1em
-// TODO if code need be figure out?
-//  pre
-//    &:before
-//    &:after
-//      content: ''
-//      border-top: 1px solid #ccc
-//      width: 100px
-//      display: block
+  blockquote
+    border-left: 3px solid #eee
+    padding-left: 1em
+    padding-top: 1em
+    overflow-x: auto
+  pre
+    background: #f5f5f5
+    padding: 0.8em 1.2em
+    line-height: 1.5

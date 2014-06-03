@@ -133,6 +133,11 @@ gulp.task('js', function(callback) {
             path: path.dirname(output),
             filename: path.basename(output),
           },
+          resolve: {
+            root: './js/',
+            modulesDirectories: ["node_modules"],
+
+          }
         }, function(err, stats) {
             if(err) throw new gutil.PluginError("webpack", err);
             gutil.log("[webpack]", stats.toString({}));
