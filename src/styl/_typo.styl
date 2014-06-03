@@ -3,6 +3,8 @@
 @import '_variable'
 @import '_mixins'
 
+@import '_fontface'
+
 // font-family
 body
   font: 18px/1.5 $SerifSansFont
@@ -13,7 +15,7 @@ i, em
   font-family: $KaiFont
 
 p
-  font-family: $SansFont
+  font-family: 'arkpunctuation', $SerifSansFont
 
 code
   font-family: $CodeFont
@@ -26,7 +28,7 @@ strong, b
 
 for i in 1..7
   h{i}
-    font-family: $SerifSansFont
+    font-family: 'arkpunctuation', $SerifSansFont
     font-weight: $thinWeight
     a
       text-decoration: none
