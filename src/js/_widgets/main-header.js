@@ -31,7 +31,6 @@ function fadeAndHide() {
   hoverEl.css({
     opacity: opacity
   })
-
 }
 
 
