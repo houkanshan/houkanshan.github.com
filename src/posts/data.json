@@ -88,13 +88,15 @@
     "date": "2013-08-25",
     "file": "src/posts/2013-08-25-amd-visualization.md",
     "dest": "posts/2013/08/25/amd-visualization",
-    "layout": "src/template/posts/_post.jade"
+    "layout": "src/template/posts/_post.jade",
+    "abstract": "Visualize a f2e project which base on AMD format."
   },
   {
     "title": "Drumcat",
     "date": "2014-03-11",
     "file": "src/posts/2014-03-11-drumcat.md",
     "dest": "posts/2014/03/11/drumcat",
-    "layout": "src/template/posts/_post.jade"
+    "layout": "src/template/posts/_post.jade",
+    "abstract": "A metronome."
   }
 ]
