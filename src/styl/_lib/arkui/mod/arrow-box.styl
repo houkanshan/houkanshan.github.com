@@ -1,0 +1,39 @@
+get(hash, key)
+    return pair[1] if pair[0] == key for pair in hash
+
+$common-arrow-box
+  border-style: solid
+  border-color: transparent
+  // CSS Transparent Border Problem In Firefox
+  //   See more: http://stackoverflow.com/a/6225443/873792
+  border-color: rgba(255,255,255,0)
+  content: " "
+  height: 0
+  width: 0
+  position: absolute
+
+arrow-box(background-color, border-color, arrow-height
+  , border-size, offset = 50%, orention = top, arrow-width = arrow-height)
+  orention-list = (top bottom) (left right) (bottom top) (right left)
+  offset-orention-list = (top left) (bottom left) (right top) (left top)
+  negative-orention = get(orention-list, orention)
+  offset-orention = get(offset-orention-list, orention)
+  position: relative
+  &:after
+  &:before
+    {negative-orention}: 100%
+    @extend $common-arrow-box
+  &:after
+    {'border-' + negative-orention + '-color'}: background-color
+    border-width: arrow-height arrow-width
+    {offset-orention}: offset
+    margin-{offset-orention}: - (offset-orention == top \
+      ? arrow-height: arrow-width)
+  outer-arrow-height = arrow-height + border-size
+  outer-arrow-width = arrow-width + border-size
+  &:before
+    {'border-' + negative-orention + '-color'}: border-color
+    border-width: outer-arrow-height outer-arrow-width
+    {offset-orention}: offset
+    margin-{offset-orention}: - (offset-orention == top \
+      ? outer-arrow-height : outer-arrow-width)

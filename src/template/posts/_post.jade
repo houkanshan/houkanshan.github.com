@@ -1,0 +1,53 @@
+// _post.jade
+extends /_layout.jade
+include /_widgets/index.jade
+
+
+block head
+  link(href="/css/post.css" rel="stylesheet")
+
+block bottom_js
+  //-script(src="/js/post.js")
+
+block body
+  - var curr = 'post'
+  header#post-header.minor-header
+    .header-wrapper.hover-toggler-fade
+      +nav(curr)
+      a(href="/")
+        .when-hover
+          +bare-title()
+
+  article#post-content
+    header#post-content-header
+      h2= current.post.title
+    article
+      .article-content
+        != yield
+      footer
+        span.date= current.post.date
+      footer
+        .comments-section
+          include /_widgets/disqus.jade
+
+    footer#post-content-footer
+      - var prev = posts[current.index - 1]
+      - var next = posts[current.index + 1]
+
+      .row-half
+        if next
+          a.next.post-switcher(href="/#{next.dest}/")
+            label Next
+            h4.title
+              span= next.title
+
+      .row-half
+        if prev
+          a.prev.post-switcher(href="/#{prev.dest}/")
+            label Prev
+            h4.title
+              span= prev.title
+
+
+  footer#post-footer.main-footer
+    +footer-content(curr)

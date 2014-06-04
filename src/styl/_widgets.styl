@@ -1,0 +1,27 @@
+.hover-toggler
+  .when-hover
+    display: none
+  &:hover
+    .when-not-hover
+      display: none
+    .when-hover
+      display: block
+
+.hover-toggler-fade
+  .when-hover
+  .when-not-hover
+    transition: opacity .8s
+
+  .when-hover
+    opacity: 0
+  &:hover
+    .when-not-hover
+      opacity: 0
+    .when-hover
+      opacity: 1
+
+.hover-lighten
+  opacity: 0.7
+  &:hover
+  &:active
+    opacity: 1

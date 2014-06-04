@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="en"><head><title>Houkanshan's Blog</title><meta name="author" content="houkanshan"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" user-scalable="no"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link href="/atom.xml" rel="alternate" title="Houkanshan's Blog" type="application/atom+xml"><link rel="stylesheet" href="/css/index.css"><!--[if IE]>
+  <script>
+    (function(){var elements="abbr article aside audio canvas datalist details dialog eventsource figure footer header hgroup mark menu meter nav output progress section time video";elements.replace(/\w+/g,function(e){document.createElement(e)})})();
+  </script>
+<![endif]-->
+<link href="/css/post.css" rel="stylesheet"></head><body class="theme-modern"><div id="top"></div><div class="wrapper"><header id="post-header" class="minor-header"><div class="header-wrapper hover-toggler-fade"><nav id="blog-header-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav><a href="/"><div class="when-hover"><h1 class="blog-title">Houkanshan’s Blog</h1></div></a></div></header><article id="post-content"><header id="post-content-header"><h2>After reading bootstrap</h2></header><article><div class="article-content"><h3 id="-">文件内容</h3>
+<h4 id="bootstrap-less">bootstrap.less</h4>
+<p>编译入口，加载所有less文件</p>
+<h4 id="reset-less">reset.less</h4>
+<p>底层模块，基本没有less语法</p>
+<p>与YUI相比没有margin:0; padding:0, 有html5标签,
+只处理了一部分浏览器的默认样式，主要跟据新的标准对移动设备上的表单做了reset,
+因为实际上具体的样式已经在其他模块定义好了，所以这里只需要统一一些重要的样式和解决一些浏览器bug即可</p>
+<h4 id="variables-less">variables.less</h4>
+<p>定义颜色，字体，icon，grid的配置变量</p>
+<h4 id="mixins-less">mixins.less</h4>
+<p>定义基本样式单元，用于组合。包括基本布局(block-center, ie-inline-block), block形状，placeholder，text-overflow, 图片上hide-text,
+font-family, CSS3样式, 渐变背景样式，组件基本样式：nav-divide, button-bg, popoverArw, Grid, 一些组件在定义时声明了namespace
+（还有些看不懂要干嘛）</p>
+<h4 id="scaffolding-less">scaffolding.less</h4>
+<p>29行，scaffolding听起来很吓人但其实这里只定义了body和a的样式</p>
+<h4 id="grid-less">grid.less</h4>
+<p>6行， 使用了mixins.less定义的grid组件中的.core和.fluid分别对应default grid system和fluid grid system. </p>
+<h4 id="layout-less">layout.less</h4>
+<p>定义了.container 和 .container-fluid 一个是定宽，一个是fluid的</p>
+<h4 id="type-less">type.less</h4>
+<p>用官方的话来说叫typography，算是排版？reset里没定义的h*, ul/ol, dl等都在这里设置了样式</p>
+<h4 id="code-less">code.less</h4>
+<p>顾名思义了，这里不明白为什么block-code的样式用pre而不是code. 难道code标签只是用于inline-code的</p>
+<p>里面有个跨浏览器的pre样式，现在好像差不多都是这样写的：</p>
+<pre><code><span class="hljs-attribute">white-space</span><span class="hljs-value">: pre;</span>       <span class="hljs-comment">/* for ie6, 空格\t\n有效，不会边界自动换行, 与pre标签效果类似 */</span>
+<span class="hljs-attribute">white-space</span><span class="hljs-value">: pre-wrap;</span>  <span class="hljs-comment">/* IE8, FF3.0, Opera8.0, Safari3.0, 加上了边界换行, 对non-CJK还是分词换行, CJK按字直接换行*/</span>
+<span class="hljs-attribute">word-break</span><span class="hljs-value">: break-all;</span>  <span class="hljs-comment">/* IE5+ 其他不清楚，对non-CJK在边界上直接字母间打断换行 */</span>
+<span class="hljs-attribute">word-wrap</span><span class="hljs-value">: break-word;</span>  <span class="hljs-comment">/* FF3.5, chrome1.0, IE5.5 Opera10.5, Safari1.0, non-CJK会优先分词换行，如果换行后还是超长，就会直接打断*/</span>
+</code></pre><h4 id="form-less">form.less</h4>
+<p>表单样式，不是很想看。。。不要随便改懂就好。。。</p>
+<h4 id="table-less">table.less</h4>
+<p>表格样式，还是使用了大量:first-child, :last-child选择器去控制</p>
+<h4 id="utilities-less">utilities.less</h4>
+<p>bootstrap.less里最后import的是这个，这里放了一些控制显示的组件，主要是用于js操作页面元素的。
+之所以放最后应该是为了提升优先级，比如display:none/block，是很容易被优先级覆盖的。</p>
+<p>很多网站有一个base.css的文件，里面除了reset和基本样式外还放了left,right,hidden这样的控制组件
+实际上在实际控制的时候会出现优先级不够导致属性被覆盖的问题。不知道他们是怎么处理这个的。</p>
+<h4 id="other">other</h4>
+<p>剩下的sprites.less, dropdown.less, wells.less, component-animations.less, 
+buttons.less, button-groups.less, alerts.less, nav.less等等都顾名思义了，都主要是样式的定义。
+使用的技巧光看也看不出什么。。。</p>
+<h3 id="-">感觉</h3>
+<p>其实平时用bootstrap也不多，一方面觉得它丑(我总是对很多东西有非常奇怪的审美，见谅。。。), 另一方面是不喜欢他的使用方式。
+我并不指望用css工具厍的方式来完全屏蔽浏览器差异，bootstrap就没有做到，css更应该是模块化而不是组件化(我也不知道我在说什么，个人感觉这两者主要是粒度的差异)。
+要想靠一个个class组合成一个效果局限性太大，我看过的用bootstrap作出来的网站，要么一看就知道是用bootstrap做出来的，要么只是用了它的一些布局组件和基本样式(button, table.etc)。
+如果要bootstrap的样式与自定的样式混用的话，恐怕管理起来会很不方便，还不如全部自己写。毕竟css+html不是可执行代码，想把程序的复杂逻辑用在它上面是没有用的。</p>
+<p>bootstrap就拿来做原型吧，毕竟css+html是处在设计和代码之间的东西，不能单纯用两者中的某种思考方式去考虑css+html。</p>
+<p>以上，请指责。</p>
+</div><footer><span class="date">2012-06-14</span></footer><footer><div class="comments-section"><div id="disqus_thread"></div><script>var disqus_shortname = 'houkanshansblog'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script></div></footer></article><footer id="post-content-footer"><div class="row-half"><a href="/posts/2012/08/11/bootstrap-less/" class="next post-switcher"><label>Next</label><h4 class="title"><span>Bootstrap's Less</span></h4></a></div><div class="row-half"><a href="/posts/2012/04/16/git-repo/" class="prev post-switcher"><label>Prev</label><h4 class="title"><span>Git repo in local</span></h4></a></div></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper"><a href="#top"><span class="top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script>var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-30636693-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>

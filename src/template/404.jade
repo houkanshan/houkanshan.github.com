@@ -1,0 +1,13 @@
+// 404.jade
+extends /_layout.jade
+include /_widgets/index.jade
+
+block body
+  - var curr = '404'
+  header#home-header.main-header
+    .header-wrapper.center-header.hover-toggler
+      h1.blog-title(style="width: 9em;")
+        a.when-hover(href="/" title="Home") Houkanshan’s Blog
+        span.when-not-hover 404
+      nav#blog-header-nav
+        +nav-list(curr, template.nav)

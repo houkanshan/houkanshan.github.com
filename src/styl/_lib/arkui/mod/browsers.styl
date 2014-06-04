@@ -1,0 +1,43 @@
+@import "arkui/mixins"
+
+.browsers-list
+  padding: 20px 0 40px
+
+.browsers-list .browsers-item
+  inline-block()
+  vertical-align: top
+  a
+    background: url('/pics/browsers.png') no-repeat
+    width: 80px
+    margin-right: 40px
+    inline-block()
+    padding-top: 80px
+    text-align: center
+    &.browser-360ee
+      background-position: center 2px
+    &.browser-maxthon
+      background-position: center -120px
+    &.browser-qq
+      background-position: center -240px
+    &.browser-sogou
+      background-position: center -360px
+    &.browser-firefox
+      background-position: center -602px
+    &.browser-ie8, &.browser-ie9
+      background-position: center -722px
+    &.browser-safari
+      background-position: center -847px
+    &.browser-chrome
+      background-position: center -480px
+    &:hover
+      font-weight: bold
+      color: #825d5b
+
+.browser-tips
+  blockquote
+    padding: 10px 0
+    font-size: 14px
+    strong
+      font-weight: bold
+      padding: 0 5px
+      color: #825d5b

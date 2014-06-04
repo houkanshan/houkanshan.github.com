@@ -1,0 +1,24 @@
+// index.jade
+extends /_layout.jade
+include /_widgets/index.jade
+
+
+block head
+  link(href="/css/home.css" rel="stylesheet")
+
+block button_js
+  script(src="js/index.js")
+
+block body
+  - var curr = 'home'
+  header#home-header.main-header
+    +header-content(curr)
+
+  article#home-content
+    +posts-list(posts.slice().reverse().slice(0, 5))
+
+    footer#posts-footer
+      a.hover-lighten(href="posts") more
+
+  footer#home-footer.main-footer
+    +footer-content(curr)

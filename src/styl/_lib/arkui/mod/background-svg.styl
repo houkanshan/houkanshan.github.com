@@ -1,0 +1,33 @@
+/**
+ * xxx(yangqing):
+ *   - 使用的图片需要同时有 png 和 svg 两种格式
+ *   - 参数 uri 不需带后缀
+ *
+ * usage:
+ *   background-svg-url("/pics/reader/icon-reader-v4", no-repeat center)
+ *
+ * yields:
+ *   background: url("/pics/reader/icon-reader-v4.png") no-repeat center
+ *   background: rgba(0,0,0,0) url("/pics/reader/icon-reader-v4.svg") no-repeat center
+ *   .ua-opera &
+ *     background-image: url("/pics/reader/icon-reader-v4.png") no-repeat center
+ */
+
+get-uri-value(uri, type)
+  if type == "uri"
+    return uri(uri)
+  else
+    return s("%s(%s)", unquote(type), uri)
+
+background-svg(uri, type, args...)
+  // 对于退化支持的png, 不使用data-uri
+  png-value = get-uri-value(uri + ".png", "url")
+  svg-value = get-uri-value(uri + ".svg", type)
+  background: s("%s", png-value) args
+  background: s("rgba(0,0,0,0) %s", svg-value) args
+
+background-svg-uri(uri, args...)
+  background-svg(uri, "uri", args)
+
+background-svg-url(uri, args...)
+  background-svg(uri, "url", args)

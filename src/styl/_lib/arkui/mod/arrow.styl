@@ -1,0 +1,18 @@
+vertical-orentions-hash = (top bottom) (left right)
+get-vertical-orentions(orention)
+  for orentions in vertical-orentions-hash
+    return orentions unless orention in orentions
+
+arrow(orention, width, color)
+  negative-orention = opposite-position(orention)
+  vertical-orentions = get-vertical-orentions(orention)
+  width: 0
+  height: 0
+  line-height: 0
+  font-size: 0
+  {'border-' + negative-orention}: width solid color
+  for pos in vertical-orentions
+    {'border-' + pos} : width solid transparent
+  for pos in vertical-orentions
+    {'_border-' + pos + '-color'}: unquote("pink")
+  _filter: unquote("chroma(color=pink)")

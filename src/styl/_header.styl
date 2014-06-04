@@ -1,0 +1,31 @@
+@import '_mixins'
+
+// Header
+.main-header
+  .center-header
+    transition: opacity .2s
+#home-content // override header
+  position: relative
+  z-index: 10
+  background: #fff
+
+// Nav
+#blog-header-nav
+#blog-footer-nav
+  li
+    display: inline-block
+    font-size: 13px
+    &:first-child:before
+      display: none
+    &:before
+      content: '·'
+      margin: 0 .3em
+  a
+    opacity: .45
+  a:hover
+  a:active
+    opacity: 1
+
+#blog-header-nav
+  height: 16px
+  line-height: @height

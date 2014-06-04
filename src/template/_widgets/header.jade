@@ -1,0 +1,37 @@
+mixin nav-list(curr, navData)
+  ul.nav-list
+    each navItem in navData
+      li
+        if curr === navItem.name
+          span.nav-item.curr-nav= navItem.title
+        else 
+          a.nav-item(href=navItem.url title=navItem.title)= navItem.title
+
+mixin header-content(curr)
+  .header-wrapper.center-header
+    +title(curr)
+    +nav(curr)
+
+mixin title(curr)
+  if curr === 'home'
+    +bare-title()
+  else
+    +link-title()
+
+mixin bare-title()
+  h1.blog-title Houkanshan’s Blog
+
+mixin link-title()
+  h1.blog-title
+    a(href="/" title="Home") Houkanshan’s Blog
+
+mixin nav(curr)
+  nav#blog-header-nav
+    +nav-list(curr, template.nav)
+
+mixin footer-content(curr)
+  .footer-wrapper
+    a(href="#top")
+      span.top-button Top
+    nav#blog-footer-nav
+      +nav-list(curr, template.nav)

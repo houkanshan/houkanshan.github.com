@@ -1,0 +1,44 @@
+@import '_lib/arkui/mixins'
+@import '_mixins'
+
+@import '_variable'
+
+body
+  padding: 0 10px
+
+.wrapper
+  max-width: wrapperWidth
+  margin: 0 auto
+
+
+// Header
+.main-header
+  height: 600px
+  height: 100vh
+  position: relative
+  .center-header
+    margin-top: -20px
+    position: fixed
+
+.minor-header
+  height: 138px
+  position: relative
+  .center-header
+    margin-top: -20px
+
+
+.center-header
+  center()
+  margin-left: -8px // Fake center
+  text-align: center
+
+// Footer
+.main-footer
+  height: 38.2vh
+  position: relative
+  .footer-wrapper
+    center()
+    width: 100%
+    text-align: center
+
+// Content

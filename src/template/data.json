@@ -1,0 +1,22 @@
+{
+  "site": {
+    "url": "http://houkanshan.github.com"
+  , "name": "houkanshan"
+  , "email": "houkanshan AT gmail.com"
+  }
+, "comments": {
+    "githubRepo": "houkanshan/houkanshan.github.com"
+  }
+, "nav": [
+    {
+      "name": "posts"
+    , "title": "Posts"
+    , "url": "/posts/"
+    }
+  , {
+      "name": "about"
+    , "title": "About"
+    , "url": "/about/"
+    }
+  ]
+}

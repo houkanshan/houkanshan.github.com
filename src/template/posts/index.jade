@@ -1,0 +1,21 @@
+// posts/index.jade
+extends /_layout.jade
+include /_widgets/index.jade
+
+
+block head
+  //-link(href="/css/posts.css" rel="stylesheet")
+
+block bottom_js
+  //-script(src="js/posts.js")
+
+block body
+  - var curr = 'posts'
+  header#posts-header.minor-header
+    +header-content(curr)
+  article#posts-content
+
+    +posts-list(posts.slice().reverse())
+
+  footer#posts-footer.main-footer
+    +footer-content(curr)

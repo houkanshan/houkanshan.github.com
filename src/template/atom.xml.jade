@@ -1,0 +1,17 @@
+doctype xml
+feed(xmlns="http://www.w3.org/2005/Atom")
+  title Houkanshan's Blog
+  link(href="#{template.site.url}/atom.xml")
+  link(href="#{template.site.url}/")
+  updated= posts[posts.length - 1].date
+  id= template.site.url
+  author
+    name= template.site.name
+    email= template.site.email
+  for post in posts
+    entry
+      title= post.title
+      link(href="#{template.site.url}/#{post.dest}/")
+      update= post.date
+      id= template.site.url + '/' + post.dest + '/'
+      content(type="html")= post.abstract

@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en"><head><title>Houkanshan's Blog</title><meta name="author" content="houkanshan"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" user-scalable="no"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link href="/atom.xml" rel="alternate" title="Houkanshan's Blog" type="application/atom+xml"><link rel="stylesheet" href="/css/index.css"><!--[if IE]>
+  <script>
+    (function(){var elements="abbr article aside audio canvas datalist details dialog eventsource figure footer header hgroup mark menu meter nav output progress section time video";elements.replace(/\w+/g,function(e){document.createElement(e)})})();
+  </script>
+<![endif]-->
+<link href="/css/post.css" rel="stylesheet"></head><body class="theme-modern"><div id="top"></div><div class="wrapper"><header id="post-header" class="minor-header"><div class="header-wrapper hover-toggler-fade"><nav id="blog-header-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav><a href="/"><div class="when-hover"><h1 class="blog-title">Houkanshan’s Blog</h1></div></a></div></header><article id="post-content"><header id="post-content-header"><h2>CSS Modularization</h2></header><article><div class="article-content"><p>我今天要草率的把我的一些关于css的草率的想法和实践草率的写出来，所以就叫猜。</p>
+<p>我之前一直苦于我的css代码基本就是样式堆砌的丑陋代码。即使是分了reset, common, page也无济于事。</p>
+<p>less可以一定程度上避免代码的堆砌，因为它可以样式规则的嵌套。
+但是样式规则嵌套不能过深，否则会导致选择器性能问题。</p>
+<p>增加逻辑层次是一个合理放置代码的解决办法，比如模块。当然模块的初衷显然不是为了解决css代码混乱的，
+模块化的好处除了增加代码可读性外，更重要的是它具有可重用的能力。其实也算是代码规范的功劳了，
+其实代码规范好的话，可以解决很多问题。我甚至觉得架构这个东西，就应该是用代码规范来解决的。。。</p>
+<p>基于less的css规范，我自己的实践原则是这样的，很简单：</p>
+<h4 id="-">纵向上是</h4>
+<pre><code>模块1(名字空间) <span class="hljs-rules">{  <span class="hljs-comment">/* 比如 .speak-dialog */</span>
+    <span class="hljs-rule">类1;</span>         <span class="hljs-comment">/* 比如 h1,h2,h3 {} */</span>
+    <span class="hljs-rule">类2;</span>         <span class="hljs-comment">/* 比如 .hd {} */</span>
+<span class="hljs-rule">}</span></span>
+</code></pre><p>模块从全局空间开始，按照html树的层级，下面可能就到aside,main这级，然后再细化到内部的模块。到不能再细分模块的时候就以传统的css写法写。
+这种模块+类在html结构上应该象是这样：</p>
+<p><img src="https://docs.google.com/drawings/pub?id=1rg7vzagk78_arYcCxHUtzPCPwOOAiFJBiz7Wc_cM1XQ&amp;w=457&amp;h=263" alt="css module"></p>
+<h4 id="-">横向上是</h4>
+<pre><code>[{layout, style}, {layout, style}, <span class="hljs-keyword">...</span>]
+</code></pre><p>layout包含会影响模块定位的属性，包括size,margin,border,float,position,padding,line-height,display等
+(padding需要注意，因为当设置了width/height时，也padding会影响占位，所以虽然padding的语义是控制内容空间，但还是要放在布局的级别上)。
+这些应该是对应render中的layout阶段的。</p>
+<p>style则是剩下的元素显示效果，对应render中的paint阶段。</p>
+<h4 id="-">所以大体的顺序应该是：</h4>
+<ol>
+<li>全局名字空间的layout(nav,footer,header,section,main,aside,h1,h2,h3,h4等等的布局样式)</li>
+<li>全局名字空间的style(nav,footer,header,section,main,aside,h1,h2,h3,h4等等的效果样式)</li>
+<li>aside,main,nav,header,footer等模块的layout</li>
+<li>aside,main,nav,header,footer等模块的style</li>
+<li>aside内模块的layout</li>
+<li>aside内模块的style</li>
+</ol>
+<p>...</p>
+<p>对于一些模块间共用的样式，可以单独抽离出来成为独立的模块放到全局环境中去</p>
+<p>乍看这样可能会写出很多重复的选择器，就比如layout和style或许没必要分这么开。但个人的实践中，layout和style的选择器的重复部分似乎并不大，
+比如.a模块中设置了h1的layout，并不意味着就也要设置它的style，因为它已经继承了全局的设置了，所以单独再样式集内分离layout，style意义不大，还是需要在整体代码上分离开来。</p>
+<p>而且layout与style也是独立的，基本上写css都是先layout再style这个先繁后简的流程。</p>
+<h3 id="-css-">关于css的其他想法</h3>
+<h4 id="-">通用原子类？</h4>
+<p><a href="http://book.douban.com/people/houkanshan/annotation/4881987/">http://book.douban.com/people/houkanshan/annotation/4881987/</a></p>
+<p>其实也看到一些同学这样做了。</p>
+<p>我是比较反对通过直接在html上加具有样式意义的class来修改html的样式的，尤其是在css预处理器出现之后。
+这些工作完全可以在预处理阶段完成。说是开发上快速，其实没有什么区别。在html模板上修改样式会很爽么？</p>
+<p>更重要的就是破坏内容样式分离，有优先级被覆盖的问题，弄乱了html，也弄乱了css。</p>
+<p>即使是为了javascript处理交互效果时方便加class，也不应该这样做。最容易出现优先级的问题。
+而且，既然做selected的时候用的是给selected单独css，为什么在设置浮动的时候又要用base里面的东西而不能直接多写一点样式呢？
+而且写在css里面就可以让人知道这个元素将来可能的表现了。</p>
+<h3 id="-">嗯</h3>
+<p>一个做过前端的妹子某次问我最近再做什么，然后问我写css不无聊么。</p>
+<p>这真不好回答，其实我还想写点css，虽然最后编译出来的东西都是那么一坨。。。</p>
+<p>以上，请指责。</p>
+</div><footer><span class="date">2012-08-19</span></footer><footer><div class="comments-section"><div id="disqus_thread"></div><script>var disqus_shortname = 'houkanshansblog'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script></div></footer></article><footer id="post-content-footer"><div class="row-half"><a href="/posts/2012/09/30/css-status/" class="next post-switcher"><label>Next</label><h4 class="title"><span>CSS for status</span></h4></a></div><div class="row-half"><a href="/posts/2012/08/11/bootstrap-less/" class="prev post-switcher"><label>Prev</label><h4 class="title"><span>Bootstrap's Less</span></h4></a></div></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper"><a href="#top"><span class="top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script>var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-30636693-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>
