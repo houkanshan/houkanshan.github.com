@@ -5,6 +5,8 @@ var _ = require('lodash')
 var fetchLocals = require('./lib/fetch-locals')
 var postsData = require('./lib/posts-data')
 
+console.log(require('./lib/helpers'))
+
 var globalLocals = fetchLocals({
       cwd: 'src/'
     , blob: ['template/**/data.json', 'posts/**/data.json']
@@ -78,6 +80,7 @@ gulp.task('posts', ['posts-json'], function() {
                     post: post
                   , index: posts.indexOf(post)
                   }
+                , helpers: require('./lib/helpers')
                 }, globalLocals)
               , basedir: jadeBasedir
               }).on('error', gutil.log))
@@ -104,7 +107,9 @@ gulp.task('jade', ['posts'], function() {
     , '!src/template/**/_*'
     ])
     .pipe(jade({
-      locals: globalLocals
+      locals: _.extend({
+        helpers: require('./lib/helpers')
+      }, globalLocals)
     , basedir: jadeBasedir
     }).on('error', gutil.log))
     .pipe(rename(detectExt))

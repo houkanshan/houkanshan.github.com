@@ -7,7 +7,7 @@ block head
   link(href="/css/post.css" rel="stylesheet")
 
 block bottom_js
-  script(src="/js/post.js")
+  //-script(src="/js/post.js")
 
 block body
   - var curr = 'post'
@@ -26,6 +26,10 @@ block body
         != yield
       footer
         span.date= current.post.date
+      footer
+        .comments-section
+          include /_widgets/disqus.jade
+
     footer#post-content-footer
       - var prev = posts[current.index - 1]
       - var next = posts[current.index + 1]

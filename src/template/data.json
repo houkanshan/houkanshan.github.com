@@ -4,6 +4,9 @@
   , "name": "houkanshan"
   , "email": "houkanshan AT gmail.com"
   }
+, "comments": {
+    "githubRepo": "houkanshan/houkanshan.github.com"
+  }
 , "nav": [
     {
       "name": "posts"
