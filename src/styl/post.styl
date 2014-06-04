@@ -22,22 +22,26 @@
 
 #post-content-footer
   margin-top: 2em
+  border-top: 1px solid #ccc
+  padding-top: 2em
   position: relative
   .row-half
     width: 50%
     display: inline-block
-  .prev
-    text-align: right
-  .prev
   .next
+    text-align: right
+  .post-switcher
     display: block
   .prev
-    padding-left: 1em
+    margin-left: 1em
   .next
-    padding-right: 1em
+    margin-right: 1em
 
   h4
     font-size: 26px
   label
     display: block
     font-size: 16px
+  .post-switcher:hover
+    .title span
+      underline(21px, 2px)
