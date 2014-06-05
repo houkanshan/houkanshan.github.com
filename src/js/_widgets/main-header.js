@@ -6,6 +6,8 @@ var _ = require('lodash')
 
 var mainHeader = $('.main-header')
 if (!mainHeader.length) { return }
+var hasTouch = 'ontouchstart' in document.documentElement
+if (hasTouch) { return }
 
 var scrollBody = $('html, body')
   , win = $(window)
