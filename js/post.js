@@ -45,75 +45,41 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	window.$ = __webpack_require__(3)
-	window._ = __webpack_require__(4)
+	window.$ = __webpack_require__(2)
+	window._ = __webpack_require__(3)
 
-	__webpack_require__(1)
-	__webpack_require__(2)
+	var showImgAlt = __webpack_require__(1)
+
+	showImgAlt({
+	  container: $('.article-content')
+	})
 
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	function loadCss(filename) {
-	  var fileref = document.createElement("link")
-	  fileref.setAttribute("rel", "stylesheet")
-	  fileref.setAttribute("href", filename)
+	var $ = __webpack_require__(2)
+	var _ = __webpack_require__(3)
 
-	  document.getElementsByTagName("head")[0].appendChild(fileref)
+	var defaults = {
+	  container: $('body')
 	}
 
-	loadCss('/css/hljs-github.css')
+	module.exports = function(configs) {
+	  configs = _.defaults(configs, defaults)
 
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var $ = __webpack_require__(3)
-	var _ = __webpack_require__(4)
-
-	;(function(){
-
-
-	var mainHeader = $('.main-header')
-	if (!mainHeader.length) { return }
-	var hasTouch = 'ontouchstart' in document.documentElement
-	if (hasTouch) { return }
-
-	var scrollBody = $('html, body')
-	  , win = $(window)
-	  , hoverEl = mainHeader.find('.header-wrapper')
-
-	hoverEl.on('mouseenter', jumpDown)
-	win.on('scroll', _.throttle(fadeAndHide, 100))
-
-	function jumpDown() {
-	  if (win.scrollTop() > 10) { return }
-
-	  scrollBody
-	    .animate({
-	      scrollTop: 91
-	    }, 600)
-	}
-
-	function fadeAndHide() {
-	  var scrollTop = win.scrollTop()
-	    , hideTop = win.height() / 2 - 100
-	    , opacity = (hideTop - scrollTop) / hideTop
-
-	  hoverEl.css({
-	    opacity: opacity
+	  var imgs = configs.container.find('img[alt]')
+	  imgs.each(function(i, el) {
+	    el = $(el)
+	    var alt = el.attr('alt')
+	    $('<figcaption>').text(alt).insertAfter(el)
 	  })
 	}
 
 
-	}())
-
-
 /***/ },
-/* 3 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -9293,7 +9259,7 @@
 
 
 /***/ },
-/* 4 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -16454,10 +16420,10 @@
 	  }
 	}.call(this));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module), (function() { return this; }())))
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module) {
