@@ -20,14 +20,21 @@ specialCoverHeight = coverHeight * 1.66
     height: coverHeight
     overflow: hidden
     position: relative
+    font-size: 0
   .cover-wrapper
     position: absolute
-    top: -40%
-    bottom: -20%
-    left: -20%
-    right: -20%
+    top: -100%
+    bottom: -100%
+    left: -50%
+    right: -50%
     text-align: center
     img
+      vertical-align: middle
+      max-width: 54%
+    .valign
+      height: 100%
+      width: 1px
+      inline-block()
       vertical-align: middle
   .post-item:first-child
     .cover
