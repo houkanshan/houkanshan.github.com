@@ -1,14 +1,34 @@
 @import '_mixins'
 
+coverHeight = 100px
+specialCoverHeight = coverHeight * 1.66
+
 .posts-list
+  .post-bd
+    margin-top: 10px
   .title
     font-size: 30px
     line-height: 30px
   .date
     color: #666
   .post-item
-    margin-bottom: 32px
+    margin-bottom: 42px
   .post-item a:hover
     .title span
       underline(26px, 2px)
-
+  .cover
+    height: coverHeight
+    overflow: hidden
+    position: relative
+  .cover-wrapper
+    position: absolute
+    top: -40%
+    bottom: -20%
+    left: -20%
+    right: -20%
+    text-align: center
+    img
+      vertical-align: middle
+  .post-item:first-child
+    .cover
+      height: specialCoverHeight

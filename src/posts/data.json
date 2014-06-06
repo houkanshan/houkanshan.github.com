@@ -89,7 +89,8 @@
     "file": "src/posts/2013-08-25-amd-visualization.md",
     "dest": "posts/2013/08/25/amd-visualization",
     "layout": "src/template/posts/_post.jade",
-    "abstract": "Visualize a f2e project which base on AMD format."
+    "abstract": "Visualize a f2e project which base on AMD format.",
+    "cover": "/img/cover/2013-08-25-amd-visualization.png"
   },
   {
     "title": "Drumcat",
@@ -97,6 +98,7 @@
     "file": "src/posts/2014-03-11-drumcat.md",
     "dest": "posts/2014/03/11/drumcat",
     "layout": "src/template/posts/_post.jade",
-    "abstract": "A metronome."
+    "abstract": "A metronome.",
+    "cover": "/img/cover/2014-03-11-drumcat.png"
   }
 ]

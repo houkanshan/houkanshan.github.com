@@ -7,4 +7,12 @@ mixin posts-list(posts)
             h3.title
               span= post.title
             .date= post.date
-          .post-bd= post.abstract
+          .post-bd
+            if post.cover
+              +cover(post.cover)
+            .abstract= post.abstract
+
+mixin cover(cover)
+  .cover
+    .cover-wrapper
+      img(src=cover)
