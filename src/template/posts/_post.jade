@@ -2,6 +2,9 @@
 extends /_layout.jade
 include /_widgets/index.jade
 
+block title
+  = current.post.title
+  | &nbsp;- Houkanshan's Blog
 
 block head
   link(href="/css/post.css" rel="stylesheet")

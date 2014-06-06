@@ -1,7 +1,8 @@
 doctype html
 html(lang="en")
   head
-    title Houkanshan's Blog
+    title
+      block title
     meta(name="author" content="houkanshan")
 
     meta(charset="utf-8")
@@ -22,3 +23,6 @@ html(lang="en")
     script(src="/js/core.js")
     block bottom_js
     include _widgets/ga.jade
+
+block title
+  | Houkanshan's Blog
