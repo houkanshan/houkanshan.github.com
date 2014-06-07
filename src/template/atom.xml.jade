@@ -8,7 +8,8 @@ feed(xmlns="http://www.w3.org/2005/Atom")
   author
     name= template.site.name
     email= template.site.email
-  for post in posts
+  - var reverse_posts = posts.slice().reverse()
+  for post in reverse_posts
     entry
       title= post.title
       link(href="#{template.site.url}/#{post.dest}/")
