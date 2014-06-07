@@ -8,7 +8,7 @@
 <iframe width="560" height="315" src="//www.youtube.com/embed/jUjYWAIbi4M?rel=0" frameborder="0" allowfullscreen alt="Stonert demo, on youtube"></iframe>
 </p>
 
-*Stormic* comes first, with my idea of “flowing stones” reading after the book *[The Nature of Code](http://natureofcode.com/)* ([@豆瓣](http://book.douban.com/subject/20452058/)) written by *Daniel Shiffman*. And the code of particle systems comes from this book. 
+*Stormic* comes first, with my idea of “flowing stones” after reading the book *[The Nature of Code](http://natureofcode.com/)* ([@豆瓣](http://book.douban.com/subject/20452058/)) written by *Daniel Shiffman*. And the code of particle systems comes from this book. 
 
 ![Screenshot of Stormic](https://houkanshan.github.io/stormic/daily/5.1.png)
 
