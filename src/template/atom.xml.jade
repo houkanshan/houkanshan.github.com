@@ -14,4 +14,8 @@ feed(xmlns="http://www.w3.org/2005/Atom")
       link(href="#{template.site.url}/#{post.dest}/")
       update= post.date
       id= template.site.url + '/' + post.dest + '/'
-      content(type="html")= post.abstract
+      content(type="html")
+        p
+          if post.cover
+            img(src=post.cover)
+        p= post.abstract

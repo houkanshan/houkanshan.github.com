@@ -100,5 +100,14 @@
     "layout": "src/template/posts/_post.jade",
     "abstract": "A metronome.",
     "cover": "/img/cover/2014-03-11-drumcat.png"
+  },
+  {
+    "title": "Stonert & Stormic",
+    "date": "2014-06-07",
+    "file": "src/posts/2014-06-07-stonert-stormic.md",
+    "dest": "posts/2014/06/07/stonert-stormic",
+    "layout": "src/template/posts/_post.jade",
+    "cover": "/img/cover/2014-06-07-stonert-stormic.png",
+    "abstract": "Two music visualisation projects make by Processing, and stone."
   }
 ]
