@@ -5,8 +5,6 @@ var _ = require('lodash')
 var fetchLocals = require('./lib/fetch-locals')
 var postsData = require('./lib/posts-data')
 
-console.log(require('./lib/helpers'))
-
 var globalLocals = fetchLocals({
       cwd: 'src/'
     , blob: ['template/**/data.json', 'posts/**/data.json']
@@ -16,7 +14,10 @@ var globalLocals = fetchLocals({
 var stylus = require('gulp-stylus')
 gulp.task('stylus', function () {
   gulp.src(['src/styl/**/*.styl', '!src/styl/_*/**/*', '!src/styl/**/_*'])
-    .pipe(stylus({ set: ['compress'] })
+    .pipe(stylus({
+        //set: ['compress'],
+        include: ['bower_components'],
+      })
       .on('error', gutil.log))
     .pipe(gulp.dest('./css/'))
 })

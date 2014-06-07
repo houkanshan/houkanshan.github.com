@@ -1,0 +1,19 @@
+{
+  "name": "houkanshan.github.com",
+  "version": "0.0.0",
+  "homepage": "https://github.com/houkanshan/houkanshan.github.com",
+  "authors": [
+    "houmai <houkanshan@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "b-type": "https://github.com/houkanshan/b-type.git"
+  }
+}
