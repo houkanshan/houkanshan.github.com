@@ -67,6 +67,7 @@ gulp.task('posts', ['posts-json'], function() {
       gulp.src(post.file)
         .pipe(markdown({
           highlight: highlight
+        , smartypants: true
         }).on('error', gutil.log))
         .pipe(map(function(postHtml, cb) {
           if (!postHtml.contents) {
