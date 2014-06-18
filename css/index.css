@@ -504,8 +504,8 @@ body a {
 }
 .article-content ul,
 .article-content ol {
-  list-style-position: inside;
-  margin-left: 1em;
+  list-style-position: outside;
+  margin-left: 2em;
 }
 .article-content blockquote {
   border-left: 3px solid #eee;

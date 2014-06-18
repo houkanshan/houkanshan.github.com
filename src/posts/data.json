@@ -111,14 +111,14 @@
     "abstract": "Two music visualisation projects make by Processing, and stone."
   },
   {
-    "title": "points",
+    "title": "points, 2014/06",
     "date": "2014-06-16",
     "file": "src/posts/2014-06-16-points.md",
     "dest": "posts/2014/06/16/points",
     "layout": "src/template/posts/_post.jade"
   },
   {
-    "title": "mojikumi",
+    "title": "Mojikumi",
     "date": "2014-06-18",
     "file": "src/posts/2014-06-18-mojikumi.md",
     "dest": "posts/2014/06/18/mojikumi",
