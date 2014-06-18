@@ -25,7 +25,7 @@ gulp.task('stylus', function () {
 // TODO: config
 var paths = [
   {
-    blob: 'src/posts/**/*.md'
+    blob: ['src/posts/**/*.md', '!src/posts/**/*.draft.md']
   , dataPath: 'src/posts/data.json'
   , dest: 'posts/'
   , defaultData: {

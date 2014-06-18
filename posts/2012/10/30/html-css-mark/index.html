@@ -82,7 +82,7 @@
 <p><code>|</code>  表示单选</p>
 <p>font-size 相对父元素计算，line-height 相对font-size计算</p>
 <p>直接用font设置时，忽略的属性全会被重置。</p>
-<p>使用后面的caption, icon...时，会根据用户系统设置应用字体。</p>
+<p>使用后面的caption, icon…时，会根据用户系统设置应用字体。</p>
 <hr>
 <p>字体匹配：</p>
 <p>1 打开字体数据库</p>
@@ -99,16 +99,16 @@
 <p>块级元素（显然因为inline是没有宽度的）</p>
 <p>百分比相对于块的宽度计算</p>
 <p><em>可继承</em>: 对百分比的处理是，直接继承计算值。而不是百分比值(不会再计算)。</p>
-<p>--</p>
+<p>—</p>
 <p>text-align: </p>
 <p>块级元素（block才有宽度）</p>
 <p>可继承</p>
-<p>--  </p>
+<p>—  </p>
 <p>line-height: inline-box的高度</p>
 <p>所有元素: </p>
 <p>百分比相对于font-size计算</p>
 <p>可继承: 对em和百分比将继承计算值，对number将直接继承，也就是会再计算</p>
-<p>--</p>
+<p>—</p>
 <p>verical-align</p>
 <p>行内元素和 表 单元格</p>
 <p>不可继承</p>
@@ -121,13 +121,13 @@
 <p><code>&lt;percentage&gt;</code>: baseline(或替换元素的底)与父元素的baseline升高(+)或降低(-) line-height * 百分比</p>
 <p><code>&lt;length&gt;</code>: baseline(或替换元素的底)与父元素的baseline升高(+)或降低(-) length</p>
 <p>由<code>&lt;percentage&gt;&lt;length&gt;</code>设置的对齐会导致line-box的高度变化</p>
-<p>--</p>
+<p>—</p>
 <p>word-spacing, letter-spacing: </p>
 <p>可继承，将继承计算值，不会再计算</p>
 <p>不能为percentage，因为没有分母</p>
 <p>指定letter-spacing后text-aligin就不会影响letter间隔</p>
 <p>指定了word-spacing还是可能会受text-align的影响(待确定)</p>
-<p>--</p>
+<p>—</p>
 <p>text-transform</p>
 <h3 id="-161-">第161页</h3>
 <p>white-space:</p>
@@ -140,13 +140,13 @@ nowrap              去掉多余空格，<span class="hljs-command">\n</span>换
 pre-wrap (2.1)  保留<span class="hljs-command">\n</span>, 空格合并, 边界换行
 
 pre-line   (2.1)   <span class="hljs-command">\s</span>全保留，边界换行
-</code></pre><p>------------------------------------- origin ---------------------------------------</p>
+</code></pre><p>——————————————————- origin ———————————————————-</p>
 <p>normal</p>
 <p>This value directs user agents to collapse sequences of white space, and break lines as necessary to fill line boxes.</p>
 <p>pre</p>
 <p>This value prevents user agents from collapsing sequences of white space. Lines are only broken at preserved newline characters.</p>
 <p>nowrap</p>
-<p>This value collapses white space as for &#39;normal&#39;, but suppresses line breaks within text.</p>
+<p>This value collapses white space as for ‘normal’, but suppresses line breaks within text.</p>
 <p>pre-wrap</p>
 <p>This value prevents user agents from collapsing sequences of white space. Lines are broken at preserved newline characters, and as necessary to fill line boxes.</p>
 <p>pre-line</p>
@@ -187,7 +187,7 @@ pre-line   (2.1)   <span class="hljs-command">\s</span>全保留，边界换行
 <p>两个关键字，水平(left, right)、垂直(top, bottom)，如果出现了一个关键字，则认为另一个是center。</p>
 <p><code>&lt;percentage&gt;</code></p>
 <p>前水平，后垂直，定位方式为：背景图片的a%, b% 位置与容器区域的a%, b%对齐，造成了0%, 0%在左上角，100%, 100%在右下角(而不是溢出)</p>
-<p>--</p>
+<p>—</p>
 <p>background-attachment:</p>
 <p>scroll (default)</p>
 <p>fixed (注意是相对可视域定位而不是容器)</p>
@@ -212,25 +212,25 @@ pre-line   (2.1)   <span class="hljs-command">\s</span>全保留，边界换行
 <p>浮动元素在满足规则的情况下重叠时：</p>
 <p>1 inline-box 与 float 重叠， border, text, background 在 float 之上</p>
 <p>2 box 与 float 重叠，border, background 在 float 之下， text 在之上</p>
-<p>--</p>
+<p>—</p>
 <p>clear</p>
 <p>引入一个清除区域(clearance), 来排斥浮动元素</p>
 <h3 id="-309-">第309页</h3>
 <p>relative的containing block还是原来的block，它是相对自己的</p>
 <p>absolute的containing block是相对于最近的absolute，relative父节点，或者根</p>
-<p>--</p>
+<p>—</p>
 <p>absolute是相对于内容区，不相对padding</p>
 <h3 id="-327-">第327页</h3>
 <p>top / bottom / left / right :</p>
 <p>auto 元素的这个属性会保持static状态的值(优先级更低，比如left: auto, right: 1px, 那就是到右边了，left: auto, right: auto就是保持原位了)</p>
-<p>--</p>
+<p>—</p>
 <p>left + margin-left + border-left-width + padding-left + width + padding-right + border-right-width + margin-right + right = ContainingBlockWidth</p>
 <p><img src="https://docs.google.com/drawings/pub?id=13E7NLY3v93cEOLr3JSYdMz-4KmtdXYYfK3CSQQ4y-rE&amp;w=1440&amp;h=700" alt="width"></p>
-<p>--</p>
+<p>—</p>
 <p>如果left, width, right均为auto，那么会得到左边界原位，width收缩到合适。</p>
-<p>--</p>
+<p>—</p>
 <p>如果，left, right, width均为定值(必须满足, 否则还是定位)，那么margin: 0 auto;的时候可以居中。(abosolute会形成块级元素，relative不会)</p>
-<p>--</p>
+<p>—</p>
 <p>如果，left, right同时不为auto，则将left优先。（过度受限）</p>
 <p>如果left，margin-left同时有，将会在基础上算margin，参见上面的公式。</p>
 <p>如果left, margin-right同时有，将不会增加margin，因为right是auto的(或者过度受限)</p>
@@ -248,7 +248,7 @@ pre-line   (2.1)   <span class="hljs-command">\s</span>全保留，边界换行
   <span class="hljs-attribute">margin</span><span class="hljs-value">: auto <span class="hljs-number">0</span>;</span>
 
 }
-</code></pre><p>--</p>
+</code></pre><p>—</p>
 <p>对于可替换元素，区别就在于他的height和width在auto的情况下是默认为原始大小的。</p>
 <p>（对于block而言，width: auto会使他填满区域）</p>
 <p>所以可以直接margin: 0 auto来居中，不需要设置width。</p>
@@ -263,7 +263,7 @@ pre-line   (2.1)   <span class="hljs-command">\s</span>全保留，边界换行
 <h3 id="-338-">第338页</h3>
 <p>z-index: </p>
 <p>relative，absolute都有 CSS3中有opacity，</p>
-<p>--</p>
+<p>—</p>
 <p>auto: 不建立新的层叠上下文(z-index:0)，与父级相同。</p>
 <p>非auto: 指定了z-index就会创建<em>自己的</em>叠放上下文。所有子元素设置的z-index都将会在这个z-index级别内。就是9, -100， 8, 1; 这样的东西的结果是9里面的-100就是在8里面的1上面~</p>
 <p>另外，如果两个相同stacking context内的元素设置了相同的z-index, 由于他们都创建了各自的
@@ -276,10 +276,10 @@ pre-line   (2.1)   <span class="hljs-command">\s</span>全保留，边界换行
 <p>对于body下的z-index, 因为body不会创建叠放上下文，且z-index:0, 那么如果一个z-index: -1; 就应该会在body之下。同时由于2.1要求：元素不会叠放在其叠放上下文的背景之下。</p>
 <p>注意：</p>
 <p><a href="http://www.w3.org/TR/CSS2/visuren.html#z-index">http://www.w3.org/TR/CSS2/visuren.html#z-index</a></p>
-<p>The root element forms the root stacking context. Other stacking contexts are generated by any positioned element (including relatively positioned elements) having a computed value of &#39;z-index&#39; other than &#39;auto&#39;. </p>
-<p>--</p>
+<p>The root element forms the root stacking context. Other stacking contexts are generated by any positioned element (including relatively positioned elements) having a computed value of ‘z-index’ other than ‘auto’. </p>
+<p>—</p>
 <p><a href="http://www.w3.org/TR/CSS2/colors.html#background-properties">http://www.w3.org/TR/CSS2/visuren.html#z-index</a></p>
-<p>user agents must instead use the computed value of the background properties from that element&#39;s first HTML &quot;BODY&quot; element or XHTML &quot;body&quot; element child when painting backgrounds for the canvas, and must not paint a background for that child element. </p>
+<p>user agents must instead use the computed value of the background properties from that element’s first HTML “BODY” element or XHTML “body” element child when painting backgrounds for the canvas, and must not paint a background for that child element. </p>
 <p>情况是由于body设置的background被html拿去了，而body没有了。而html作为root element存在一个stacking context，因此这时z-index: -1000是不会被遮盖的(实际上在body后面)。</p>
 <p>而如果同时设置了body和html的background，那么z-index: -1000就会被body的background挡住了！</p>
 <p>另外，elem.offsetParent 也是针对stacking context的，elem的offsetParrent是它当前的

@@ -109,5 +109,21 @@
     "layout": "src/template/posts/_post.jade",
     "cover": "/img/cover/2014-06-07-stonert-stormic.png",
     "abstract": "Two music visualisation projects make by Processing, and stone."
+  },
+  {
+    "title": "points",
+    "date": "2014-06-16",
+    "file": "src/posts/2014-06-16-points.md",
+    "dest": "posts/2014/06/16/points",
+    "layout": "src/template/posts/_post.jade"
+  },
+  {
+    "title": "mojikumi",
+    "date": "2014-06-18",
+    "file": "src/posts/2014-06-18-mojikumi.md",
+    "dest": "posts/2014/06/18/mojikumi",
+    "layout": "src/template/posts/_post.jade",
+    "cover": "/img/cover/2014-06-18-mojikumi.png",
+    "abstract": "A implement of mojikumi (标点挤压) in a hack way through opentype kerning."
   }
 ]

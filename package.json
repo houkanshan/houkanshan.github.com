@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Houkanshan's Blog",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "glob-all": "~2.4.0"
+  },
   "devDependencies": {
     "gulp": "~3.5.0",
     "gulp-jade": "~0.4.0",

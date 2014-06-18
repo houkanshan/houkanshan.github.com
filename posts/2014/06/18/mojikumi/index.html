@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><title>mojikumi&nbsp;- Houkanshan's Blog</title><meta name="author" content="houkanshan"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" user-scalable="no"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link href="/atom.xml" rel="alternate" title="Houkanshan's Blog" type="application/atom+xml"><link rel="stylesheet" href="/css/index.css"><!--[if IE]>
+  <script>
+    (function(){var elements="abbr article aside audio canvas datalist details dialog eventsource figure footer header hgroup mark menu meter nav output progress section time video";elements.replace(/\w+/g,function(e){document.createElement(e)})})();
+  </script>
+<![endif]-->
+<link href="/css/post.css" rel="stylesheet"></head><body class="theme-modern"><div id="top"></div><div class="wrapper"><header id="post-header" class="minor-header"><div class="header-wrapper hover-toggler-fade"><nav id="blog-header-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav><a href="/"><div class="when-hover"><h1 class="blog-title">Houkanshan’s Blog</h1></div></a></div></header><article id="post-content"><header id="post-content-header"><h2>mojikumi</h2></header><article><div class="article-content"><h1 id="mojikumi-arkyakumono-">Mojikumi (arkyakumono)</h1>
+<p>Mojikumi (标点挤压) 是一个利用 Kerning 实现汉字标点挤压的实验项目。目的是在 Web 浏览器中实现标点挤压。目前部分实现了汉字的标点挤压。</p>
+<p><a href="https://github.com/houkanshan/mojikumi">Github</a>
+<a href="https://houkanshan.github.com/mojikumi">Test</a></p>
+<p><img src="" alt=""></p>
+<ol>
+<li>浏览器不会尝试向 CSS 定义的 web font 中查找并使用 Bitmap 字体 (Tested on Chrome &amp; Firefox, Windows)。</li>
+<li>CSS 的 <code>@font-face</code> 中，<code>src</code> 属性没有加 <code>local(&#39;xx&#39;)</code> 值的，会覆盖掉本地的字体，即：即使本地有同名的字体，也不会使用。</li>
+<li>Kerning 与 Ligature 均能实现标点挤压，不同的是，Kerning 只能改变位置，而 Ligature 能改变字形， Ligature 对多字符的情况需要枚举配对，而 Kerning 不需要。</li>
+<li>Chrome &amp; Safari 中，如果相邻字符各自被标签包裹（<code>&lt;span&gt;</code>）则会破坏字体的 Kerning 行为，Firefox 不会。（Web 阅读器中通常会对字符用标签包裹，以便进行功能增强和排版优化[如 Google Play Books, 豆瓣阅读, 多看阅读]）</li>
+<li>FontForge 生成的 SVG Font，在 Firefox, Chrome, Safari 上测试均无法使用（浏览器会请求字体文件，但不能正常使用）。</li>
+<li>西文的 brackets 通常不会在 cap height 上垂直居中，而会偏下，是因为小写西文字符的重心偏下。而中文的 brackets 则需要相对于 “cap height” 垂直居中还略偏上。</li>
+<li>在测试程序里，由于 Chrome 部分字符对 Kerning 后会在包裹文字的元素内的尾部留下多余的空隙，这个不会对后面的文字的文字造成影响，但会影响 JS 获取到的元素宽度，造成测试结果不准。</li>
+<li>其实标点挤压规则虽然有 8 条；但在具体实现中会简单许多，即：当全宽的标点成对时，挤压 1/2 em 的空格即可（即 2 em -&gt; 1.5 em），但这不意味着用代码来处理会简单多少，因为还需要处理换行的情况。</li>
+<li>由于 <a href="http://www.w3.org/TR/jlreq/#positioning_of_consecutive_opening_brackets_closing_brackets_comma_full_stops_and_middle_dots">JIS X 4051</a> 中只描述了直排中的标点挤压规则，而对 “!?;:” 这几个标点在横排时所处的位置或方向与直排不同的情况，没找到较权威的描述，自己修改了这部分的规则，即按照汉语语义：将 “!?;:” 这几个标点与 commas / full stop 作同样的处理。</li>
+</ol>
+<h2 id="-">不完善的地方：</h2>
+<ol>
+<li>由于汉字和西文的 quotes 使用的是相同的字符， 为了优先保证英文的显示正常，quotes 的宽度均为 1/2 em，故对类似<code>。”</code>的情况无法用 Kerning 在 right quote 后加上 1/2 em 的空格。但用 Ligature 能实现。</li>
+<li>em dash 的处理上，用 Kerning 的方式处理会导致宽度不够，如果用 Ligature 来做，也会更好；对单独出现的 em dash，可直接显示为西文字体的 em dash，较粗且不会占据整个字宽；对连续的 em dash，可显示为汉字字体的破折号，较细且仅 2em 宽度的两边有空隙。</li>
+<li>标点风格可能与其他字符不搭配。以及缺少不同 Style 的标点字体。</li>
+</ol>
+</div><footer><span class="date">2014-06-18</span></footer><footer><div class="comments-section"><div id="disqus_thread"></div><script>var disqus_shortname = 'houkanshansblog'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script></div></footer></article><footer id="post-content-footer"><div class="row-half"></div><div class="row-half"><a href="/posts/2014/06/16/points/" class="prev post-switcher"><label>Prev</label><h4 class="title"><span>points</span></h4></a></div></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper"><a href="#top"><span class="top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-30636693-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>

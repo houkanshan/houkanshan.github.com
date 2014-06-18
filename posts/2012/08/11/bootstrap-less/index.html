@@ -46,7 +46,7 @@
 <span class="hljs-built_in">.</span>use<span class="hljs-attribute">-compiled</span><span class="hljs-attribute">-css</span> {
     <span class="hljs-built_in">.</span>compiled<span class="hljs-attribute">-css</span>;
 }
-</code></pre><p>只前4行输出的是.compiled-css{...}，(测试的时候如果用客户端的方式编译就直接失败了。)
+</code></pre><p>只前4行输出的是.compiled-css{…}，(测试的时候如果用客户端的方式编译就直接失败了。)
 加上后面的东西后就编译失败。
 碰到这个情况的时候本来是想把bootstrap的grid直接作为组件mixin在布局里面的，结果发现grid的span1~12是用代码生成的，这些样式集不能在less中复用。。。</p>
 <h4 id="-">官方提供的预处理器太弱</h4>
