@@ -125,5 +125,12 @@
     "layout": "src/template/posts/_post.jade",
     "cover": "/img/cover/2014-06-18-mojikumi.png",
     "abstract": "A implement of mojikumi (标点挤压) in a hack way through opentype kerning."
+  },
+  {
+    "title": "童年阴影",
+    "date": "2014-08-17",
+    "file": "src/posts/2014-08-17-shadow-of-childhood.md",
+    "dest": "posts/2014/08/17/shadow-of-childhood",
+    "layout": "src/template/posts/_post.jade"
   }
 ]

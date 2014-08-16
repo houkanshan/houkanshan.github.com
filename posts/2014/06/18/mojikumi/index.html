@@ -17,6 +17,7 @@
 <li>在测试程序里，由于 Chrome 部分字符对 Kerning 后会在包裹文字的元素内的尾部留下多余的空隙，这个不会对后面的文字的文字造成影响，但会影响 JS 获取到的元素宽度，造成测试结果不准。</li>
 <li>其实标点挤压规则虽然有 8 条；但在具体实现中会简单许多，即：当全宽的标点成对时，挤压 1/2 em 的空格即可（即 2 em -&gt; 1.5 em），但这不意味着用代码来处理会简单多少，因为还需要处理换行的情况。</li>
 <li>由于 <a href="http://www.w3.org/TR/jlreq/#positioning_of_consecutive_opening_brackets_closing_brackets_comma_full_stops_and_middle_dots">JIS X 4051</a> 中只描述了直排中的标点挤压规则，而对 “!?;:” 这几个标点在横排时所处的位置或方向与直排不同的情况，没找到较权威的描述，自己修改了这部分的规则，即按照汉语语义：将 “!?;:” 这几个标点与 commas / full stop 作同样的处理。</li>
+<li>Web Font 的 src 中所有的属性都会被异步处理，无论是 <code>local()</code> 或是 <code>data-URIs</code>，不会阻塞后续 CSS 或 JS。这也意味着在必要的地方必须检测 Web Font 的 loaded 。</li>
 </ol>
 <h2 id="-">不完善的地方：</h2>
 <ol>
@@ -33,7 +34,7 @@
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();</script></div></footer></article><footer id="post-content-footer"><div class="row-half"></div><div class="row-half"><a href="/posts/2014/06/16/points/" class="prev post-switcher"><label>Prev</label><h4 class="title"><span>points, 2014/06</span></h4></a></div></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper"><a href="#top"><span class="top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
+})();</script></div></footer></article><footer id="post-content-footer"><div class="row-half"><a href="/posts/2014/08/17/shadow-of-childhood/" class="next post-switcher"><label>Next</label><h4 class="title"><span>童年阴影</span></h4></a></div><div class="row-half"><a href="/posts/2014/06/16/points/" class="prev post-switcher"><label>Prev</label><h4 class="title"><span>points, 2014/06</span></h4></a></div></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper"><a href="#top"><span class="top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/posts/" title="Posts" class="nav-item">Posts</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-30636693-1']);
 _gaq.push(['_trackPageview']);
 
