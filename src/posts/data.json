@@ -132,5 +132,12 @@
     "file": "src/posts/2014-08-17-shadow-of-childhood.md",
     "dest": "posts/2014/08/17/shadow-of-childhood",
     "layout": "src/template/posts/_post.jade"
+  },
+  {
+    "title": "fontonload",
+    "date": "2014-12-17",
+    "file": "src/posts/2014-12-17-fontonload.md",
+    "dest": "posts/2014/12/17/fontonload",
+    "layout": "src/template/posts/_post.jade"
   }
 ]
