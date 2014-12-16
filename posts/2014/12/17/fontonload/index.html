@@ -10,7 +10,7 @@
 <li><a href="https://github.com/typekit/webfontloader">webfontloader</a> 体积大、功能强，对不支持 CSS Font Loading 的浏览器用定时器检测文字区域尺寸变化。</li>
 <li><a href="https://github.com/bramstein/fontloader">fontloader</a> 原理同上，体积略大，功能略强，主要是完整实现了 CSS Font Load Events Module 的接口。但其尺寸检测也不可靠。</li>
 <li><a href="https://github.com/zachleat/fontfaceonload">fontfaceonload</a> 原理同上，仅实现了加载检测功能，体积小。尺寸检测不可靠。</li>
-<li><a href="https://github.com/smnh/FontLoader">FontLoader</a> 仅对 IE 6 — 9 使用定时器检测，对不支持 <code>document.fonts</code> 的浏览器构造一个复杂的、在字体加载时会触发 <code>scroll</code> 事件的检测元素进行检测，Nice。而且依赖 AdobeBlank 这个全空白字体进行对比，检测准确。但问题在于，AdobeBlank 这个字体通过 <code>@font-face</code> 的 <code>src: url( data-uri )</code> 的方式载入，占用体积，而且 data-uri 本身也有 FOUT 问题，需要避免。</li>
+<li><a href="https://github.com/smnh/FontLoader">FontLoader</a> 仅对 IE 6 – 9 使用定时器检测，对不支持 <code>document.fonts</code> 的浏览器构造一个复杂的、在字体加载时会触发 <code>scroll</code> 事件的检测元素进行检测，Nice。而且依赖 AdobeBlank 这个全空白字体进行对比，检测准确。但问题在于，AdobeBlank 这个字体通过 <code>@font-face</code> 的 <code>src: url( data-uri )</code> 的方式载入，占用体积，而且 data-uri 本身也有 FOUT 问题，需要避免。</li>
 </ol>
 <p>所以 fontonload 的目的就是：</p>
 <ol>
@@ -35,14 +35,14 @@
 <p>IE 6 – 9 虽然不能自动触发 scroll 事件，但它们也具有别的浏览器不具备的特性：当字体有缓存时，没有 FOUT 问题。</p>
 <p>也就是说，当有对应缓存时， @font-face 的 <code>url: src()</code> 规则的行为与 <code>url: local()</code> 类似。</p>
 <p>首先尝试了用 <code>(new Image()).src = &#39;xxx.eot&#39;</code>，但发现 IE 发现文件类型不是图片后，就会中断加载，提前触发 <code>onerror</code> ，这只在资源加载时间大于一定时间后才会出现。</p>
-<p>于是接着尝试利用在 iframe 内定义 @font-face 的方式加载字体。这里又利用了「@font-face 会阻塞 window load event 触发」的特性。注意这个行为曾经在部分浏览器上不总如此，但目前除 Safari 的大部分浏览器上均是如此（显然我没怎么测试）。在 IE 6 - 9 上也是如此。</p>
+<p>于是接着尝试利用在 iframe 内定义 @font-face 的方式加载字体。这里又利用了「@font-face 会阻塞 window load event 触发」的特性。注意这个行为曾经在部分浏览器上不总如此，但目前除 Safari 的大部分浏览器上均是如此（显然我没怎么测试）。在 IE 6 – 9 上也是如此。</p>
 <p>不过当用在 iframe 上时，又有些不同：</p>
 <ol>
-<li>在 IE 6 - 8 中，iframe 用 <code>document.write</code> 填充内容，会，<code>iframe.onload</code> 也会被 @font-face 阻塞</li>
+<li>在 IE 6 – 8 中，iframe 用 <code>document.write</code> 填充内容，会，<code>iframe.onload</code> 也会被 @font-face 阻塞</li>
 <li>在 IE 9 中， iframe 用 <code>document.write</code> 创建内容， iframe.onload 会在 <code>document.close()</code> 的时候立即触发，而不被 font-face 阻塞。如果将 <code>document.close</code> 放在 <code>setTimeout(,1)</code> 内，就会导致 font-face 阻塞 <code>iframe.onload</code> 的触发。</li>
-<li>在 IE 6 - 8 上，页面渲染会被 @font-face 的加载阻塞</li>
-<li>在 IE 6 - 8 上，页面渲染<strong>不会</strong>被用 2 的方式创建的 iframe 内的 @font-face 的加载阻塞</li>
-<li>在 IE 6 - 8 上，页面渲染<strong>会</strong>被用 3 的方法会导致整个页面被 iframe 内的 @font-face 阻塞，iframe 用 <code>setTimeout(,1)</code> 无用，除非设置较长时间</li>
+<li>在 IE 6 – 8 上，页面渲染会被 @font-face 的加载阻塞</li>
+<li>在 IE 6 – 8 上，页面渲染<strong>不会</strong>被用 2 的方式创建的 iframe 内的 @font-face 的加载阻塞</li>
+<li>在 IE 6 – 8 上，页面渲染<strong>会</strong>被用 3 的方法会导致整个页面被 iframe 内的 @font-face 阻塞，iframe 用 <code>setTimeout(,1)</code> 无用，除非设置较长时间</li>
 <li>在 IE9+ 上，页面渲染不会被 @font-face 的加载阻塞</li>
 </ol>
 <p>最后排除掉尚存的、不支持 web font 的浏览器： BlackBerry 5/6, Windows Phone 7/7.5, Opera Mini, Firefox 3.x-</p>
