@@ -2,7 +2,7 @@ https://github.com/houkanshan/fontonload
 
 fontonload 是一个跨浏览器的 web font 字体加载检测装置。使用时，需要修改自己的字体以保证检测成功。
 
-看过目前市面上的几个类似库后，但或多或少有些问题：
+看过目前市面上的几个类似库后，觉得或多或少有些问题：
 
 1. [webfontloader](https://github.com/typekit/webfontloader) 体积大、功能强，对不支持 CSS Font Loading 的浏览器用定时器检测文字区域尺寸变化。
 2. [fontloader](https://github.com/bramstein/fontloader) 原理同上，体积略大，功能略强，主要是完整实现了 CSS Font Load Events Module 的接口。但其尺寸检测也不可靠。
@@ -10,7 +10,7 @@ fontonload 是一个跨浏览器的 web font 字体加载检测装置。使用�
 4. [FontLoader](https://github.com/smnh/FontLoader) 仅对 IE 6 – 9 使用定时器检测，对不支持 `document.fonts` 的浏览器构造一个复杂的、在字体加载时会触发 `scroll` 事件的检测元素进行检测，Nice。而且依赖 AdobeBlank 这个全空白字体进行对比，检测准确。但问题在于，AdobeBlank 这个字体通过 `@font-face` 的 `src: url( data-uri )` 的方式载入，占用体积，而且 data-uri 本身也有 FOUT 问题，需要避免。
 
 所以 fontonload 的目的就是：
-1. 对字体加载的检测，不使用定时器（加载超时的检测不算），而依赖浏览器触发事件。原因在 *smnh* 的文章中有说明。
+1. 对字体加载的检测，不使用定时器（加载超时的检测不算），而依赖浏览器触发事件。原因在 *smnh* 的文章中有说明（见文末参考）。
 2. 不依赖 AdobeBlank 且保证检测的准确性。
 3. 只做检测字体加载这一件事
 
@@ -33,16 +33,18 @@ document.fonts.load('1em ' + fontname).then(success, fail)
 
 不去构造 *smnh* 的复杂的可检测尺寸增加的测试容器，而直接使用简单的可检测尺寸减少的测试容器。
 
-即，构造一个 1px × 1px , `overflow:hidden` 的元素，其内填入检测字符，并设置 `scrollLeft` 到右边缘。并设法让 web font 载入时，支撑容器的字符宽度减小，容器宽度随之减小，这样 `scrollLeft` 也随之减小，触发一次 `scroll` 事件。这完成了 *smnh* 文章中的第一个实验。问题在于如何保证 web font 载入后字符宽度减小。（使用水平滚动而非垂直滚动是为了防止 line-height 撑高高度）
+即，构造一个 1px × 1px , `overflow:hidden` 的元素，其内填入检测字符，并设置 `scrollLeft` 到右边缘。并设法让 web font 载入时，支撑容器的字符宽度减小，容器宽度随之减小，这样 `scrollLeft` 也随之减小，触发一次 `scroll` 事件。这完成了 *smnh* 文章中的第一个实验。问题在于如何保证 web font 载入后字符宽度减小。（使用水平滚动而非垂直滚动是为了防止 `line-height` 撑高高度）
 
-这是这个方法的麻烦之处。需要修改 web font 中的 U+FFFD 字符为空字形。这样值使用 U+FFFD 作为测试字符进行检测，同时被测元素的宽度 (`scrollWidth`) 一定会缩至最小，保证检测的准确。
+这是这个方法的麻烦之处：需要修改 web font 中的 U+FFFD 字符为空字形。这样值使用 U+FFFD 作为测试字符进行检测，同时被测元素的宽度 (`scrollWidth`) 一定会缩至最小，保证检测的准确。
 
 <a href="http://en.wikipedia.org/wiki/Specials_(Unicode_block)">U+FFFD (REPLACEMENT CHARACTER)</a> 位于 Unicode table 中的 Specials block，主要用途是展示当前字体中没有包含的字符，通常是出现了编码错误。所以可以认为这是一个正常网页中不会出现的字符而覆盖掉它。同时这个字符在各个平台中均有定义，因此可保证字体载入前容器被撑大。
 
-Github 项目目录下的 patch.ttf 中在 U+FFFD 处定义了来自 AdobeBlank 的空字形，可使用字体编辑器将它复制进去。
+项目目录下的 patch.ttf 中在 U+FFFD 处定义了来自 AdobeBlank 的空字形，可使用字体编辑器将它复制进去。
 
 
 ![U+FFFD 在不同平台上的表现 (font-family: arial)](/img/fontonload/fffd.png)
+
+关于触发 scroll 的代码和 demo 可去 *smnh* 的[文章](http://smnh.me/web-font-loading-detection-without-timers/)中看。
 
 
 # 对 IE 6 – 9
@@ -58,13 +60,13 @@ IE 6 – 9 虽然不能自动触发 scroll 事件，但它们也具有别的浏�
 不过当用在 iframe 上时，又有些不同：
 
 1. 在 IE 6 – 8 中，iframe 用 `document.write` 填充内容，会，`iframe.onload` 也会被 @font-face 阻塞
-2. 在 IE 9 中， iframe 用 `document.write` 创建内容， iframe.onload 会在 `document.close()` 的时候立即触发，而不被 font-face 阻塞。如果将 `document.close` 放在 `setTimeout(,1)` 内，就会导致 font-face 阻塞 `iframe.onload` 的触发。
+2. 在 IE 9 中， iframe 用 `document.write` 创建内容， iframe.onload 会在 `document.close()` 的时候立即触发，而不被 font-face 阻塞。如果将 `document.close` 放在 `setTimeout(,1)` 内，就会导致 @font-face 阻塞 `iframe.onload` 的触发。
 3. 在 IE 6 – 8 上，页面渲染会被 @font-face 的加载阻塞
 4. 在 IE 6 – 8 上，页面渲染**不会**被用 2 的方式创建的 iframe 内的 @font-face 的加载阻塞
 5. 在 IE 6 – 8 上，页面渲染**会**被用 3 的方法会导致整个页面被 iframe 内的 @font-face 阻塞，iframe 用 `setTimeout(,1)` 无用，除非设置较长时间
 6. 在 IE9+ 上，页面渲染不会被 @font-face 的加载阻塞
 
-IE 6 – 9 中，用 2 的方法得到的 network timeline（在 onload 时发出一个 img 请求，作为时间标记，）。可见， onload 分别在各自的字体被载入时触发，但 @font-face 的加载会被所有 iframe 中 @font-face 的加载阻塞（不确定原因）
+IE 6 – 9 中，用 2 的方法得到的 network timeline（在 onload 时发出一个 img 请求，作为时间标记）。可见， onload 分别在各自的字体被载入时触发，但 @font-face 的加载会被所有 iframe 中 @font-face 的加载阻塞（不确定原因）
 
 ![图中两个 404 请求为 onload 触发的标记](/img/fontonload/ie6-9-no-img.png)
 
@@ -84,7 +86,13 @@ IE 6 – 9 中，用 2 的方法得到的 network timeline（在 onload 时发�
 再排除掉尚存的、不支持 web font 的浏览器： BlackBerry 5/6, Windows Phone 7/7.5, Opera Mini, Firefox 3.x-
 
 
-竟然又写了这么长的水文…
+目前看来， fontonload 在 IE 9+ 及其他主流浏览器上均表现稳定。而对 IE 6 – 8 还需要继续测试及尝试，但这其实也是其他几个 web font 加载检测库共存的问题，总之低端浏览器场景使用时还需谨慎。
+
+
+竟然又水了这么长…
+
+
+----
 
 # 相关：
 
