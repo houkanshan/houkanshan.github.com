@@ -41,6 +41,10 @@ document.fonts.load('1em ' + fontname).then(success, fail)
 
 Github 项目目录下的 patch.ttf 中在 U+FFFD 处定义了来自 AdobeBlank 的空字形，可使用字体编辑器将它复制进去。
 
+
+![U+FFFD 在不同平台上的表现](/img/fontonload/fffd.png)
+
+
 # 对 IE 6 – 9
 
 IE 6 – 9 虽然不能自动触发 scroll 事件，但它们也具有别的浏览器不具备的特性：当字体有缓存时，没有 FOUT 问题。
@@ -60,7 +64,24 @@ IE 6 – 9 虽然不能自动触发 scroll 事件，但它们也具有别的浏�
 5. 在 IE 6 – 8 上，页面渲染**会**被用 3 的方法会导致整个页面被 iframe 内的 @font-face 阻塞，iframe 用 `setTimeout(,1)` 无用，除非设置较长时间
 6. 在 IE9+ 上，页面渲染不会被 @font-face 的加载阻塞
 
-最后排除掉尚存的、不支持 web font 的浏览器： BlackBerry 5/6, Windows Phone 7/7.5, Opera Mini, Firefox 3.x-
+IE 6 – 9 中，用 2 的方法得到的 network timeline（在 onload 时发出一个 img 请求，作为时间标记，）。可见， onload 分别在各自的字体被载入时触发，但 @font-face 的加载会被所有 iframe 中 @font-face 的加载阻塞（不确定原因）
+
+![图中两个 404 请求为 onload 触发的标记](/img/fontonload/ie6-9-no-img.png)
+
+但对 IE 6 – 9 有缓存情况下还有有问题。iframe 内的 @font-face 直接不请求了，使用缓存字体，而 parent 页面中还是会正常的请求了一次，并获得 304。这样 parent 中字体载入时间比 iframe 中晚，检测失败。如图
+
+![onload 与 @face-face 的加载同时发生](/img/fontonload/ie6-9-no-img-failed.png)
+
+于是在 iframe 中再加入一个 src 为字体文件的 img 对象来保证 iframe 中的请求被发出，如图
+
+![第 5 / 6 行为 img 触发的请求](/img/fontonload/ie6-9-with-img.png)
+
+![有缓存时，IE 9 的 network timeline](/img/fontonload/ie9-final.png)
+
+最后，对 IE 9，字体的所有 url / src 都用带 `?#iefix` 可触请求。而对 IE 6 – 8 ，img 的 src 不带 `?#iefix`，这样才能发出 img 的请求。
+
+
+再排除掉尚存的、不支持 web font 的浏览器： BlackBerry 5/6, Windows Phone 7/7.5, Opera Mini, Firefox 3.x-
 
 
 竟然又写了这么长的水文…
