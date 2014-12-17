@@ -42,7 +42,7 @@ document.fonts.load('1em ' + fontname).then(success, fail)
 Github 项目目录下的 patch.ttf 中在 U+FFFD 处定义了来自 AdobeBlank 的空字形，可使用字体编辑器将它复制进去。
 
 
-![U+FFFD 在不同平台上的表现](/img/fontonload/fffd.png)
+![U+FFFD 在不同平台上的表现 (font-family: arial)](/img/fontonload/fffd.png)
 
 
 # 对 IE 6 – 9

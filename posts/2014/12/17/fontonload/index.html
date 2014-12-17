@@ -31,7 +31,7 @@
 <p>这是这个方法的麻烦之处。需要修改 web font 中的 U+FFFD 字符为空字形。这样值使用 U+FFFD 作为测试字符进行检测，同时被测元素的宽度 (<code>scrollWidth</code>) 一定会缩至最小，保证检测的准确。</p>
 <p><a href="http://en.wikipedia.org/wiki/Specials_(Unicode_block)">U+FFFD (REPLACEMENT CHARACTER)</a> 位于 Unicode table 中的 Specials block，主要用途是展示当前字体中没有包含的字符，通常是出现了编码错误。所以可以认为这是一个正常网页中不会出现的字符而覆盖掉它。同时这个字符在各个平台中均有定义，因此可保证字体载入前容器被撑大。</p>
 <p>Github 项目目录下的 patch.ttf 中在 U+FFFD 处定义了来自 AdobeBlank 的空字形，可使用字体编辑器将它复制进去。</p>
-<p><img src="/img/fontonload/fffd.png" alt="U+FFFD 在不同平台上的表现"></p>
+<p><img src="/img/fontonload/fffd.png" alt="U+FFFD 在不同平台上的表现 (font-family: arial)"></p>
 <h1 id="-ie-6-9">对 IE 6 – 9</h1>
 <p>IE 6 – 9 虽然不能自动触发 scroll 事件，但它们也具有别的浏览器不具备的特性：当字体有缓存时，没有 FOUT 问题。</p>
 <p>也就是说，当有对应缓存时， @font-face 的 <code>url: src()</code> 规则的行为与 <code>url: local()</code> 类似。</p>
