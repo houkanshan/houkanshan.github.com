@@ -139,5 +139,12 @@
     "file": "src/posts/2014-12-17-fontonload.md",
     "dest": "posts/2014/12/17/fontonload",
     "layout": "src/template/posts/_post.jade"
+  },
+  {
+    "title": "CSS Conf 2015",
+    "date": "2015-01-10",
+    "file": "src/posts/2015-01-10-CSS-Conf-2015.md",
+    "dest": "posts/2015/01/10/CSS-Conf-2015",
+    "layout": "src/template/posts/_post.jade"
   }
 ]
