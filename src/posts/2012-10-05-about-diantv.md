@@ -44,14 +44,14 @@ Meteor很酷，理念也很酷，可是我不想用它。如果要开始去理�
     Event.trigger('req://people/houkanshan?type=get');
     
 
-###Spine.js
+### Spine.js
 
 这个核心代码(js)大概900行，但是我好像最多只用了400行。他的model类基本没有用上。而且我觉得实际上他的模块继承达不到要求啊。
 
 还有我发现spine现在的代码，应该是已经跑不了*javascript web application*这本书里面的代码的了吧... ... 
 
 
-###CSS3动画
+### CSS3动画
 CSS3动画主要的特点就是流畅(这个在移动应用上很重要[CSS3 vs jQuery Animations](http://dev.opera.com/articles/view/css3-vs-jquery-animations/))，
 而且可叠加(比如变大和变小可以同时使用，结果就是向量加法~)，
 
