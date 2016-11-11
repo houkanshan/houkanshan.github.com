@@ -11,7 +11,7 @@ Tip: Change the LayoutType to parallel, and use the search
 
 <iframe class="github-iframe" height="900px"
   style="width:100%;border:none;"
-  src="//houkanshan.github.io/amd-visualization/">
+  src="//houkanshan.com/amd-visualization/">
 fuck the jekyll template, hehe...
 </iframe>
 
