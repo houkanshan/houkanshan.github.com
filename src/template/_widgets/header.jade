@@ -4,7 +4,7 @@ mixin nav-list(curr, navData)
       li
         if curr === navItem.name
           span.nav-item.curr-nav= navItem.title
-        else 
+        else
           a.nav-item(href=navItem.url title=navItem.title)= navItem.title
 
 mixin header-content(curr)
@@ -19,11 +19,11 @@ mixin title(curr)
     +link-title()
 
 mixin bare-title()
-  h1.blog-title Houkanshan’s Blog
+  h1.blog-title Hou Mai
 
 mixin link-title()
   h1.blog-title
-    a(href="/" title="Home") Houkanshan’s Blog
+    a(href="/" title="Home") Hou Mai
 
 mixin nav(curr)
   nav#blog-header-nav

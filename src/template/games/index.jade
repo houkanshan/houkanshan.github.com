@@ -1,4 +1,5 @@
-// posts/index.jade
+// games/index.jade
+
 extends /_layout.jade
 include /_widgets/index.jade
 
@@ -10,7 +11,7 @@ block bottom_js
   //-script(src="js/posts.js")
 
 block body
-  - var curr = 'posts'
+  - var curr = 'games'
   header#posts-header.minor-header
     +header-content(curr)
   article#posts-content

@@ -73,6 +73,16 @@ h6 {
   font-size: 100%;
   font-weight: normal;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+  word-wrap: break-word;
+}
 q:before,
 q:after {
   content: '';
@@ -115,8 +125,6 @@ input[type="submit"] {
   -webkit-appearance: button;
 }
 input[type="search"] {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   -webkit-appearance: textfield;
 }
@@ -213,9 +221,10 @@ table {
 .table-striped tbody tr:nth-child(odd) th {
   background-color: #e6e6dd;
 }
-@font-face {
-  font-family: 'arkyakumono';
-  src: url("/fonts/arkyakumono.woff") format('woff'), url("/fonts/arkyakumono.ttf") format('truetype'), url("/fonts/arkyakumono.svg#arkicons") format('svg');
++font-face(name: 'arkyakumono',
+path: font-path,
+fontFamily: 'arkyakumono',
+has_block: true) {
   font-weight: 400;
   font-style: normal;
 }
@@ -340,12 +349,12 @@ body h7 a {
   text-decoration: none;
 }
 body .underline {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px 0px 0 #fff, -1px 0px 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.75, rgba(0,0,0,0)), color-stop(0.75, rgba(0,0,0,0.8)));
   background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -o-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px 0px 0 #fff, -1px 0px 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff;
   background-image: linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-repeat: repeat-x;
   -webkit-background-size: 2px 2px;
@@ -360,6 +369,16 @@ body a {
   text-decoration: none;
   color: #000;
 }
+body,
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  font-family: 'arkyakumono', 'Avenir Next', "Helvetica Neue", Helvetica, "Lucida Grande", "Luxi Sans", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei Mono", LiGothicMed;
+  font-weight: 400;
+}
 .article-content {
   line-height: 2;
   font-family: 'arkyakumono', 'Lora', Georgia, Cambria, "Times New Roman", Times, serif, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei Mono", LiGothicMed;
@@ -367,6 +386,8 @@ body a {
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
+  font-family: 'arkyakumono', 'Avenir Next', "Helvetica Neue", Helvetica, "Lucida Grande", "Luxi Sans", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei Mono", LiGothicMed;
+  font-weight: 400;
 }
 .article-content p,
 .article-content pre,
@@ -407,12 +428,12 @@ body a {
 }
 .article-content a {
   font-family: 'LoraItalic', "Georgia Italic", "Georgia-Italic", STKaiti, "AR PL UKai", "AR PL KaitiM GB", KaiTi, KaiTi_GB2312, "TW-Kai";
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px 0px 0 #fff, -1px 0px 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.75, rgba(0,0,0,0)), color-stop(0.75, rgba(0,0,0,0.8)));
   background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -o-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px 0px 0 #fff, -1px 0px 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff;
   background-image: linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-repeat: repeat-x;
   -webkit-background-size: 2px 2px;
@@ -484,12 +505,12 @@ body a {
   font-size: 24px;
 }
 .article-content h1 a {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px 0px 0 #fff, -1px 0px 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.75, rgba(0,0,0,0)), color-stop(0.75, rgba(0,0,0,0.8)));
   background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -o-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px 0px 0 #fff, -1px 0px 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff;
   background-image: linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-repeat: repeat-x;
   -webkit-background-size: 4px 4px;
@@ -652,7 +673,7 @@ body,
   opacity: 1;
   filter: alpha(opacity=100);
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px), only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px),only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
   .main-header .center-header {
     position: absolute;
   }
@@ -676,6 +697,7 @@ body,
 #blog-footer-nav li {
   display: inline-block;
   font-size: 13px;
+  font-weight: 400;
 }
 #blog-header-nav li:first-child:before,
 #blog-footer-nav li:first-child:before {
@@ -715,19 +737,22 @@ body,
 .posts-list .post-item {
   margin-bottom: 42px;
 }
+.posts-list .post-item a {
+  display: block;
+}
 .posts-list .post-item a:hover .title span {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px 0px 0 #fff, -1px 0px 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.75, rgba(0,0,0,0)), color-stop(0.75, rgba(0,0,0,0.8)));
   background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -o-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px 0px 0 #fff, -1px 0px 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff;
   background-image: linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-repeat: repeat-x;
   -webkit-background-size: 4px 4px;
   -moz-background-size: 4px 4px;
   background-size: 4px 4px;
-  background-position: 0 26px;
+  background-position: 0 30px;
 }
 .posts-list .cover {
   height: 100px;

@@ -1,13 +1,15 @@
 var gulp = require('gulp')
 var gutil = require('gulp-util')
 var _ = require('lodash')
+var debug = require('gulp-debug')
 
 var fetchLocals = require('./lib/fetch-locals')
 var postsData = require('./lib/posts-data')
+var { readYaml, writeYaml } = require('./lib/yaml')
 
 var globalLocals = fetchLocals({
       cwd: 'src/'
-    , blob: ['template/**/data.json', 'posts/**/data.json']
+    , blob: ['template/**/data.yaml', 'posts/**/data.yaml']
     })
   , jadeBasedir = 'src/template/'
 
@@ -15,18 +17,18 @@ var stylus = require('gulp-stylus')
 gulp.task('stylus', function () {
   gulp.src(['src/styl/**/*.styl', '!src/styl/_*/**/*', '!src/styl/**/_*'])
     .pipe(stylus({
-        //set: ['compress'],
         include: ['bower_components'],
       })
       .on('error', gutil.log))
     .pipe(gulp.dest('./css/'))
+    .pipe(debug({ title: 'Stylus' }))
 })
 
 // TODO: config
 var paths = [
   {
-    blob: ['src/posts/**/*.md', '!src/posts/**/*.draft.md']
-  , dataPath: 'src/posts/data.json'
+    blob: ['src/posts/**/*.md', '!src/posts/**/*.draft.md', '!src/posts/**/*.hide.md']
+  , dataPath: 'src/posts/data.yaml'
   , dest: 'posts/'
   , defaultData: {
       layout: 'src/template/posts/_post.jade'
@@ -34,23 +36,17 @@ var paths = [
   }
 ]
 
-var jsonfile = require('jsonfile')
-gulp.task('posts-json', function() {
+gulp.task('posts-yaml', function() {
   paths.forEach(function(path) {
-    var origData
-      , newData
+    var origData, newData
 
-    try {
-      origData = jsonfile.readFileSync(path.dataPath)
-    } catch(e) {
-      origData = {}
-    }
+    origData = readYaml(path.dataPath)
     newData = postsData({
       postsPattern: path.blob
     , defaultData: path.defaultData
     })
     _.extend(newData, origData)
-    jsonfile.writeFileSync(path.dataPath, newData)
+    writeYaml(path.dataPath, newData)
   })
 })
 
@@ -58,9 +54,10 @@ var markdown = require('gulp-markdown')
 var map = require('map-stream')
 var rename = require('gulp-rename')
 var hljs = require('highlight.js')
-gulp.task('posts', ['posts-json'], function() {
+gulp.task('posts', ['posts-yaml'], function() {
   paths.forEach(function(path) {
-    var posts = jsonfile.readFileSync(path.dataPath)
+    var posts = readYaml(path.dataPath)
+
     posts.forEach(function(post) {
       // extract render layout
       console.log(post.file)
@@ -118,6 +115,7 @@ gulp.task('jade', ['posts'], function() {
     }).on('error', gutil.log))
     .pipe(rename(detectExt))
     .pipe(gulp.dest('./'))
+    .pipe(debug({ title: 'Jade' }))
 
   function detectExt(pathObj) {
     var secondExtname = path.extname(pathObj.basename)
@@ -205,7 +203,7 @@ gulp.task('flo', function(done) {
 var clean = require('gulp-clean')
 gulp.task('clean-data', function() {
   gulp.src([
-  , 'src/posts/data.json'
+  , 'src/posts/data.yaml'
   ])
     .pipe(clean())
 
@@ -222,7 +220,7 @@ gulp.task('clean', function() {
 })
 
 gulp.task('css', ['stylus'])
-gulp.task('json', ['posts-json'])
+gulp.task('yaml', ['posts-yaml'])
 gulp.task('html', ['jade'])
 gulp.task('build', ['css', 'html', 'js'])
 gulp.task('server', ['build', 'watch', 'flo', 'static'])

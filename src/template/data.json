@@ -1,6 +1,6 @@
 {
   "site": {
-    "url": "http://houkanshan.github.com"
+    "url": "https://houkanshan.com"
   , "name": "houkanshan"
   , "email": "houkanshan AT gmail.com"
   }
@@ -9,8 +9,13 @@
   }
 , "nav": [
     {
+      "name": "games"
+    , "title": "Games"
+    , "url": "/games/"
+    }
+  , {
       "name": "posts"
-    , "title": "Posts"
+    , "title": "Articles"
     , "url": "/posts/"
     }
   , {

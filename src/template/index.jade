@@ -11,11 +11,12 @@ block button_js
 
 block body
   - var curr = 'home'
-  header#home-header.main-header
+  //- header#home-header.main-header
+  header#home-header.minor-header
     +header-content(curr)
 
   article#home-content
-    +posts-list(posts.slice().reverse().slice(0, 5))
+    +posts-list(posts.filter(function(p) {return !p.hide}).slice().reverse().slice(0, 5))
 
     footer#posts-footer
       a.hover-lighten(href="posts") more

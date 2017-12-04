@@ -29,6 +29,7 @@
 }
 #post-content-footer .post-switcher {
   display: block;
+  cursor: pointer;
 }
 #post-content-footer .prev {
   margin-left: 1em;
@@ -44,18 +45,18 @@
   font-size: 16px;
 }
 #post-content-footer .post-switcher:hover .title span {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px 0px 0 #fff, -1px 0px 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.75, rgba(0,0,0,0)), color-stop(0.75, rgba(0,0,0,0.8)));
   background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -o-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 1px 0px 0 #fff, -1px 0px 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff;
   background-image: linear-gradient(top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
   background-repeat: repeat-x;
   -webkit-background-size: 4px 4px;
   -moz-background-size: 4px 4px;
   background-size: 4px 4px;
-  background-position: 0 21px;
+  background-position: 0 26px;
 }
 .comments-section {
   margin-top: 54px;

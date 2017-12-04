@@ -38,18 +38,18 @@ block body
       - var next = posts[current.index + 1]
 
       .row-half
-        if next
-          a.next.post-switcher(href="/#{next.dest}/")
-            label Next
-            h4.title
-              span= next.title
-
-      .row-half
         if prev
           a.prev.post-switcher(href="/#{prev.dest}/")
             label Prev
             h4.title
               span= prev.title
+
+      .row-half
+        if next
+          a.next.post-switcher(href="/#{next.dest}/")
+            label Next
+            h4.title
+              span= next.title
 
 
   footer#post-footer.main-footer

@@ -1,0 +1,17 @@
+---
+site:
+  url: https://houkanshan.com
+  name: houkanshan
+  email: houkanshan AT gmail.com
+comments:
+  githubRepo: houkanshan/houkanshan.github.com
+nav:
+- name: games
+  title: Games
+  url: "/games/"
+- name: posts
+  title: Articles
+  url: "/posts/"
+- name: about
+  title: About
+  url: "/about/"

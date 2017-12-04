@@ -4,24 +4,26 @@
     "date": "2012-04-06",
     "file": "src/posts/2012-04-06-helloworld.md",
     "dest": "posts/2012/04/06/helloworld",
-    "layout": "src/template/posts/_post.jade"
+    "layout": "src/template/posts/_post.jade",
+    "hide": true
   },
   {
     "title": "DT Status",
     "date": "2012-04-14",
     "file": "src/posts/2012-04-14-dt_status.md",
     "dest": "posts/2012/04/14/dt_status",
-    "layout": "src/template/posts/_post.jade"
+    "layout": "src/template/posts/_post.jade",
+    "hide": true
   },
   {
-    "title": "Git repo in local",
+    "title": "Git Repo in Local",
     "date": "2012-04-16",
     "file": "src/posts/2012-04-16-git-repo.md",
     "dest": "posts/2012/04/16/git-repo",
     "layout": "src/template/posts/_post.jade"
   },
   {
-    "title": "After reading bootstrap",
+    "title": "After Reading Bootstrap",
     "date": "2012-06-14",
     "file": "src/posts/2012-06-14-after-read-bootstrap.md",
     "dest": "posts/2012/06/14/after-read-bootstrap",
@@ -42,7 +44,7 @@
     "layout": "src/template/posts/_post.jade"
   },
   {
-    "title": "CSS for status",
+    "title": "CSS for State",
     "date": "2012-09-30",
     "file": "src/posts/2012-09-30-css-status.md",
     "dest": "posts/2012/09/30/css-status",
@@ -63,14 +65,14 @@
     "layout": "src/template/posts/_post.jade"
   },
   {
-    "title": "Dynamic Configuration Of CSS",
+    "title": "Dynamic Configuration of CSS",
     "date": "2012-10-09",
     "file": "src/posts/2012-10-09-dynamic-configuration-of-css.md",
     "dest": "posts/2012/10/09/dynamic-configuration-of-css",
     "layout": "src/template/posts/_post.jade"
   },
   {
-    "title": "HTML CSS note",
+    "title": "Note on HTML & CSS",
     "date": "2012-10-30",
     "file": "src/posts/2012-10-30-html-css-mark.md",
     "dest": "posts/2012/10/30/html-css-mark",
@@ -81,7 +83,8 @@
     "date": "2013-06-28",
     "file": "src/posts/2013-06-28-test-parallex.md",
     "dest": "posts/2013/06/28/test-parallex",
-    "layout": "src/template/posts/_post.jade"
+    "layout": "src/template/posts/_post.jade",
+    "hide": true
   },
   {
     "title": "Amd Visualization",
@@ -111,7 +114,7 @@
     "abstract": "Two music visualisation projects make by Processing, and stone."
   },
   {
-    "title": "points, 2014/06",
+    "title": "Points, 2014/06",
     "date": "2014-06-16",
     "file": "src/posts/2014-06-16-points.md",
     "dest": "posts/2014/06/16/points",

@@ -1,0 +1,93 @@
+- title: Git Repo in Local
+  date: '2012-04-16'
+  file: src/posts/2012-04-16-git-repo.md
+  dest: posts/2012/04/16/git-repo
+  layout: src/template/posts/_post.jade
+- title: After Reading Bootstrap
+  date: '2012-06-14'
+  file: src/posts/2012-06-14-after-read-bootstrap.md
+  dest: posts/2012/06/14/after-read-bootstrap
+  layout: src/template/posts/_post.jade
+- title: Bootstrap's Less
+  date: '2012-08-11'
+  file: src/posts/2012-08-11-bootstrap-less.md
+  dest: posts/2012/08/11/bootstrap-less
+  layout: src/template/posts/_post.jade
+- title: CSS Modularization
+  date: '2012-08-19'
+  file: src/posts/2012-08-19-module-css.md
+  dest: posts/2012/08/19/module-css
+  layout: src/template/posts/_post.jade
+- title: CSS for State
+  date: '2012-09-30'
+  file: src/posts/2012-09-30-css-status.md
+  dest: posts/2012/09/30/css-status
+  layout: src/template/posts/_post.jade
+- title: About DianTV
+  date: '2012-10-05'
+  file: src/posts/2012-10-05-about-diantv.md
+  dest: posts/2012/10/05/about-diantv
+  layout: src/template/posts/_post.jade
+- title: About Scss
+  date: '2012-10-06'
+  file: src/posts/2012-10-06-about-scss.md
+  dest: posts/2012/10/06/about-scss
+  layout: src/template/posts/_post.jade
+- title: Dynamic Configuration of CSS
+  date: '2012-10-09'
+  file: src/posts/2012-10-09-dynamic-configuration-of-css.md
+  dest: posts/2012/10/09/dynamic-configuration-of-css
+  layout: src/template/posts/_post.jade
+- title: Note on HTML & CSS
+  date: '2012-10-30'
+  file: src/posts/2012-10-30-html-css-mark.md
+  dest: posts/2012/10/30/html-css-mark
+  layout: src/template/posts/_post.jade
+- title: Amd Visualization
+  date: '2013-08-25'
+  file: src/posts/2013-08-25-amd-visualization.md
+  dest: posts/2013/08/25/amd-visualization
+  layout: src/template/posts/_post.jade
+  abstract: Visualize a f2e project which base on AMD format.
+  cover: /img/cover/2013-08-25-amd-visualization.png
+- title: Drumcat
+  date: '2014-03-11'
+  file: src/posts/2014-03-11-drumcat.md
+  dest: posts/2014/03/11/drumcat
+  layout: src/template/posts/_post.jade
+  abstract: A metronome.
+  cover: /img/cover/2014-03-11-drumcat.png
+- title: Stonert & Stormic
+  date: '2014-06-07'
+  file: src/posts/2014-06-07-stonert-stormic.md
+  dest: posts/2014/06/07/stonert-stormic
+  layout: src/template/posts/_post.jade
+  cover: /img/cover/2014-06-07-stonert-stormic.png
+  abstract: 'Two music visualisation projects make by Processing, and stone.'
+- title: 'Points, 2014/06'
+  date: '2014-06-16'
+  file: src/posts/2014-06-16-points.md
+  dest: posts/2014/06/16/points
+  layout: src/template/posts/_post.jade
+- title: Mojikumi
+  date: '2014-06-18'
+  file: src/posts/2014-06-18-mojikumi.md
+  dest: posts/2014/06/18/mojikumi
+  layout: src/template/posts/_post.jade
+  cover: /img/cover/2014-06-18-mojikumi.png
+  abstract: A implement of mojikumi (标点挤压) in a hack way through opentype kerning.
+- title: 童年阴影
+  date: '2014-08-17'
+  file: src/posts/2014-08-17-shadow-of-childhood.md
+  dest: posts/2014/08/17/shadow-of-childhood
+  layout: src/template/posts/_post.jade
+- title: fontonload
+  date: '2014-12-17'
+  file: src/posts/2014-12-17-fontonload.md
+  dest: posts/2014/12/17/fontonload
+  layout: src/template/posts/_post.jade
+- title: CSS Conf 2015
+  date: '2015-01-10'
+  file: src/posts/2015-01-10-CSS-Conf-2015.md
+  dest: posts/2015/01/10/CSS-Conf-2015
+  layout: src/template/posts/_post.jade
