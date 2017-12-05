@@ -9,7 +9,7 @@ var { readYaml, writeYaml } = require('./lib/yaml')
 
 var globalLocals = fetchLocals({
       cwd: 'src/'
-    , blob: ['template/**/data.yaml', 'posts/**/data.yaml']
+    , blob: ['template/**/*.yaml', 'posts/**/*.yaml']
     })
   , jadeBasedir = 'src/template/'
 

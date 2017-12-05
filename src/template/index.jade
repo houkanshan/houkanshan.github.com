@@ -15,11 +15,16 @@ block body
   header#home-header.minor-header
     +header-content(curr)
 
-  article#home-content
-    +posts-list(posts.filter(function(p) {return !p.hide}).slice().reverse().slice(0, 5))
-
+  article#home-game-content
+    +works-list(template.selected)
     footer#posts-footer
-      a.hover-lighten(href="posts") more
+      a.hover-lighten(href="works") more
+
+  //- article#home-post-content
+  //-   +posts-list(posts.slice().reverse().slice(0, 5))
+
+  //-   footer#posts-footer
+  //-     a.hover-lighten(href="posts") more
 
   footer#home-footer.main-footer
     +footer-content(curr)

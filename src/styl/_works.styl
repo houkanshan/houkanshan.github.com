@@ -1,0 +1,43 @@
+@import '_mixins'
+@import '_variable'
+
+#games
+  margin-bottom: 30px
+
+#works-content
+  h1
+    font-size: 30px
+    line-height: 1
+    font-weight: $bolderWeight
+    margin-bottom: 20px
+
+.works-list
+  margin-right: (- 2 * 8px)
+  .works-item
+    margin-right: (- @margin-right)
+    width: ((wrapperWidth - 2*@margin-right) / 3)
+    display: inline-block
+    vertical-align: top
+    margin-bottom: 16px
+    line-height: 1.5
+    .cover
+      width: 100%
+      height: 140px
+      background-size: cover
+      margin-bottom: 8px
+      position: relative
+      &::before
+        content: ''
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        border: 1px solid #ddd
+    .title
+      font-size: 16px
+      line-height: 1.2
+      margin-bottom: 2px
+    .desc
+      font-size: 13px
+      color: #666

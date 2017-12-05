@@ -9,9 +9,9 @@
   }
 , "nav": [
     {
-      "name": "games"
-    , "title": "Games"
-    , "url": "/games/"
+      "name": "works"
+    , "title": "Works"
+    , "url": "/works/"
     }
   , {
       "name": "posts"

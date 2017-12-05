@@ -6,12 +6,22 @@ site:
 comments:
   githubRepo: houkanshan/houkanshan.github.com
 nav:
-- name: games
-  title: Games
-  url: "/games/"
+- name: works
+  title: Works
+  url: "/works/"
 - name: posts
   title: Articles
   url: "/posts/"
 - name: about
   title: About
   url: "/about/"
+selected:
+- title: Day & Night
+  url: 'https://houkanshan.com/day-and-night'
+  desc: Solo, Puzzle, iOS
+- title: What to do in the next minute?
+  url: 'https://itunes.apple.com/app/what-to-do-in-the-next-minute/id1293668899?ls=1&mt=8'
+  desc: Solo, Useless app, iOS
+- title: DrumCat
+  url: 'https://houkanshan.com/drumcat/'
+  desc: Solo, Metronome, HTML

@@ -11,12 +11,17 @@ block bottom_js
   //-script(src="js/posts.js")
 
 block body
-  - var curr = 'games'
-  header#posts-header.minor-header
+  - var curr = 'works'
+  header#works-header.minor-header
     +header-content(curr)
-  article#posts-content
+  article#works-content
+    section#games
+      h1 Games
+      +works-list(template.works.games)
 
-    +posts-list(posts.filter(function(p) {return !p.hide}).slice().reverse())
+    section#short
+      h1 Short Works
+      +works-list(template.works.short)
 
   footer#posts-footer.main-footer
     +footer-content(curr)

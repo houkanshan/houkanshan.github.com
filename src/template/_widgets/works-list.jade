@@ -1,0 +1,10 @@
+mixin works-list(works)
+  ul.works-list
+    each w in works
+      li.works-item
+        a(href="#{w.url}" title=w.title)
+          .works-hd
+            .cover(style="background-image:url(#{w.cover})")
+          .works-bd
+            .title= w.title
+            .desc= w.desc
