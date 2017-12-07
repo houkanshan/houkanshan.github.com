@@ -4,25 +4,25 @@
   </script>
 <![endif]-->
 <link href="/css/post.css" rel="stylesheet"></head><body class="theme-modern"><div id="top"></div><div class="wrapper"><header id="post-header" class="minor-header"><div class="header-wrapper hover-toggler-fade"><nav id="blog-header-nav"><ul class="nav-list"><li><a href="/works/" title="Works" class="nav-item">Works</a></li><li><a href="/posts/" title="Articles" class="nav-item">Articles</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav><a href="/"><div class="when-hover"><h1 class="blog-title">Hou Mai</h1></div></a></div></header><article id="post-content"><header id="post-content-header"><h2>About DianTV</h2></header><article><div class="article-content"><p>（对了，不知道这里的图能不能在局域网显示，因为都是放在google doc上的，东西还是要放一起的好）</p>
-<p><img src="https://docs.google.com/drawings/pub?id=1bjQG8XPz1RAE5dRQ7BfShonpmfyNqvTQzsbmVUtVJn0&amp;w=959&amp;h=528" alt="DianTv"></p>
+<p><img src="https://docs.google.com/drawings/pub?id=1bjQG8XPz1RAE5dRQ7BfShonpmfyNqvTQzsbmVUtVJn0&amp;w=959&amp;h=528" alt="DianTv" title="null"/><figcaption>DianTv</figcaption></p>
 <p><a href="https://github.com/houkanshan/DianTv">DianTv</a>最初就是图里这个土东西。
 简单的用Meteor写的东西，分量个端，一个是在电梯屏幕上打开的页面，另一个是其他电脑上
 打开的。两个最大的不同就是一个可以编辑，而另一个不行。</p>
 <p>可是我不喜欢用Meteor–总是不知道这样做会发生什么，也许是我接触的编程思想太少。
 Meteor很酷，理念也很酷，可是我不想用它。如果要开始去理解一个框架，Meteor感觉还不适合。</p>
 <p>于是就有了下面所示的另一个土东西，<a href="https://github.com/houkanshan/DianTv2">DianTimes (DianTv2.0)</a></p>
-<p><img src="https://docs.google.com/drawings/pub?id=14aRS_iuU-6cRe_EcPARQ_jIAwYakJXY8PCZDa1Xd1jg&amp;w=959&amp;h=528" alt="DianTv2"></p>
+<p><img src="https://docs.google.com/drawings/pub?id=14aRS_iuU-6cRe_EcPARQ_jIAwYakJXY8PCZDa1Xd1jg&amp;w=959&amp;h=528" alt="DianTv2" title="null"/><figcaption>DianTv2</figcaption></p>
 <p>一个特点是可以直接在显示的内容上编辑，编辑后保存直接显示效果，没有再次加载的过程~</p>
 <p>(= =!)好吧。虽然换了个洋气的称呼还是不改他土的本质。DianTv从开始弄到让他上线大概花了一个礼拜，这个2从后台restful到前端完成居然花了1个月
 (不对，其实前端的主要代码还是上个礼拜在90House弄的)！</p>
 <p>其实把代码拿掉外部的厍也就1.5K多的样子。。。原因主要除了编码能力弱外，还有就是折腾的东西有点多，肯定是过度设计了的。</p>
-<p><img src="https://docs.google.com/drawings/pub?id=1AZHespKey-Wr9kFdbz-IxjzsfRG3bJVQDKfvgS3ZlJQ&amp;w=1732&amp;h=1133" alt="framework"></p>
+<p><img src="https://docs.google.com/drawings/pub?id=1AZHespKey-Wr9kFdbz-IxjzsfRG3bJVQDKfvgS3ZlJQ&amp;w=1732&amp;h=1133" alt="framework" title="null"/><figcaption>framework</figcaption></p>
 <p>我一开始脑袋里就在想这个图，还觉得很美好。其实呢，呵呵。（虚线是继承关系，实线是依赖关系，点线是消息流，最上面是全局依赖）</p>
 <p>最纠结的还是<strong>Pub/Sub</strong>（不要笑我！），一开始实在不知道这个看起来很好的东西该怎么用。</p>
 <p>用一个全局的总线来广播把，怕效率低，更怕结构乱。
 每个模块独立进行事件分发吧，又觉得其实就是调用关系，犯不着trigger(pub)一下，而且用多了调试起来很麻烦。(我觉得我是被一些教程误导了)</p>
 <p>纠结了很久决定主要用pub/sub主要处理异步事件。大概是这样…</p>
-<p><img src="https://docs.google.com/drawings/pub?id=1ay4G7v8j7XICMj6AwzuTK552giuCpneFCzA_06C85R4&amp;w=440" alt="pubsub"></p>
+<p><img src="https://docs.google.com/drawings/pub?id=1ay4G7v8j7XICMj6AwzuTK552giuCpneFCzA_06C85R4&amp;w=440" alt="pubsub" title="null"/><figcaption>pubsub</figcaption></p>
 <p>直接调用最麻烦的还是异步/同步的问题，用pub/sub来解决。这个图主要是利用一条消息总线来连接不同模块，
 每个模块<strong>不直接依赖</strong>其他模块，只需要一条消息总线，
 并且<strong>屏蔽同步异步的差异</strong>, 每个模块自己需要处理的异步事件只是服务器连接、用户事件、模块功能调用。</p>
@@ -56,7 +56,7 @@ Meteor很酷，理念也很酷，可是我不想用它。如果要开始去理�
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();</script></div></footer></article><footer id="post-content-footer"><div class="row-half"><a href="/posts/2012/09/30/css-status/" class="prev post-switcher"><label>Prev</label><h4 class="title"><span>CSS for State</span></h4></a></div><div class="row-half"><a href="/posts/2012/10/06/about-scss/" class="next post-switcher"><label>Next</label><h4 class="title"><span>About Scss</span></h4></a></div></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper"><a href="#top"><span class="top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/works/" title="Works" class="nav-item">Works</a></li><li><a href="/posts/" title="Articles" class="nav-item">Articles</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/core.js"></script><script src="/js/post.js"></script><script>var _gaq = _gaq || [];
+})();</script></div></footer></article><footer id="post-content-footer"><div class="row-half"><a href="/posts/2012/09/30/css-status/" class="prev post-switcher"><label>Prev</label><h4 class="title"><span>CSS for State</span></h4></a></div><div class="row-half"><a href="/posts/2012/10/06/about-scss/" class="next post-switcher"><label>Next</label><h4 class="title"><span>About Scss</span></h4></a></div></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper"><a href="#top"><span class="top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/works/" title="Works" class="nav-item">Works</a></li><li><a href="/posts/" title="Articles" class="nav-item">Articles</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/hljs-style.js"></script><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-30636693-1']);
 _gaq.push(['_trackPageview']);
 

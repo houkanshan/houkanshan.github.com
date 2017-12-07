@@ -6,6 +6,7 @@ var debug = require('gulp-debug')
 var fetchLocals = require('./lib/fetch-locals')
 var postsData = require('./lib/posts-data')
 var { readYaml, writeYaml } = require('./lib/yaml')
+const isProduction = process.env.NODE_ENV === 'production'
 
 var globalLocals = fetchLocals({
       cwd: 'src/'
@@ -18,6 +19,7 @@ gulp.task('stylus', function () {
   gulp.src(['src/styl/**/*.styl', '!src/styl/_*/**/*', '!src/styl/**/_*'])
     .pipe(stylus({
         include: ['bower_components'],
+        compress: isProduction,
       })
       .on('error', gutil.log))
     .pipe(gulp.dest('./css/'))
@@ -51,6 +53,7 @@ gulp.task('posts-yaml', function() {
 })
 
 var markdown = require('gulp-markdown')
+var markedRenderer = require('./lib/marked-render')
 var map = require('map-stream')
 var rename = require('gulp-rename')
 var hljs = require('highlight.js')
@@ -67,6 +70,7 @@ gulp.task('posts', ['posts-yaml'], function() {
         , smartypants: true
         , gfm: true
         , breaks: false
+        , renderer: markedRenderer
         }).on('error', gutil.log))
         .pipe(map(function(postHtml, cb) {
           if (!postHtml.contents) {
@@ -133,7 +137,7 @@ gulp.task('js', function(callback) {
   gs.create(['src/js/**/*.js', '!src/js/_*/**/*', '!src/js/**/_*'])
     .pipe(map(function(file, cb) {
       var filename = file.path
-      var output = path.relative('src', filename)
+      var output = path.resolve(__dirname, path.relative('src', filename))
       webpack({
           entry: filename,
           output: {
@@ -141,17 +145,22 @@ gulp.task('js', function(callback) {
             filename: path.basename(output),
           },
           resolve: {
-            root: './js/',
-            modulesDirectories: ["node_modules"],
-
-          }
+            modules: ['node_modules', path.resolve(__dirname, './js/')],
+          },
+          plugins: isProduction ? [
+            new webpack.optimize.UglifyJsPlugin({
+              compress: {
+                warnings: false,
+                drop_console: false,
+              }
+            }),
+          ] : []
         }, function(err, stats) {
             if(err) throw new gutil.PluginError("webpack", err);
             gutil.log("[webpack]", stats.toString({}));
         })
     }))
 
-  // Support old js
   gulp.src('src/js/_nopack/**/*.js')
     .pipe(gulp.dest('js/'))
 })

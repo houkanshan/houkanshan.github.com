@@ -1,11 +1,13 @@
 *[Stonert](https://github.com/houkanshan/stonert)* & *[Stormic](https://github.com/houkanshan/stormic)* are two music visualisation projects make by Processing.
 
 <p>
-<iframe width="560" height="315" src="//www.youtube.com/embed/cJ_yJjVNTRI?rel=0" frameborder="0" allowfullscreen alt="Stormic demo, on youtube"></iframe>
+<iframe width="560" height="315" src="//www.youtube.com/embed/cJ_yJjVNTRI?rel=0" frameborder="0" allowfullscreen alt=""></iframe>
+<figcaption>Demo of Stormic, on YouTube</figcaption>
 </p>
 
 <p>
-<iframe width="560" height="315" src="//www.youtube.com/embed/jUjYWAIbi4M?rel=0" frameborder="0" allowfullscreen alt="Stonert demo, on youtube"></iframe>
+<iframe width="560" height="315" src="//www.youtube.com/embed/jUjYWAIbi4M?rel=0" frameborder="0" allowfullscreen alt=""></iframe>
+<figcaption>Demo of Stonert, on YouTube</figcaption>
 </p>
 
 *Stormic* comes first, with my idea of “flowing stones” after reading the book *[The Nature of Code](http://natureofcode.com/)* ([@豆瓣](http://book.douban.com/subject/20452058/)) written by *Daniel Shiffman*. And the code of particle systems comes from this book. 
