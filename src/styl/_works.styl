@@ -26,6 +26,9 @@
       background-size: cover
       margin-bottom: 8px
       position: relative
+      background-position: center
+      border-radius: 2px
+      overflow: hidden
       &::before
         content: ''
         position: absolute
@@ -34,6 +37,7 @@
         left: 0
         right: 0
         border: 1px solid #ddd
+        border-radius: @border-radius
     .title
       font-size: 16px
       line-height: 1.2

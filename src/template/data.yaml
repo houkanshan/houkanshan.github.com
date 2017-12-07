@@ -19,9 +19,12 @@ selected:
 - title: Day & Night
   url: 'https://houkanshan.com/day-and-night'
   desc: Solo, Puzzle, iOS
+  cover: '/img/works/day-night.jpg'
 - title: What to do in the next minute?
   url: 'https://itunes.apple.com/app/what-to-do-in-the-next-minute/id1293668899?ls=1&mt=8'
   desc: Solo, Useless app, iOS
+  cover: '/img/works/nextminute.jpg'
 - title: DrumCat
   url: 'https://houkanshan.com/drumcat/'
   desc: Solo, Metronome, HTML
+  cover: '/img/works/drumcat.jpg'

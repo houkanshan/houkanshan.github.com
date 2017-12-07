@@ -810,6 +810,10 @@ body,
   background-size: cover;
   margin-bottom: 8px;
   position: relative;
+  background-position: center;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  overflow: hidden;
 }
 .works-list .works-item .cover::before {
   content: '';
@@ -819,6 +823,8 @@ body,
   left: 0;
   right: 0;
   border: 1px solid #ddd;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
 }
 .works-list .works-item .title {
   font-size: 16px;
