@@ -1,7 +1,27 @@
+- title: Winning Condition
+  url: 'https://ldjam.com/events/ludum-dare/41/winning-condition'
+  desc: Programming, Ludum Dare 41, HTML
+  cover: '/img/works/winning-condition.png'
+
 - title: What to do in the next minute?
   url: 'https://itunes.apple.com/app/what-to-do-in-the-next-minute/id1293668899?ls=1&mt=8'
   desc: Solo, Useless app, iOS
   cover: '/img/works/nextminute.jpg'
+
+- title: This Game Will Die Eventually, and So Will You.
+  url: 'https://ldjam.com/events/ludum-dare/38/this-game-will-die-eventually-and-so-will-you'
+  desc: Programming, Ludum Dare 38, HTML
+  cover: '/img/works/this-game-will-die.jpg'
+
+- title: '36523'
+  url: 'http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=65813'
+  desc: Programming, Ludum Dare 37, HaxeFlixel
+  cover: '/img/works/36523.jpg'
+
+- title: a Funeral with no Departed and Attendee
+  url: 'http://ludumdare.com/compo/ludum-dare-36/?action=preview&uid=113468'
+  desc: Programming, Ludum Dare 36, HaxeFlixel
+  cover: '/img/works/funeral.jpg'
 
 - title: DrumCat
   url: 'https://houkanshan.com/drumcat/'
@@ -22,18 +42,3 @@
   url: 'https://github.com/houkanshan/stormic'
   desc: Solo, Music visualizer, Processing
   cover: '/img/works/stormic.jpg'
-
-- title: This Game Will Die Eventually, and So Will You.
-  url: 'https://ldjam.com/events/ludum-dare/38/this-game-will-die-eventually-and-so-will-you'
-  desc: Programming, Ludum Dare 38, HTML
-  cover: '/img/works/this-game-will-die.jpg'
-
-- title: '36523'
-  url: 'http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=65813'
-  desc: Programming, Ludum Dare 37, HaxeFlixel
-  cover: '/img/works/36523.jpg'
-
-- title: a Funeral with no Departed and Attendee
-  url: 'http://ludumdare.com/compo/ludum-dare-36/?action=preview&uid=113468'
-  desc: Programming, Ludum Dare 36, HaxeFlixel
-  cover: '/img/works/funeral.jpg'
