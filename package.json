@@ -9,7 +9,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "b-type": "github:houkanshan/b-type",
     "bower": "^1.8.2",
     "fb-flo": "~0.1.0",
     "glob-all": "~2.4.0",
