@@ -91,3 +91,15 @@
   file: src/posts/2015-01-10-CSS-Conf-2015.md
   dest: posts/2015/01/10/CSS-Conf-2015
   layout: src/template/posts/_post.jade
+- title: 开发日志：Stop Eating
+  date: '2018-09-16'
+  file: src/posts/2018-09-16-stop-eating-devlog.md
+  dest: posts/2018/09/16/stop-eating-devlog
+  layout: src/template/posts/_post.jade
+  cover: /img/cover/2018-09-16-stop-eating-devlog.png
+- title: 'Devlog: Stop Eating'
+  date: '2018-09-16'
+  file: src/posts/2018-09-16-stop-eating-devlog-en.md
+  dest: posts/2018/09/16/stop-eating-devlog-en
+  layout: src/template/posts/_post.jade
+  cover: /img/cover/2018-09-16-stop-eating-devlog.png

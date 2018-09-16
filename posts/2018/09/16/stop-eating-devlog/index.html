@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en"><head><title>开发日志：Stop Eating&nbsp;- Houkanshan's Blog</title><meta name="author" content="Hou Mai"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" user-scalable="no"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="twitter:title" content="Hou Mai"><meta name="twitter:site" content="@houkanshan"><meta name="twitter:summary" content="Hou Mai is a front-end engineer and indie game developer."><link href="/atom.xml" rel="alternate" title="Houkanshan" type="application/atom+xml"><link rel="stylesheet" href="/css/index.css"><!--[if IE]>
+  <script>
+    (function(){var elements="abbr article aside audio canvas datalist details dialog eventsource figure footer header hgroup mark menu meter nav output progress section time video";elements.replace(/\w+/g,function(e){document.createElement(e)})})();
+  </script>
+<![endif]-->
+<link href="/css/post.css" rel="stylesheet"></head><body class="theme-modern"><div id="top"></div><div class="wrapper"><header id="post-header" class="minor-header"><div class="header-wrapper hover-toggler-fade"><nav id="blog-header-nav"><ul class="nav-list"><li><a href="/works/" title="Works" class="nav-item">Works</a></li><li><a href="/posts/" title="Articles" class="nav-item">Articles</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav><a href="/"><div class="when-hover"><h1 class="blog-title">Hou Mai</h1></div></a></div></header><article id="post-content"><header id="post-content-header"><h2>开发日志：Stop Eating</h2></header><article><div class="article-content"><blockquote>
+<p><a href="/posts/2018/09/16/stop-eating-devlog-en/">English version</a></p>
+</blockquote>
+<h2 id="-">介绍</h2>
+<p>Stop Eating 是一个 action puzzle 游戏。游戏受 Invisible, Inc. 以及它的设计师 James Lantz 在 GDC 上的<a href="https://www.youtube.com/watch?v=-8ZkIKPIDdY">演讲</a>的启发，创造了一个依赖策略和操作战胜强大但愚蠢的敌人的玩法：</p>
+<p>每一个关卡都像是玩家在 stealth game 中暴露后收拾残局的过程。玩家没有强力的武器，而敌人会追逐玩家且一击致命。他只能通过有限的物品来转移敌人的注意力，从而给自己创造“机会”干掉敌人。创造机会的代价是敌人会因为吃掉物品而变得更强，因此玩家需要平衡机会与它的代价。</p>
+<p>游戏有 6 个 objects：蛋糕、啤酒、啤酒蛋糕、蛋糕生成器、传送门以及跳跃标记。</p>
+<h2 id="-">围绕机会设计</h2>
+<p>对我来说， Invisible, Inc. 最有趣的地方在于转移敌人注意力而创造机会的玩法。因此我将围绕创造机会来设计。</p>
+<p>围绕机会来设计的价值在于：1）机会出现在正确的状态下（时间、空间、玩家动作），他能连接游戏中的各种资源 2）机会不能通过 grinding 获得，而依赖策略与技巧  3）机会不是稳定存在的物品，他会随着时间与空间的变化而消失，玩家需要保护机会。</p>
+<p>为了强调机会的不稳定性，我决定将游戏做成即时、自由移动的，这样就提供了操作的挑战和时间压力。随之而来的问题是玩家操作结果的不确定性，因此玩家很难对谜题的解法进行推算。这样一来谜题的深度就会受限。但我是一个偏爱战术与解谜类游戏的人，于是这个游戏便尝试弱化操作要求，而关注解谜与战术，但同时也要精简系统。</p>
+<p>游戏的关卡是从设计 puzzle 开始的，我发现这样没什么问题，于是游戏就没有引入随机性。</p>
+<p>围绕机会设计就意味着需要一个能在危险与安全之间来回变化的系统。因此需要首先设计“危险”。</p>
+<h3 id="-">设计危险</h3>
+<p>危险源于敌人的数量、防御、武器与移动能力。射击类武器过于强大，也会让游戏依赖技巧。敌人随机移动的话就很难施展策略；因此我将危险简化为快速移动的敌人，他们有稳定的目标，这样玩家可以更专注。敌人的数量则可根据 puzzle 的设计而定。</p>
+<p>角色在接触到敌人后就会死亡，这样玩家就不管理 heart 这个资源。同时也导致关卡 Fail-faster，玩家可以清楚的看到错解。基于同样的原因以及一致性的考虑，敌人也只有 1 heart。取而代之的是敌人会自我复制，两个 1 heart 的敌人要比 1 个 2 hearts 的敌人更有趣。</p>
+<h3 id="-">从危险到安全</h3>
+<p>由于敌人的攻击方式是追逐玩家，因此玩家可以有加速、让敌人减速以及 KO 敌人的能力。但这些都总是明显的正确的选择，游戏只有这些选择就会很无聊。所以游戏需要一些戏剧性的情节，这来源于危险和危险的化解。也就是需要进入一个仅有少部分隐藏的选择是正确的状态。这些选择之所以是隐藏的是因为他们通常不是正确的选择或者他们通常不可选。</p>
+<p>这种隐藏的选择可以是 deus ex machina（来源于随机或故事）， Combo （来源于模式识别），或者非直接的攻击（让敌人犯错、制造陷阱、准备 Combo）。由于游戏已经排除了随机性、复杂的策略和操作技巧，这样隐藏的选择可以是转移注意力、和陷阱比如：被瞬移到其他地方、被推动、被迷惑。</p>
+<h3 id="-">动词</h3>
+<p>我首先做了如下基础的 verbs 来支持这些错误：</p>
+<ul>
+<li>丢下任何物品，玩家都可以获得一次加速。因为丢弃往往具有负作用，因此丢弃比捡起更适合获得加速。</li>
+<li>丢下蛋糕。他的正效果是将敌人从较远的地方吸引过来。代价是： 1）减少一个生成 KO 敌人的物品的资源 2）敌人吃了一定的食物后会复制。</li>
+<li>丢下啤酒。他的正效果是让敌人在碰到时减速，与丢下蛋糕相对，它能让角色摆脱身边的敌人。代价是减少一个生成 KO 敌人的物品的资源。而且除非你有 2 个啤酒，否则你很难在敌人追你的时候把丢掉的啤酒捡回来。</li>
+<li>丢下啤酒蛋糕，他会吸引并 KO 掉一个敌人。</li>
+</ul>
+<p>这些动词不足以让敌人被 distract，因为如果玩家的速度慢于敌人，就意味着他所放下的蛋糕总是比敌人所追逐的蛋糕更远。因此敌人需要更笨一点 —— 他只会根据直线距离来判断目标，而非实际的路线长度。这样墙的作用不仅仅是创造分支，更重要的是它能创造更短的直线距离，可以 distract 敌人。</p>
+<p><img src="/img/stop_eating/distract.png" alt="Distract" title="null"/><figcaption>Distract</figcaption></p>
+<p>加速的存在可以促使玩家丢掉物品而不是拿着物品。减速的存在可以适当减慢游戏的节奏，让玩家有时间思考下一步做什么。敌人的速度只需要比玩家快一点就行了，否则敌人就太强了。而且事实上，这种只快一点的设计创造了很多“只差一点就输了”的紧张情节。</p>
+<p>因为玩家速度更慢，仅通过放下蛋糕来欺骗敌人是不够的，因此需要有一种远程将敌人引诱至远处的方法。所以我加了一个能定时生成蛋糕的生成器。它能作为一个在未来能转移敌人注意力的物品，同时也能为玩家补充蛋糕。蛋糕的负效果也给它带来了负效果 —— 如果不及时收集生产数来的蛋糕，它就能制造出大量的敌人。由于他与时间相关，因此也给玩家提供了 timing 的挑战。是个很有用的 object 了。</p>
+<p>传送门是个老套但实用的机制，在这里可以用来作为陷阱。玩家除了可以传送角色外，还可以用传送门将敌人吸引至远处；甚至可以让敌人在两个转送门之间无限地来回运动。虽然传送已经不够新鲜了，但用它来欺骗敌人还是很有趣。</p>
+<p>另一种帮助玩家移动的能力是跳跃标记，玩家可以在地图的任何位置传送到标记上。表面上，它给予了玩家更自由选择。但实际上玩家需要做更多的估算——在什么位置跳更好？而且由于它是单向的，玩家需要更小心的计划。</p>
+<p>如果要让敌人攻击自己人，那就还需要引入新的 object 来让敌人改变状态，因此可以与推动能力结合。比如一个黄油块？当敌人碰到后就会一直滑向墙壁、玩家或者蛋糕。由于敌人身上沾了黄油，所以它的朋友就把它当成好吃的了。黄油能减少一个敌人，但只有一个敌人的时候是没用的。同时它也能把敌人推远，但如果正被敌人追的话，那就正好把敌人推到自己身上了。很平衡的设计。但考虑到开发时间和系统复杂度的问题，我最终没有实现它。我有点后悔，不仅仅因为它在玩法上很有趣，还因为让敌人挤在一起的感觉很有爱。</p>
+<p>还有一些有意思的 object 因为简化系统的原因没有考虑，比如如果让角色变得比蛋糕更好吃，这样敌人会略过蛋糕而追逐玩家。比如</p>
+<h2 id="-">问题 &amp; 总结</h2>
+<p>游戏谜题设计上的一个低级问题是所有的关卡都使用了相同的尺寸。这犯了和我上一个游戏一样的错误。理论上，关卡的地图尺寸只由他的谜题所决定，每一个谜题都有和他相配的关卡尺寸。使用相同尺寸的好处是节省了地图编辑器和摄像机的开发成本。我还是太懒了。</p>
+<p>另一个问题是关卡的节奏。游戏一共 43 关，第一部分就用了 12 个关卡来介绍 4 个基本的 object —— 蛋糕、啤酒、啤酒蛋糕 &amp; 蛋糕生成器。这太长了。我的本意是在这个部分中让玩家充分学习加速、转移注意力、丢弃、舍弃一个蛋糕以获取更多蛋糕等 verbs，并且掌握一定操作的技巧，这样他们才能够在后续注重解谜的关卡中知道操作的极限的情况下考虑如何解谜。</p>
+<p>但我没有意识到操作和解谜的能力是应该在整个游戏中共同提升的，而且因为容易失误，操作能力通常比解谜能力提升得更慢（需要大量重试）。通过减慢游戏节奏的方式可以降低操作的要求，从而减少第一部分的训练关卡，但那样又会延长每关的时间，这对一个需要玩家不断重试的游戏是很糟糕的。</p>
+<p>所以简单的说，我的游戏有时间压力 – 玩家被敌人追逐。然而时间压力与好的谜题是矛盾的。我居然没有意识到这个问题。这也是为什么动作解谜游戏要么谜题比较简单；要么谜题比较开放，允许玩家纯技巧通关；要么节奏慢，玩家经常有喘息和思考的机会；或者解谜与操作是分离的，当玩家在解谜时，他能很轻松的验证解法而因操作不熟而失误。</p>
+<p>如果我的游戏是一个非实时的解谜游戏，那么我还能创造更丰富系统来提升游戏的深度。作为一个独立游戏开发者，我应该更专注，不应该去尝试处理这些有明显冲突的玩法。</p>
+<p>但我相信这种基本的问题谁都会犯，但问题根源还是缺乏测试，我意识到问题是在于有一种“测试不属于开发”的想法在阻止我停下“开发”来去花更多的时间测试。这多半也因为游戏在很粗糙的时候测试很无趣，而在中国我又找不到足够的开发者或有兴趣的玩家有耐心来测试这种小的、粗糙的、奇怪的、没有故事的游戏。手机游戏可以随时随地的测试，这样就不必刻意约时间测试；程序生成或者 local multi player game 允许测试者多次测试而不会觉得重复，并且具有社交性；接下来我应该考虑这些类型的游戏。</p>
+<h3 id="-">主题的问题</h3>
+<p>我并不想使用打僵尸、怪物这类主题，他们老套而缺乏意义。“消灭蟑螂”是最先想到了主题，因为有一种杀死蟑螂的方法就是给他们吃混合了毒药的食物。但这有点恶心，而且我很难画出一个有趣的蟑螂，所以还是不行。</p>
+<p>食物大战雷人这个想法很类似于植物大战僵尸。玩家需要控制一个弱小的东西战胜强大的敌人。它同时也包含着一种反人类中心主义观点，但实际操作上你很难让这些敌人看起来代表着全部的人类，而不只是特殊的某些人。结果就成了，这个游戏仿佛在说“为了你的健康少吃点”。但这是一种有争议的观点，因为 <a href="https://en.wikipedia.org/wiki/Health_at_Every_Size">Health at Every Size (HAES)</a> 。这时游戏古怪搞笑的风格就显得更不够尊重。造成这个问题的原因是我将系统作为游戏的核心而对叙事的处理很敷衍。</p>
+<p>对我来说制作游戏是一个自我表达的过程，我的游戏就是我的延伸，他体现了我的态度、观点和品位。我应该更严肃的对待我的游戏的主题。而这个游戏就让我看起来像是个鲁莽的年轻人（也许确实如此）。我应该在下个游戏里回应这个问题。</p>
+</div><footer><span class="date">2018-09-16</span></footer><footer><div class="comments-section"><div id="disqus_thread"></div><script>var disqus_shortname = 'houkanshansblog'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script></div></footer></article><footer id="post-content-footer"><div class="row-half"><a href="/posts/2015/01/10/CSS-Conf-2015/" class="prev post-switcher"><label>Prev</label><h4 class="title"><span>CSS Conf 2015</span></h4></a></div><div class="row-half"><a href="/posts/2018/09/16/stop-eating-devlog-en/" class="next post-switcher"><label>Next</label><h4 class="title"><span>Devlog: Stop Eating</span></h4></a></div></footer></article><footer id="post-footer" class="main-footer"><div class="footer-wrapper"><a href="#top"><span class="top-button">Top</span></a><nav id="blog-footer-nav"><ul class="nav-list"><li><a href="/works/" title="Works" class="nav-item">Works</a></li><li><a href="/posts/" title="Articles" class="nav-item">Articles</a></li><li><a href="/about/" title="About" class="nav-item">About</a></li></ul></nav></div></footer></div><script src="/js/hljs-style.js"></script><script>var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-30636693-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>
