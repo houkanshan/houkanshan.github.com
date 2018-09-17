@@ -6,7 +6,7 @@ Stop Eating is an action puzzle game inspired by *Invisible, Inc.* and its desig
 
 The game has 5 parts and 43 levels. Each level feels like the unequipped character is exposed in a stealth game. The enemies are chasing and can kill the character by touch. The player has to use the environment and limited items to create opportunities to KO the enemies. But the cost of creating opportunities is that the enemies will become stronger. So the player has to make a trade-off between them.
 
-There’re 6 objects in the game: cake, beer, beer cake, cake generator, teleport and jumping mark. The games’ verbs are introduced in the attachment *stop_eating_interaction_instruction.jpg*.
+There’re 6 objects in the game: cake, beer, beer cake, cake generator, teleport and jumping mark.
 
 ## Design
 Although the narrative layer (theme, visual, audio, text) took around half of the development time, as an indie game, the design of its narrative elements can be recognized clearly. So I will focus on the design of its system here.
