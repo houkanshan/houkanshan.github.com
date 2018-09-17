@@ -4,7 +4,7 @@
 
 Stop Eating is an action puzzle game inspired by *Invisible, Inc.* and its designer’s [GDC talk](https://www.youtube.com/watch?v=-8ZkIKPIDdY). In the game, the player controls a character to solve the puzzles by manipulating the strong but stupid enemies in real-time.
 
-The game has 5 parts and 43 levels. Each level feels like the unequipped character is exposed in a stealth game. The enemies are chasing and can kill the character by touch. The player has to use the environment and limited items to create opportunities to KO the enemies. But the cost of creating opportunities is that the enemies will become stronger. So the player has to make a trade-off between them.
+The game has 5 parts and 43 levels. Each level feels like the unequipped character is exposed in a stealth game. The enemies are chasing and can kill the character by touching. The player has to use the environment and limited items to create opportunities to KO the enemies. But the cost of creating opportunities is that the enemies will become stronger. So the player has to make a trade-off between them.
 
 There’re 6 objects in the game: cake, beer, beer cake, cake generator, teleport and jumping mark.
 
